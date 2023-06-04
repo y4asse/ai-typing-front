@@ -6,12 +6,23 @@ import { situationAtom } from '@/recoil/situationAtom'
 import { gameAtom } from '@/recoil/gameAtom'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import Created from '@/app/components/play/created'
+import Playing from '@/app/components/play/playing'
+import { notFound } from 'next/navigation'
 
 type AiResponse = {
   text: string[]
 }
 
-const Play = () => {
+type Props = {
+  params: {
+    difficulty: 'easy' | 'hard' | 'normal'
+  }
+}
+
+const Play = ({ params }: Props) => {
+  if (params.difficulty !== 'easy' && params.difficulty !== 'hard' && params.difficulty !== 'normal') {
+    return notFound()
+  }
   const [situation] = useRecoilState(situationAtom)
   const [game] = useRecoilState(gameAtom)
   const setGame = useSetRecoilState(gameAtom)
@@ -50,15 +61,16 @@ const Play = () => {
   }
   switch (situation.value) {
     case 'thema':
-    return <Thema handleClick={handleClick}/>
+      return <Playing difficulty={params.difficulty} />
+    // return <Thema handleClick={handleClick}/>
     case 'creating':
       return <CreatingText />
     case 'created':
       return <Created />
     case 'playing':
-      // return <Thema />
+    // return <Thema />
     case 'score':
-      // return <Thema />
+    // return <Thema />
   }
 }
 

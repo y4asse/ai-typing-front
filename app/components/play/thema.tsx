@@ -3,10 +3,12 @@
 import ThemaInput from '@/app/components/input/themaInput'
 import AnimationTitle from '../../components/animationTitle/animationTitle'
 import StartGameBtn from '@/app/components/buttons/startGameBtn'
+import GoBackBtn from '../buttons/goBackBtn'
 const Thema = ({ handleClick }: { handleClick: () => void }) => {
   return (
     <>
       <div className="flex justify-center items-center flex-col gap-24 h-screen">
+        <GoBackBtn />
         <div>
           <AnimationTitle text="テーマを入力してください" />
         </div>

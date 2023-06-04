@@ -26,7 +26,7 @@ const AnimationTitle = ({ text }: Props) => {
   }, [])
 
   return (
-    <h1 className=" font-bold text-5xl tracking-widest">
+    <h1 className=" font-bold text-5xl tracking-widest [text-shadow:_5px_5px_20px_rgb(0_0_0_/_40%)] ">
       {splitText.map((word, index) => {
         if (index <= textIndex) {
           return <span key={index}>{word}</span>
