@@ -12,7 +12,14 @@ const Created = () => {
   const [isCountNumStart, setIsCountNumStart] = useState(false)
 
   useEffect(() => {
+    if (timer < 0) {
+      setSituation({ value: 'playing' })
+    }
+  }, [timer])
+
+  useEffect(() => {
     let c = 0
+
     const typingCount = setInterval(() => {
       if (c > text.length) {
         clearInterval(typingCount)
@@ -25,13 +32,7 @@ const Created = () => {
 
     const count = setInterval(() => {
       if (c > text.length) {
-        setTimer((prev) => {
-          if (prev < 1) {
-            setSituation({ value: 'playing' })
-            return prev
-          }
-          return prev - 1
-        })
+        setTimer((prev) => prev - 1)
       }
     }, 1000)
 
@@ -43,22 +44,16 @@ const Created = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="completeText">
-          <h3>
-            {text.map((word, index) => {
-              if (index <= typingTimer) {
-                return <span key={index}>{word}</span>
-              }
-              return ''
-            })}
-          </h3>
-          {isCountNumStart && (
-            <div>
-              <span>{timer === 0 ? 'スタート!' : timer}</span>
-            </div>
-          )}
-        </div>
+      <div className="h-screen flex justify-center items-center flex-col gap-5">
+        <h3 className="text-4xl font-bold">
+          {text.map((word, index) => {
+            if (index <= typingTimer) {
+              return <span key={index}>{word}</span>
+            }
+            return ''
+          })}
+        </h3>
+        {isCountNumStart && <h1 className="text-8xl font-bold rotateAnimation">{timer === 0 ? 'スタート!' : timer}</h1>}
       </div>
     </>
   )

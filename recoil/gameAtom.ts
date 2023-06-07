@@ -7,6 +7,7 @@ type State = {
   currentTextIndex: number
   timer: number
   text: string[]
+  hiragana: string[]
 }
 
 const defaultState: State = {
@@ -15,7 +16,8 @@ const defaultState: State = {
   currentCharIndex: 0,
   currentTextIndex: 0,
   timer: 10,
-  text: []
+  text: [],
+  hiragana: []
 }
 
 export const gameAtom = atom({
