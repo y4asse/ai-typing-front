@@ -8,11 +8,12 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import Created from '@/app/components/play/created'
 import Playing from '@/app/components/play/playing'
 import { notFound } from 'next/navigation'
-import { useEffect } from 'react'
+import { NextRequest } from 'next/server'
 
 type AiResponse = {
   text: string[]
   hiragana: string[]
+  error?: string
 }
 
 type Props = {
@@ -22,47 +23,52 @@ type Props = {
 }
 
 const Play = ({ params }: Props) => {
+  const [game, setGame] = useRecoilState(gameAtom)
+  const [situation, setSituation] = useRecoilState(situationAtom)
+  const API_URL = process.env.NEXT_PUBLIC_API_URL
   if (params.difficulty !== 'easy' && params.difficulty !== 'hard' && params.difficulty !== 'normal') {
     return notFound()
   }
   const { difficulty } = params
-  const [situation] = useRecoilState(situationAtom)
-  const [game] = useRecoilState(gameAtom)
-  const setGame = useSetRecoilState(gameAtom)
-  const setSituation = useSetRecoilState(situationAtom)
+
   const handleClick = async () => {
-    if (game.thema === '') {
-      alert('テーマを入力してください')
-      return
-    }
-    console.log('creating text...')
-    setSituation({ value: 'creating' })
-    await fetch('https://ai-typing-api-dev-wtopp7romq-an.a.run.app/aiText', {
-      // await fetch('http://localhost:8080/aiText', {
-      body: JSON.stringify({ thema: game.thema }),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST'
-    })
-      .then(async (res) => {
-        if (!res.ok) {
-          alert('サーバーエラーが発生しました．もう一度お試しください．')
-          setSituation({ value: 'thema' })
-          return
+    try {
+      if (game.thema === '') {
+        throw new Error('テーマを入力してください')
+      }
+      if (!API_URL) {
+        throw new Error('サーバーエラー: 環境変数が設定されていません')
+      }
+      const request = new NextRequest(`${API_URL}/aiText`, {
+        method: 'POST',
+        body: JSON.stringify({ thema: game.thema }),
+        headers: {
+          'Content-Type': 'application/json'
         }
-        //成功したときの処理
-        const data: AiResponse = await res.json()
-        setGame((prev) => {
-          return { ...prev, text: data.text, hiragana: data.hiragana }
+      })
+      console.log('creating text...')
+      setSituation({ value: 'creating' })
+      await fetch(request)
+        .then(async (res) => {
+          const data: AiResponse = await res.json()
+          if (!res.ok) {
+            throw new Error(`${data.error}`)
+          }
+          //成功したときの処理
+          setGame((prev) => {
+            return { ...prev, text: data.text, hiragana: data.hiragana }
+          })
+          setSituation({ value: 'created' })
         })
-        setSituation({ value: 'created' })
-      })
-      .catch((error) => {
-        alert('通信エラーが発生しました．通信環境を確認してください')
-        setSituation({ value: 'thema' })
-        return
-      })
+        .catch((error: Error) => {
+          alert(`サーバーエラー: ${error.message}`)
+          setSituation({ value: 'thema' })
+        })
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message)
+      }
+    }
   }
   return (
     <>
