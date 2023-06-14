@@ -11,9 +11,11 @@ type Props = {
 
 const Playing = ({ difficulty }: Props) => {
   return (
-    <div className="h-screen">
-      <GameDifficulty difficulty={difficulty} />
-      <GameScore />
+    <div className="w-1/2 mx-auto h-screen grid grid-rows-3">
+      <div className='grid grid-cols-2'>
+        <GameDifficulty difficulty={difficulty} />
+        <GameScore />
+      </div>
       <GameText />
       <GameTimer />
     </div>

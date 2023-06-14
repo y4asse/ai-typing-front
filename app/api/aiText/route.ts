@@ -28,6 +28,7 @@ const testData: AiResponse = {
 }
 
 const getAiText = async (thema: string): Promise<AiResponse> => {
+  return testData
   const SERVER_URL = process.env.SERVER_URL
   if (!SERVER_URL) {
     throw new Error('環境変数を設定してください')
@@ -52,7 +53,6 @@ const getAiText = async (thema: string): Promise<AiResponse> => {
     .catch((error: Error) => {
       throw new Error(`${error.message}`)
     })
-  return testData
   return data
 }
 

@@ -1,12 +1,12 @@
 'use client'
 
-import CreatingText from '@/app/components/play/creating'
-import Thema from '@/app/components/play/thema'
+import CreatingText from '@/app/components/playing/creating'
+import Thema from '@/app/components/playing/thema'
 import { situationAtom } from '@/recoil/situationAtom'
 import { gameAtom } from '@/recoil/gameAtom'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import Created from '@/app/components/play/created'
-import Playing from '@/app/components/play/playing'
+import Created from '@/app/components/playing/created'
+import Playing from '@/app/components/playing/playing'
 import { notFound } from 'next/navigation'
 import { NextRequest } from 'next/server'
 
