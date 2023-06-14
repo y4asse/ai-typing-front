@@ -40,28 +40,26 @@ const constructTypeSentence = (hiragana: string): Res => {
 }
 
 const Test = () => {
-  const text = 'きゅうきゅうしゃ'
+  const text = ['きゅうきゅうしゃ', 'こんばんは', 'こんにちは']
 
-  const { splitSentence, romajiCandidates } = constructTypeSentence(text)
   const [totalInput, setTotalInput] = useState('')
+  const [textIndexShow, setTextIndexShow] = useState(0)
   let inputBuf = ''
   let inputBufNext = ''
   let hiraganaIndex = 0
-  let romajiIndex = 0
-  let romajiCharIndex = 0
+  let textIndex = 0
   let matchingCandidates: string[] = []
+  let romajiCandidates = constructTypeSentence(text[textIndex]).romajiCandidates
 
   const handleInput = (e: KeyboardEvent) => {
-    if (hiraganaIndex > romajiCandidates.length - 1) {
+    if (textIndex > text.length - 1) {
       return
     }
     const typedKey = e.key.toLowerCase()
     inputBufNext = inputBuf + typedKey
 
     //タイプした文字を入れてみて候補があるかを確認
-    matchingCandidates = romajiCandidates[hiraganaIndex].filter((romaji) => {
-      if (romaji.startsWith(inputBufNext)) return romaji
-    })
+    matchingCandidates = romajiCandidates[hiraganaIndex].filter((romaji) => romaji.startsWith(inputBufNext))
     //候補があるとき（正解の時）
     if (matchingCandidates.length > 0) {
       inputBuf += typedKey
@@ -72,14 +70,21 @@ const Test = () => {
         inputBuf = ''
         matchingCandidates = []
         if (hiraganaIndex > romajiCandidates.length - 1) {
-          console.log('終了！！！！！')
+          textIndex++
+          if (textIndex > text.length - 1) {
+            console.log('終了!!!!!')
+            return
+          }
+          setTextIndexShow(textIndex)
+          romajiCandidates = constructTypeSentence(text[textIndex]).romajiCandidates
+          hiraganaIndex = 0
+          setTotalInput('')
         }
       }
     }
     console.log('inputBuf: ' + inputBuf)
     console.log('romajiCandidate[hiraganaIndex]' + romajiCandidates[hiraganaIndex])
     console.log('matchingCandidate: ' + matchingCandidates)
-    
   }
 
   useEffect(() => {
@@ -92,6 +97,7 @@ const Test = () => {
 
   return (
     <div className="h-screen flex justify-center items-center">
+      <div>{text[textIndexShow]}</div>
       <div>{totalInput}</div>
     </div>
   )
