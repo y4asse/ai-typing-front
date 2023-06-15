@@ -23,12 +23,12 @@ const testData: AiResponse = {
     'ゆめがあるからこそげんじつはかがやく-BANKAI',
     'なんでひとはよいことをするとかせいぎとかってかんがえるんだろうそのかわりわるいことをするのはかんたんだからさたいへんなことをしてせかいをうごかすのがせいぎかもしれない-ですのーと',
     'じぶんをしんじることがさいごまでたたかうこと-NARUTO',
-    'まぁいいんじゃないですかじんせいそんなふうに一ほんすじとおってたら-すずみやはるひのゆううつ'
+    'まぁいいんじゃないですかじんせいそんなふうに1ほんすじとおってたら-すずみやはるひのゆううつ'
   ]
 }
 
 const getAiText = async (thema: string): Promise<AiResponse> => {
-  return testData
+  // return testData
   const SERVER_URL = process.env.SERVER_URL
   if (!SERVER_URL) {
     throw new Error('環境変数を設定してください')

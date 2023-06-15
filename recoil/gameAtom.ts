@@ -17,7 +17,7 @@ const defaultState: State = {
   currentTextIndex: 0,
   timer: 10,
   text: [],
-  hiragana: []
+  hiragana: ['きゅうきゅうしゃ', 'こんばんは', 'こんにちは']
 }
 
 export const gameAtom = atom({

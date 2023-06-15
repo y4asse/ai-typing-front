@@ -1,48 +1,73 @@
-import { SingletonRouter } from 'next/router'
-import { useState } from 'react'
+'use client'
 
-const MojiExtractor = {
-  getRomajiCandidate: (word: string) => [word],
-  getHiraganaCandidate: (word: string) => [word]
-}
+import { useEffect, useState } from 'react'
+import { constructTypeSentence } from './constructTypeSentence'
 
-interface Group {
-  wordList: string[]
-}
+const useTypingLogic = (text: string[]): { textIndexShow: number; totalInput: string } => {
+  if (text.length < 1) {
+    throw new Error('テキストが存在しません')
+  }
+  const [totalInput, setTotalInput] = useState('')
+  const [textIndexShow, setTextIndexShow] = useState(0)
+  let inputBuf = ''
+  let inputBufNext = ''
+  let hiraganaIndex = 0
+  let textIndex = 0
+  let matchingCandidates: string[] = []
+  let romajiCandidates = constructTypeSentence(text[textIndex]).romajiCandidates
+  if (romajiCandidates.length < 1) {
+  }
 
-const TypingGame = (group: Group) => {
-  const [wordList, setWordList] = useState(group.wordList)
-  const [curretnWord, setCurrentWord] = useState('')
-  const [typedWord, setTypedWord] = useState('')
-  const [nextWord, setNextWord] = useState(false)
+  const handleInput = (e: KeyboardEvent) => {
+    //終了後
+    if (textIndex > text.length - 1) {
+      return
+    }
+    //テキストがないときerror
+    if (text.length < 1) {
+      console.log('テキストがありません')
+      return
+    }
+    const typedKey = e.key
+    if (typedKey == 'Shift') {
+      return
+    }
+    inputBufNext = inputBuf + typedKey
 
-  const typeWord = (typed: string) => {
-    const nextTypedWord = typedWord + typed
-    const candidate = MojiExtractor.getHiraganaCandidate(curretnWord)
-    //こんにちはがお題で，kを入力
-    //some() 配列の中の少なくとも 1 つの要素が 合格するかどうかを判定
-    //startWith() 文字列が引数で指定された文字列で始まるかを判定
-    if (candidate.some((s) => s.startsWith(nextTypedWord))) {
-      //k
-      setTypedWord(nextTypedWord)
-      const hiragana = MojiExtractor.getHiraganaCandidate(nextTypedWord) //kのひらがな候補[か,き,く,け,こ]を取得
-
-      //[か,き,く,け,こ]に対して，こんにちは，は「か」から始まるか？「き」から始まるか？．．．「こ」から始まるか？yes->こを見つけたのでmatchingHiraganaに代入
-      const matchingHiragana = hiragana.find((s) => curretnWord.startsWith(s))
-
-      if (matchingHiragana) {
-        //こんにちはを「こ」の文字数分だけ消して「んにちは」にしてremainingHiraganaに入れる
-        const remainingHiragana = curretnWord.slice(matchingHiragana.length)
-        //currentWordを「んにちは」にする
-        setCurrentWord(remainingHiragana)
-        setTypedWord('')
-        setNextWord(!remainingHiragana)
+    //タイプした文字を入れてみて候補があるかを確認
+    matchingCandidates = romajiCandidates[hiraganaIndex].filter((romaji) => romaji.startsWith(inputBufNext))
+    //候補があるとき（正解の時）
+    if (matchingCandidates.length > 0) {
+      inputBuf += typedKey
+      setTotalInput((prev) => prev + typedKey)
+      //ひらがなができたとき
+      if (matchingCandidates.length == 1 && matchingCandidates[0] === inputBuf) {
+        hiraganaIndex++
+        inputBuf = ''
+        matchingCandidates = []
+        if (hiraganaIndex > romajiCandidates.length - 1) {
+          textIndex++
+          if (textIndex > text.length - 1) {
+            console.log('終了!!!!!')
+            return
+          }
+          setTextIndexShow(textIndex)
+          romajiCandidates = constructTypeSentence(text[textIndex]).romajiCandidates
+          hiraganaIndex = 0
+          setTotalInput('')
+        }
       }
     }
   }
-}
 
-const useTypingLogic = () => {
-  return TypingGame
+  useEffect(() => {
+    document.addEventListener('keydown', handleInput, false)
+
+    return () => {
+      document.removeEventListener('keydown', handleInput, false)
+    }
+  }, [])
+
+  return { textIndexShow, totalInput }
 }
 export default useTypingLogic
