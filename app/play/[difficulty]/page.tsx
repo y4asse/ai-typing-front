@@ -9,6 +9,7 @@ import Created from '@/app/components/playing/created'
 import Playing from '@/app/components/playing/playing'
 import { notFound } from 'next/navigation'
 import { NextRequest } from 'next/server'
+import ScoreView from '@/app/components/playing/scoreView'
 
 type AiResponse = {
   text: string[]
@@ -18,18 +19,18 @@ type AiResponse = {
 
 type Props = {
   params: {
-    difficulty: 'easy' | 'hard' | 'normal'
+    difficulty: 'easy' | 'normal' | 'hard'
   }
 }
 
 const Play = ({ params }: Props) => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [situation, setSituation] = useRecoilState(situationAtom)
-  const API_URL = process.env.NEXT_PUBLIC_API_URL
-  if (params.difficulty !== 'easy' && params.difficulty !== 'hard' && params.difficulty !== 'normal') {
+  const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
+  const { difficulty } = params
+  if (difficulty !== 'easy' && difficulty !== 'hard' && difficulty !== 'normal') {
     return notFound()
   }
-  const { difficulty } = params
 
   const handleClick = async () => {
     try {
@@ -56,7 +57,7 @@ const Play = ({ params }: Props) => {
           }
           //成功したときの処理
           setGame((prev) => {
-            return { ...prev, text: data.text, hiragana: data.hiragana }
+            return { ...prev, text: data.text, hiragana: data.hiragana, difficulty: difficulty }
           })
           setSituation({ value: 'created' })
         })
@@ -79,9 +80,9 @@ const Play = ({ params }: Props) => {
       ) : situation.value === 'created' ? (
         <Created />
       ) : situation.value === 'playing' ? (
-        <Playing difficulty={difficulty} />
+        <Playing/>
       ) : (
-        ''
+        <ScoreView />
       )}
     </>
   )

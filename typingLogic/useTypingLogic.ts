@@ -1,21 +1,35 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { constructTypeSentence } from './constructTypeSentence'
+import { useRecoilState } from 'recoil'
+import { gameAtom } from '@/recoil/gameAtom'
+import { setDefaultHighWaterMark } from 'stream'
 
-const useTypingLogic = (text: string[]): { textIndexShow: number; totalInput: string } => {
+const useTypingLogic = (
+  text: string[]
+): { textIndex: number; totalInput: string; splitSentence: string[]; hiraganaIndex: number } => {
   if (text.length < 1) {
     throw new Error('テキストが存在しません')
   }
   const [totalInput, setTotalInput] = useState('')
-  const [textIndexShow, setTextIndexShow] = useState(0)
-  let inputBuf = ''
-  let inputBufNext = ''
-  let hiraganaIndex = 0
-  let textIndex = 0
-  let matchingCandidates: string[] = []
-  let romajiCandidates = constructTypeSentence(text[textIndex]).romajiCandidates
-  if (romajiCandidates.length < 1) {
+  const [game, setGame] = useRecoilState(gameAtom)
+  const { timer } = game
+  const [inputBuf, setInputBuf] = useState('')
+  const [hiraganaIndex, setHiraganaIndex] = useState(0)
+  const [textIndex, setTextIndex] = useState(0)
+  const constructTypeSentenceCallback = useCallback(() => {
+    return constructTypeSentence(text[textIndex])
+  }, [textIndex])
+  const [splitSentence, setSplitSentence] = useState(constructTypeSentenceCallback().splitSentence)
+
+  const goNextText = () => {
+    setTextIndex((prev) => (prev += 1))
+    setHiraganaIndex(0)
+    setTotalInput('')
+    setSplitSentence(constructTypeSentence(text[textIndex + 1]).splitSentence)
+    const time = 10
+    setGame((prev) => ({ ...prev, timer: time }))
   }
 
   const handleInput = (e: KeyboardEvent) => {
@@ -23,51 +37,60 @@ const useTypingLogic = (text: string[]): { textIndexShow: number; totalInput: st
     if (textIndex > text.length - 1) {
       return
     }
-    //テキストがないときerror
-    if (text.length < 1) {
-      console.log('テキストがありません')
-      return
-    }
     const typedKey = e.key
     if (typedKey == 'Shift') {
       return
     }
-    inputBufNext = inputBuf + typedKey
-
+    const inputBufNext = inputBuf + typedKey
     //タイプした文字を入れてみて候補があるかを確認
-    matchingCandidates = romajiCandidates[hiraganaIndex].filter((romaji) => romaji.startsWith(inputBufNext))
+    // const candidates = romajiCandidates[hiraganaIndex].filter((romaji) => romaji.startsWith(inputBufNext))
+    const candidates = constructTypeSentenceCallback().romajiCandidates[hiraganaIndex].filter((romaji) =>
+      romaji.startsWith(inputBufNext)
+    )
     //候補があるとき（正解の時）
-    if (matchingCandidates.length > 0) {
-      inputBuf += typedKey
+    if (candidates.length > 0) {
+      setInputBuf((prev) => prev + typedKey)
       setTotalInput((prev) => prev + typedKey)
+      setGame((prev) => {
+        const score = prev.score + 10
+        return { ...prev, score }
+      })
       //ひらがなができたとき
-      if (matchingCandidates.length == 1 && matchingCandidates[0] === inputBuf) {
-        hiraganaIndex++
-        inputBuf = ''
-        matchingCandidates = []
-        if (hiraganaIndex > romajiCandidates.length - 1) {
-          textIndex++
-          if (textIndex > text.length - 1) {
-            console.log('終了!!!!!')
-            return
-          }
-          setTextIndexShow(textIndex)
-          romajiCandidates = constructTypeSentence(text[textIndex]).romajiCandidates
-          hiraganaIndex = 0
-          setTotalInput('')
+      if (candidates.length == 1 && candidates[0] === inputBufNext) {
+        setHiraganaIndex((prev) => (prev += 1))
+        setInputBuf('')
+        //次のお題に進むとき
+        if (hiraganaIndex + 1 > constructTypeSentenceCallback().romajiCandidates.length - 1) {
+          goNextText()
         }
       }
+    } else {
+      //不正解の時
+      setGame((prev) => ({ ...prev, score: prev.score - 10 }))
     }
   }
 
   useEffect(() => {
-    document.addEventListener('keydown', handleInput, false)
+    if (timer < 1) {
+      goNextText()
+    }
+  }, [timer])
 
+  useEffect(() => {
+    const count = setInterval(() => {
+      setGame((prev) => ({ ...prev, timer: prev.timer - 1 }))
+    }, 1000)
+    return () => {
+      clearInterval(count)
+    }
+  }, [textIndex])
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleInput, false)
     return () => {
       document.removeEventListener('keydown', handleInput, false)
     }
-  }, [])
-
-  return { textIndexShow, totalInput }
+  }, [handleInput])
+  return { textIndex, totalInput, splitSentence, hiraganaIndex }
 }
 export default useTypingLogic
