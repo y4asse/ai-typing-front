@@ -8,15 +8,23 @@ type State = {
   text: string[]
   hiragana: string[]
   mode: ModeTypes
+  totalTypeNum: number
+  totalMissTypeNum: number
+  typeNum: number
+  missTypeNum: number
 }
 
 const defaultState: State = {
   thema: '',
   score: 0,
-  timer: 10,
+  timer: 0,
   text: [],
   hiragana: [],
-  mode: 'standard'
+  mode: 'standard',
+  totalTypeNum: 0,
+  totalMissTypeNum: 0,
+  typeNum: 0,
+  missTypeNum: 0
 }
 
 export const gameAtom = atom({
