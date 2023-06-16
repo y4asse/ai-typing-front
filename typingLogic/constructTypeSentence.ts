@@ -8,7 +8,7 @@ type Res = {
 const mappingData = getMappingData()
 
 export const constructTypeSentence = (hiragana: string): Res => {
-  if (hiragana === '') {
+  if (!hiragana) {
     return { splitSentence: [], romajiCandidates: [] }
   }
   const parsedStr: string[] = []

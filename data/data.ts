@@ -5218,9 +5218,17 @@ const data = {
       TypePattern: ['8']
     },
     {
-      Pattern: '一',
-      TypePattern: ['1']
+      Pattern: '９',
+      TypePattern: ['9']
     },
+    {
+      Pattern: '！',
+      TypePattern: ['!']
+    },
+    {
+      Pattern: '？',
+      TypePattern: ['?']
+    }
   ]
 }
 
