@@ -4,10 +4,13 @@ import { useRecoilState } from 'recoil'
 
 const GameMode = () => {
   const [game] = useRecoilState(gameAtom)
-  const { mode } = game
+  const { thema } = game
   return (
-    <div className="flex justify-center items-center text-7xl font-extrabold">
-      {mode === 'standard' ? 'スタンダード' : mode === 'timeLimit' ? 'タイムリミット' : ''}
+    <div className="flex justify-center items-center  font-extrabold flex-col gap-5">
+      <div className="text-4xl">
+        {/* {mode === 'standard' ? 'スタンダード' : mode === 'timeLimit' ? 'タイムリミット' : ''} */}
+        {thema}
+      </div>
     </div>
   )
 }

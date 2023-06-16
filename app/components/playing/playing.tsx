@@ -1,5 +1,6 @@
 'use client'
 
+import GameDetails from './gameDetails'
 import GameMode from './gameMode'
 import GameScore from './gameScore'
 import GameText from './gameText'
@@ -13,7 +14,9 @@ const Playing = () => {
         <GameScore />
       </div>
       <GameText />
-      <GameTimer />
+      <GameDetails />
+
+      {/* <GameTimer /> */}
     </div>
   )
 }

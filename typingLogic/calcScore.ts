@@ -1,6 +1,10 @@
-const calcScore = (totalWordNumber: number, totalTimeSec: number, totalMisstypeNum: number): number => {
+export const calcScore = (totalWordNumber: number, totalTimeMSec: number, totalMisstypeNum: number): number => {
+  if (totalTimeMSec === 0) {
+    totalTimeMSec = 1
+  }
+  const totalTimeSec = totalTimeMSec / 1000
   const WPM = (totalWordNumber / totalTimeSec) * 60
   const accuracy = 1 - totalMisstypeNum / totalWordNumber
-  const score = WPM * (accuracy ^ 3)
+  const score = Math.round(WPM * (accuracy ^ 3))
   return score
 }
