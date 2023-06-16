@@ -10,6 +10,9 @@ const Footer = () => {
       <span style={{ cursor: 'pointer' }} onClick={() => {}}>
         プライバシーポリシー
       </span>
+      <span>
+        Web Services by Yahoo! JAPAN （https://developer.yahoo.co.jp/sitemap/）
+      </span>
     </footer>
   )
 }
