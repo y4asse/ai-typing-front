@@ -1,3 +1,4 @@
+import { ModeTypes } from '@/types/mode'
 import { atom } from 'recoil'
 
 type State = {
@@ -6,7 +7,7 @@ type State = {
   timer: number
   text: string[]
   hiragana: string[]
-  difficulty: 'easy' | 'normal' | 'hard'
+  mode: ModeTypes
 }
 
 const defaultState: State = {
@@ -15,7 +16,7 @@ const defaultState: State = {
   timer: 10,
   text: [],
   hiragana: [],
-  difficulty: 'easy'
+  mode: 'standard'
 }
 
 export const gameAtom = atom({

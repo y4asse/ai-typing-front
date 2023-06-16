@@ -3,10 +3,10 @@
 import Link from 'next/link'
 import { FaRocket } from 'react-icons/fa'
 
-const Btn = () => {
+const GoModeBtn = () => {
   return (
     <Link
-      href={'/difficulty'}
+      href={'/mode'}
       className=" text-center w-full  border-black border-4 rounded-xl py-8 hover:bg-black hover:text-white duration-200 transition-all text-2xl font-bold shadow-xl  tracking-widest"
     >
       <FaRocket className=" inline-block mr-5" />
@@ -15,4 +15,4 @@ const Btn = () => {
   )
 }
 
-export default Btn
+export default GoModeBtn

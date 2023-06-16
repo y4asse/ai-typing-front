@@ -18,6 +18,7 @@ const useTypingLogic = (
   const [inputBuf, setInputBuf] = useState('')
   const [hiraganaIndex, setHiraganaIndex] = useState(0)
   const [textIndex, setTextIndex] = useState(0)
+  const [totalMissTypeNum, setTotalMissTypeNum] = useState(0)
   const constructTypeSentenceCallback = useCallback(() => {
     return constructTypeSentence(text[textIndex])
   }, [textIndex])
@@ -51,10 +52,7 @@ const useTypingLogic = (
     if (candidates.length > 0) {
       setInputBuf((prev) => prev + typedKey)
       setTotalInput((prev) => prev + typedKey)
-      setGame((prev) => {
-        const score = prev.score + 10
-        return { ...prev, score }
-      })
+      setGame((prev) => ({ ...prev, score: prev.score + 10 }))
       //ひらがなができたとき
       if (candidates.length == 1 && candidates[0] === inputBufNext) {
         setHiraganaIndex((prev) => (prev += 1))
@@ -66,6 +64,7 @@ const useTypingLogic = (
       }
     } else {
       //不正解の時
+      setTotalMissTypeNum((prev) => prev + 1)
       setGame((prev) => ({ ...prev, score: prev.score - 10 }))
     }
   }
