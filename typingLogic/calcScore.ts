@@ -5,6 +5,6 @@ export const calcScore = (totalWordNumber: number, totalTimeMSec: number, totalM
   const totalTimeSec = totalTimeMSec / 1000
   const WPM = (totalWordNumber / totalTimeSec) * 60
   const accuracy = 1 - totalMisstypeNum / totalWordNumber
-  const score = Math.round(WPM * (accuracy ^ 3))
+  const score = Math.round(WPM * (accuracy * accuracy * accuracy))
   return score
 }

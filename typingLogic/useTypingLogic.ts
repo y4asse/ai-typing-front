@@ -25,6 +25,7 @@ const useTypingLogic = (
   const [inputBuf, setInputBuf] = useState('')
   const [hiraganaIndex, setHiraganaIndex] = useState(0)
   const [textIndex, setTextIndex] = useState(0)
+  //callback関数でメモ化する
   const constructTypeSentenceCallback = useCallback(() => {
     return constructTypeSentence(text[textIndex])
   }, [textIndex])
