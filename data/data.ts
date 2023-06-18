@@ -5228,6 +5228,110 @@ const data = {
     {
       Pattern: '？',
       TypePattern: ['?']
+    },
+    {
+      Pattern: 'A',
+      TypePattern: ['a']
+    },
+    {
+      Pattern: 'B',
+      TypePattern: ['b']
+    },
+    {
+      Pattern: 'C',
+      TypePattern: ['c']
+    },
+    {
+      Pattern: 'D',
+      TypePattern: ['d']
+    },
+    {
+      Pattern: 'E',
+      TypePattern: ['e']
+    },
+    {
+      Pattern: 'F',
+      TypePattern: ['f']
+    },
+    {
+      Pattern: 'G',
+      TypePattern: ['g']
+    },
+    {
+      Pattern: 'H',
+      TypePattern: ['h']
+    },
+    {
+      Pattern: 'I',
+      TypePattern: ['i']
+    },
+    {
+      Pattern: 'J',
+      TypePattern: ['j']
+    },
+    {
+      Pattern: 'K',
+      TypePattern: ['k']
+    },
+    {
+      Pattern: 'L',
+      TypePattern: ['l']
+    },
+    {
+      Pattern: 'M',
+      TypePattern: ['m']
+    },
+    {
+      Pattern: 'N',
+      TypePattern: ['n']
+    },
+    {
+      Pattern: 'O',
+      TypePattern: ['o']
+    },
+    {
+      Pattern: 'P',
+      TypePattern: ['p']
+    },
+    {
+      Pattern: 'Q',
+      TypePattern: ['q']
+    },
+    {
+      Pattern: 'R',
+      TypePattern: ['r']
+    },
+    {
+      Pattern: 'S',
+      TypePattern: ['s']
+    },
+    {
+      Pattern: 'T',
+      TypePattern: ['t']
+    },
+    {
+      Pattern: 'U',
+      TypePattern: ['u']
+    },
+    {
+      Pattern: 'V',
+      TypePattern: ['v']
+    },
+    {
+      Pattern: 'W',
+      TypePattern: ['w']
+    },
+    {
+      Pattern: 'X',
+      TypePattern: ['x']
+    },
+    {
+      Pattern: 'Y',
+      TypePattern: ['y']
+    },
+    {
+      Pattern: 'Z',
+      TypePattern: ['z']
     }
   ]
 }
