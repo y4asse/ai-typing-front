@@ -3,14 +3,16 @@
 import { gameAtom } from '@/recoil/gameAtom'
 import { situationAtom } from '@/recoil/situationAtom'
 import useTypingLogic from '@/typingLogic/useTypingLogic'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 const GameText = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [, setSituation] = useRecoilState(situationAtom)
   const { hiragana, text } = game
-  const { textIndex, totalInput, splitSentence, hiraganaIndex } = useTypingLogic(hiragana)
+  const { textIndex, totalInput, splitSentence, hiraganaIndex, requiredRomaji } = useTypingLogic(hiragana)
+
+  //終了したときの処理
   useEffect(() => {
     if (textIndex > text.length - 1) {
       setSituation({ value: 'score' })
@@ -26,7 +28,7 @@ const GameText = () => {
             <div className="text-2xl whitespace-nowrap">{text[textIndex].substring(50)}</div>
           </div>
         )}
-
+        {/* ひらがなの表示 */}
         <div className="text-xl">
           {splitSentence.map((char, index) => {
             if (index < hiraganaIndex) {
@@ -39,14 +41,11 @@ const GameText = () => {
             return <span key={index}>{char}</span>
           })}
         </div>
-        {totalInput ? (
-          <div>
-            <p>{totalInput.slice(0, 120)}</p>
-            <p>{totalInput.substring(120)}</p>
-          </div>
-        ) : (
-          <br></br>
-        )}
+        <div>
+          <span className="text-gray-500">{totalInput}</span>
+          {requiredRomaji.join('').substring(totalInput.length)}
+        </div>
+        <p></p>
       </div>
     </div>
   )
