@@ -33,7 +33,7 @@ const GameText = () => {
             <div className="text-2xl whitespace-nowrap">
               {text[textIndex].split('').map((char, index) => {
                 return (
-                  <span>
+                  <span key={index}>
                     {char}
                     {index !== 0 && index % 50 === 0 && <br></br>}
                   </span>
@@ -59,14 +59,14 @@ const GameText = () => {
           {romajiShow.split('').map((char, index) => {
             if (index < totalInput.length) {
               return (
-                <span className="text-gray-500">
+                <span key={index} className="text-gray-500">
                   {char}
                   {index !== 0 && index % 100 === 0 && <br></br>}
                 </span>
               )
             }
             return (
-              <span>
+              <span key={index}>
                 {char}
                 {index !== 0 && index % 100 === 0 && <br></br>}
               </span>
