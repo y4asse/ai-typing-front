@@ -16,8 +16,8 @@ export default function Home() {
         </div>
         <div className="flex justify-center items-center flex-col w-2/5 gap-5">
           <GoMode />
-          <GoHubBtn />
           <GoRankingBtn />
+          <GoHubBtn />
         </div>
       </div>
     </>

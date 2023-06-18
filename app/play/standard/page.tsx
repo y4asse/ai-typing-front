@@ -10,6 +10,7 @@ import Playing from '@/app/components/playing/playing'
 import { NextRequest } from 'next/server'
 import ScoreView from '@/app/components/playing/scoreView'
 import { ModeTypes } from '@/types/mode'
+import { useEffect } from 'react'
 
 type AiResponse = {
   text: string[]
@@ -17,17 +18,10 @@ type AiResponse = {
   error?: string
 }
 
-type Props = {
-  params: {
-    mode: ModeTypes
-  }
-}
-
 const Play = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [situation, setSituation] = useRecoilState(situationAtom)
   const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
- 
 
   const handleClick = async () => {
     try {
@@ -54,7 +48,7 @@ const Play = () => {
           }
           //成功したときの処理
           setGame((prev) => {
-            return { ...prev, text: data.text, hiragana: data.hiragana, mode: "standard" }
+            return { ...prev, text: data.text, hiragana: data.hiragana, mode: 'standard' }
           })
           setSituation({ value: 'created' })
         })
@@ -68,6 +62,25 @@ const Play = () => {
       }
     }
   }
+
+  //不正防止のためページを離れたらリセットする
+  useEffect(() => {
+    return () => {
+      setGame((prev) => ({
+        ...prev,
+        thema: '',
+        score: 0,
+        timer: 0,
+        text: [],
+        hiragana: [],
+        totalTypeNum: 0,
+        totalMissTypeNum: 0,
+        typeNum: 0,
+        missTypeNum: 0
+      }))
+      setSituation({ value: 'thema' })
+    }
+  }, [])
   return (
     <>
       {situation.value === 'thema' ? (
