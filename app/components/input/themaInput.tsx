@@ -10,8 +10,8 @@ const ThemaInput = () => {
   return (
     <input
       required
-      className='bg-transparent border-4 border-black rounded-xl text-4xl font-medium p-3 placeholder:opacity-30 w-full'
-      placeholder='例:アニメの名言'
+      className="bg-transparent border-4 border-black rounded-xl text-4xl font-medium p-3 placeholder:opacity-30 w-full"
+      placeholder="例:アニメの名言"
       value={game.thema}
       type="text"
       onChange={(e) =>
