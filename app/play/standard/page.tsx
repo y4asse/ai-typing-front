@@ -9,7 +9,6 @@ import Created from '@/app/components/playing/created'
 import Playing from '@/app/components/playing/playing'
 import { NextRequest } from 'next/server'
 import ScoreView from '@/app/components/playing/scoreView'
-import { ModeTypes } from '@/types/mode'
 import { useEffect } from 'react'
 
 type AiResponse = {
@@ -21,7 +20,7 @@ type AiResponse = {
 const Standard = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [situation, setSituation] = useRecoilState(situationAtom)
-  const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
+  const API_URL = process.env.NEXT_PUBLIC_API_SERVER_URL
 
   const handleClick = async () => {
     try {
