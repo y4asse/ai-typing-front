@@ -12,13 +12,17 @@ const Tab = () => {
       {tabs.map((string, index) => {
         if (index === tabNumber) {
           return (
-            <button className="p-3 border-black border-x-4 border-t-4 mr-2 rounded-t-xl bg-black text-white">
+            <button
+              key={index}
+              className="p-3 border-black border-x-4 border-t-4 mr-2 rounded-t-xl bg-black text-white"
+            >
               {string}
             </button>
           )
         }
         return (
           <button
+            key={index}
             className="p-3 border-black border-x-4 border-t-4 mr-2 rounded-t-xl"
             onClick={() => setTabNumber(index)}
           >

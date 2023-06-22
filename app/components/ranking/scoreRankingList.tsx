@@ -20,7 +20,7 @@ const ScoreRankingList = async () => {
       <tbody>
         {games.map((game, index) => {
           return (
-            <tr>
+            <tr key={index}>
               <th>{index + 1}位</th>
               <ScoreRankingItem game={game} />
             </tr>
