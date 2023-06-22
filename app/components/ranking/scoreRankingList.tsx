@@ -14,7 +14,7 @@ const getScoreRanking = async () => {
 }
 
 const ScoreRankingList = async () => {
-  const games = await getScoreRanking()
+  const games: Game[] = await getScoreRanking()
   return (
     <table className="w-full h-full ">
       <tbody>
