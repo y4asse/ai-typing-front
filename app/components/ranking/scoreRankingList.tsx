@@ -8,10 +8,17 @@ const getScoreRanking = async () => {
     method: 'GET',
     cache: 'no-store'
   })
-  const data: Game[] = await fetch(request).then((res) => {
-    return res.json()
-  })
-  return data
+  try {
+    const data: Game[] = await fetch(request).then((res) => {
+      if (!res.ok) {
+        throw new Error('データを取得できませんでした')
+      }
+      return res.json()
+    })
+    return data
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 const ScoreRankingList = async () => {
