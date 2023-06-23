@@ -1,3 +1,5 @@
+'use server'
+
 import { Game } from '@/types/game'
 import { NextRequest } from 'next/server'
 import ScoreRankingItem from './ScoreRankingItem'
