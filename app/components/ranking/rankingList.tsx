@@ -5,6 +5,7 @@ import { rankingTabAtom } from '@/recoil/rankingTabAtom'
 import ScoreRankingList from './scoreRankingList'
 import { Suspense } from 'react'
 import RankingLoader from '../loader/rankingLoader'
+
 const RankingList = () => {
   const [tabNumber] = useRecoilState(rankingTabAtom)
   return (

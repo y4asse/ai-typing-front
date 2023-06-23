@@ -5,7 +5,8 @@ import ScoreRankingItem from './ScoreRankingItem'
 const getScoreRanking = async () => {
   const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
   const request = new NextRequest(`${API_URL}/gameRanking`, {
-    method: 'GET'
+    method: 'GET',
+    cache: 'no-store'
   })
   const data: Game[] = await fetch(request).then((res) => {
     return res.json()
@@ -14,7 +15,7 @@ const getScoreRanking = async () => {
 }
 
 const ScoreRankingList = async () => {
-  const games: Game[] = await getScoreRanking()
+  const games = await getScoreRanking()
   return (
     <table className="w-full h-full ">
       <tbody>
