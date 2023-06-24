@@ -9,7 +9,6 @@ import Created from '@/app/components/playing/created'
 import Playing from '@/app/components/playing/playing'
 import { NextRequest } from 'next/server'
 import ScoreView from '@/app/components/playing/scoreView'
-import { ModeTypes } from '@/types/mode'
 import { useEffect } from 'react'
 
 type AiResponse = {
@@ -18,15 +17,18 @@ type AiResponse = {
   error?: string
 }
 
-const Play = () => {
+const Standard = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [situation, setSituation] = useRecoilState(situationAtom)
-  const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
+  const API_URL = process.env.NEXT_PUBLIC_API_SERVER_URL
 
   const handleClick = async () => {
     try {
-      if (game.thema === '') {
+      if (game.thema.trim() === '') {
         throw new Error('テーマを入力してください')
+      }
+      if (game.thema.trim().length > 10) {
+        throw new Error('テーマは10文字以内で入力してください')
       }
       if (!API_URL) {
         throw new Error('サーバーエラー: 環境変数が設定されていません')
@@ -98,4 +100,4 @@ const Play = () => {
   )
 }
 
-export default Play
+export default Standard

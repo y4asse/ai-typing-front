@@ -10,7 +10,9 @@ const Mode = () => {
       </div>
       <div className="flex justify-center items-center flex-col w-2/5 gap-5">
         <SelectModeBtn mode="standard" />
-        <SelectModeBtn mode="timeLimit" />
+        <div className="flex justify-center items-center flex-col w-full cursor-not-allowed">
+          <SelectModeBtn mode="timeLimit" isPreparing={true} />
+        </div>
       </div>
     </div>
   )

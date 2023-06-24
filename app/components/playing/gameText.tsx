@@ -1,5 +1,6 @@
 'use client'
 
+import { useMutateGame } from '@/hooks/useMutateGame'
 import { gameAtom } from '@/recoil/gameAtom'
 import { situationAtom } from '@/recoil/situationAtom'
 import useTypingLogic from '@/typingLogic/useTypingLogic'
@@ -12,6 +13,7 @@ const GameText = () => {
   const { hiragana, text } = game
   const { textIndex, totalInput, splitSentence, hiraganaIndex, requiredRomaji } = useTypingLogic(hiragana)
   const [romajiShow, setRomajiShow] = useState('')
+  const { createGame } = useMutateGame()
 
   //表示用のromajiを生成
   useEffect(() => {
@@ -21,6 +23,8 @@ const GameText = () => {
   //終了したときの処理
   useEffect(() => {
     if (textIndex > text.length - 1) {
+      //データベースにゲーム内容を登録
+      createGame()
       setSituation({ value: 'score' })
       return
     }
@@ -28,6 +32,7 @@ const GameText = () => {
   return (
     <div className="relative">
       <div className="absolute gap-3 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-70 text-white h-full  min-w-full max-w-screen-xl p-6 rounded-2xl flex flex-col justify-center items-center">
+        {/* 日本語の表示 */}
         {text[textIndex] && (
           <div>
             <div className="text-2xl whitespace-nowrap">
@@ -55,6 +60,7 @@ const GameText = () => {
             return <span key={index}>{char}</span>
           })}
         </div>
+        {/* ローマ字の表示 */}
         <div className=" whitespace-nowrap ">
           {romajiShow.split('').map((char, index) => {
             if (index < totalInput.length) {
