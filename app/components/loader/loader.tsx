@@ -23,14 +23,14 @@ const Loader = () => {
   }, [])
   return (
     <>
-      <h3 className="font-bold text-5xl pt-28">
+      <h1 className="font-bold text-5xl pt-28">
         {textArray.map((word, index) => {
           if (index <= count) {
             return <span key={index}>{word}</span>
           }
           return ''
         })}
-      </h3>
+      </h1>
       <div className="absolute top-1/2 left-1/2">
         <div className={styles.loader}>
           <div className={styles.cubes}>
