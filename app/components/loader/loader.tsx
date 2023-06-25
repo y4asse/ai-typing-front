@@ -31,7 +31,6 @@ const Loader = () => {
           return ''
         })}
       </h1>
-      <p>※テーマによっては生成に時間がかかる場合があります※</p>
       <div className="absolute top-1/2 left-1/2">
         <div className={styles.loader}>
           <div className={styles.cubes}>

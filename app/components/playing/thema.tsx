@@ -14,7 +14,8 @@ const Thema = ({ handleClick }: { handleClick: () => void }) => {
         </div>
         <div>
           <ThemaInput />
-          <p className="mt-3">※テーマの内容によってはうまくAIが処理できない場合があるので注意してください</p>
+          <p className="mt-3">※テーマの内容によってはうまくAIが処理できなかったり，生成に時間がかかる場合があります</p>
+          <p className="">※AIが文を生成するので不完全な文章が生成される場合があります</p>
         </div>
         <div className="w-1/3">
           <StartGameBtn handleClick={handleClick} />
