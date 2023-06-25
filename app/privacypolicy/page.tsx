@@ -1,8 +1,10 @@
 import React from 'react'
+import GoBackBtn from '../components/buttons/goBackBtn'
 
 const PrivacyPolicy = () => {
   return (
     <div className="h-full w-1/2 mx-auto p-5 text-xl">
+      <GoBackBtn />
       <h1 className="text-4xl font-bold ">プライバシーポリシー</h1>
       <p className="text-xl my-5">
         このプライバシーポリシーは、当サイトのウェブサイト/サービスの利用者のプライバシーを尊重し、提供された情報を保護するために作成されました。当サイトは、個人情報の収集、使用、開示、および保管に関して透明性と信頼性を提供することを目指しています。当サイトは、以下に示す方針に従い、第三者に情報を提供しないことを約束いたします。
