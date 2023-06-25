@@ -12,11 +12,6 @@ import ScoreView from '@/app/components/playing/scoreView'
 import { useEffect } from 'react'
 import useAitext from '@/hooks/useAitext'
 
-type AiResponse = {
-  text: string[]
-  hiragana: string[]
-  error?: string
-}
 
 const Standard = () => {
   const [game, setGame] = useRecoilState(gameAtom)
