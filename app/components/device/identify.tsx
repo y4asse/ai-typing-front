@@ -1,9 +1,14 @@
 'use client'
 
-import React, { ReactNode } from 'react'
-import { isMobile } from 'react-device-detect'
+import React, { ReactNode, useEffect, useState } from 'react'
 
 const Identify = ({ children }: { children: ReactNode }) => {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const userAgent = typeof window.navigator === 'undefined' ? '' : navigator.userAgent
+    const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)
+    setIsMobile(mobile)
+  }, [])
   return (
     <>
       {isMobile ? (
