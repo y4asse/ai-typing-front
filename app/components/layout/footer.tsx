@@ -1,6 +1,6 @@
 'use client'
 
-import Link from "next/link"
+import Link from 'next/link'
 
 const Footer = () => {
   return (
@@ -9,8 +9,11 @@ const Footer = () => {
       <a href="https://twitter.com/y4isse" target="_blank" rel="noopener noreferrer" className=" underline">
         y4isse
       </a>
-      <Link className=" cursor-pointer" href={"/privacypolicy"}>
-        プライバシーポリシー
+      <Link className=" cursor-pointer" href={'/privacypolicy'}>
+        Privacy
+      </Link>
+      <Link className=" cursor-pointer" href={'/license'}>
+        License
       </Link>
       <span>Web Services by Yahoo! JAPAN （https://developer.yahoo.co.jp/sitemap/）</span>
     </footer>

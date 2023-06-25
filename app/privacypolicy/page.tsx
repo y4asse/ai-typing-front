@@ -61,12 +61,7 @@ const PrivacyPolicy = () => {
         ご提供いただく個人情報は、当サイトのプライバシーポリシーに従って使用されます。プライバシーに関するご質問や懸念がある場合は、お気軽にお問い合わせください。
       </p>
       <br />
-      <p className="text-xl my-5">
-        サイト内で使用しているアニメーション
-        <br />
-        Copyright (c) @TheDutchCoder Released under the MIT list-disc list-insidecense <br />
-        URL：https://codepen.io/TheDutchCoder/pen/VwMJJB
-      </p>
+      
     </div>
   )
 }
