@@ -46,7 +46,7 @@ const Standard = () => {
         .then(async (res) => {
           const data: AiResponse = await res.json()
           if (!res.ok) {
-            throw new Error(`${data.error}`)
+            throw new Error(`${data}`)
           }
           //成功したときの処理
           setGame((prev) => {
