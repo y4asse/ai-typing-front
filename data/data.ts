@@ -5235,107 +5235,107 @@ const data = {
     },
     {
       Pattern: 'A',
-      TypePattern: ['a']
+      TypePattern: ['a', 'A']
     },
     {
       Pattern: 'B',
-      TypePattern: ['b']
+      TypePattern: ['b', 'B']
     },
     {
       Pattern: 'C',
-      TypePattern: ['c']
+      TypePattern: ['c', 'C']
     },
     {
       Pattern: 'D',
-      TypePattern: ['d']
+      TypePattern: ['d',]
     },
     {
       Pattern: 'E',
-      TypePattern: ['e']
+      TypePattern: ['e',]
     },
     {
       Pattern: 'F',
-      TypePattern: ['f']
+      TypePattern: ['f',]
     },
     {
       Pattern: 'G',
-      TypePattern: ['g']
+      TypePattern: ['g',]
     },
     {
       Pattern: 'H',
-      TypePattern: ['h']
+      TypePattern: ['h',]
     },
     {
       Pattern: 'I',
-      TypePattern: ['i']
+      TypePattern: ['i',]
     },
     {
       Pattern: 'J',
-      TypePattern: ['j']
+      TypePattern: ['j', 'J']
     },
     {
       Pattern: 'K',
-      TypePattern: ['k']
+      TypePattern: ['k', 'K']
     },
     {
       Pattern: 'L',
-      TypePattern: ['l']
+      TypePattern: ['l', 'L']
     },
     {
       Pattern: 'M',
-      TypePattern: ['m']
+      TypePattern: ['m', 'M']
     },
     {
       Pattern: 'N',
-      TypePattern: ['n']
+      TypePattern: ['n', 'N']
     },
     {
       Pattern: 'O',
-      TypePattern: ['o']
+      TypePattern: ['o', 'O']
     },
     {
       Pattern: 'P',
-      TypePattern: ['p']
+      TypePattern: ['p', 'P']
     },
     {
       Pattern: 'Q',
-      TypePattern: ['q']
+      TypePattern: ['q', 'Q']
     },
     {
       Pattern: 'R',
-      TypePattern: ['r']
+      TypePattern: ['r', 'R']
     },
     {
       Pattern: 'S',
-      TypePattern: ['s']
+      TypePattern: ['s', 'S']
     },
     {
       Pattern: 'T',
-      TypePattern: ['t']
+      TypePattern: ['t', 'T']
     },
     {
       Pattern: 'U',
-      TypePattern: ['u']
+      TypePattern: ['u', 'U']
     },
     {
       Pattern: 'V',
-      TypePattern: ['v']
+      TypePattern: ['v', 'V']
     },
     {
       Pattern: 'W',
-      TypePattern: ['w']
+      TypePattern: ['w', 'W']
     },
     {
       Pattern: 'X',
-      TypePattern: ['x']
+      TypePattern: ['x', 'X']
     },
     {
       Pattern: 'Y',
-      TypePattern: ['y']
+      TypePattern: ['y', 'Y']
     },
     {
       Pattern: 'Z',
-      TypePattern: ['z']
+      TypePattern: ['z', 'Z']
     }
   ]
 }
