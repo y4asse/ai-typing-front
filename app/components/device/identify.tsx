@@ -16,7 +16,7 @@ const Identify = ({ children }: { children: ReactNode }) => {
           <p>こちらのサイトはpcのみ対応しております.</p>
         </div>
       ) : (
-        { children }
+        children
       )}
     </>
   )
