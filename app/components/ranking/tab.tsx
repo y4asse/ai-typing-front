@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil'
 
 const Tab = () => {
   const [tabNumber, setTabNumber] = useRecoilState(rankingTabAtom)
-  const tabs = ['スコアランキング', 'レベルランキング']
+  const tabs = ['スタンダードコース', 'タイムリミットコース']
   return (
     <div className="flex items-start w-2/3 text-lg font-bold mt-6">
       {tabs.map((string, index) => {
