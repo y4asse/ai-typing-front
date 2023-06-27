@@ -7,10 +7,8 @@ import { gameAtom } from '@/recoil/gameAtom'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import Created from '@/app/components/playing/created'
 import Playing from '@/app/components/playing/playing'
-import { NextRequest } from 'next/server'
 import ScoreView from '@/app/components/playing/scoreView'
 import { useEffect } from 'react'
-import useAitext from '@/hooks/useAitext'
 
 
 const Standard = () => {
