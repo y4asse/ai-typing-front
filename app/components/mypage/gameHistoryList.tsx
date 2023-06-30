@@ -38,7 +38,6 @@ const getGameHistory = async () => {
 
 const GameHistoryList = async () => {
   const gameHistory = await getGameHistory()
-  console.log('renderd')
   return (
     <table className="w-full h-full">
       <tbody>

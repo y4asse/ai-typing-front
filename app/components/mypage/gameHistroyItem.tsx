@@ -11,10 +11,9 @@ type Props = {
 
 const GameHistoryItem = ({ game }: Props) => {
   const router = useRouter()
-  console.log('renderd item')
   return (
     <>
-      <th className="pl-10 cursor-pointer underline" onClick={() => router.push(`/`)}>
+      <th className="pl-10 cursor-pointer underline" onClick={() => router.push(`/mypage/gameHistory/${game.id}`)}>
         {game.inputed_thema}
       </th>
       <td className="pl-10">{game.score}点</td>
