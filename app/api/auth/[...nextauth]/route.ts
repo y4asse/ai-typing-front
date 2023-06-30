@@ -4,7 +4,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 
 import { adminAuth } from '@/firebase/admin'
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     // ログイン時にFirebaseのJWTトークンを取得
     CredentialsProvider({

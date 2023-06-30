@@ -1,6 +1,6 @@
 import { Game } from '@/types/game'
 import { NextRequest } from 'next/server'
-import ScoreRankingItem from './ScoreRankingItem'
+import ScoreRankingItem from './scoreRankingItem'
 
 const getScoreRanking = async () => {
   const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
