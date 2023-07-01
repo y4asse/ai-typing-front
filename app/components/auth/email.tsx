@@ -11,6 +11,19 @@ const Email = () => {
   const [method, setMethod] = useState<'signIn' | 'signUp'>('signIn')
 
   const handleClick = async () => {
+    if (!email) {
+      alert('メールアドレスを入力してください')
+      return
+    }
+    if (!password) {
+      alert('パスワードを入力してください')
+      return
+    }
+    if (password.length < 6) {
+      alert('パスワードは6文字以上で入力してください')
+      return
+    }
+
     if (method === 'signIn') {
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password).catch((error) => {
@@ -74,31 +87,43 @@ const Email = () => {
     }
   }
   return (
-    <>
-      <form>
-        <label>
-          email
-          <input value={email} className="border border-black" type="text" onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          password
-          <input
-            value={password}
-            className="border border-black"
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-      </form>
-      <button onClick={handleClick}>{method === 'signIn' ? 'サインイン' : 'アカウントを作成'}</button>
-      <p>
-        {method === 'signIn' ? 'アカウント新規作成する' : 'アカウントをすでに持っている方'}は
+    <div className="border-4 border-black rounded-xl p-10 text-2xl font-bold flex flex-col gap-5 w-1/3">
+      <label className="flex flex-col gap-1">
+        email
+        <input
+          required
+          placeholder="example@example.com"
+          value={email}
+          className="border border-black bg-transparent p-3 rounded placeholder:opacity-40"
+          type="text"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </label>
+      <label className="flex flex-col gap-1">
+        password
+        <input
+          required
+          placeholder="6文字以上で入力してください"
+          value={password}
+          className="border border-black bg-transparent p-3 rounded placeholder:opacity-40"
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </label>
+
+      <button
+        className=" mt-10 border-4 border-black rounded-xl p-5 hover:bg-black hover:text-white transition-all duration-200"
+        onClick={handleClick}
+      >
+        {method === 'signIn' ? 'サインイン' : 'アカウントを作成'}
+      </button>
+      <p className=" font-medium text-xl">
+        ※{method === 'signIn' ? 'アカウントを新規作成する' : 'アカウントをすでに持っている方'}は
         <button className="underline" onClick={() => setMethod(method === 'signIn' ? 'signUp' : 'signIn')}>
           こちら
         </button>
       </p>
-    </>
+    </div>
   )
 }
 
