@@ -3,7 +3,6 @@ import LogOutBtn from '../components/buttons/logOutBtn'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 import AnimationTitle from '../components/animationTitle/animationTitle'
-import GoBackBtn from '../components/buttons/goBackBtn'
 import Spinner from '../components/utils/spinner'
 import GameHistoryList from '../components/mypage/gameHistoryList'
 
