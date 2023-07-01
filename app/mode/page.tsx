@@ -4,7 +4,6 @@ import GoBackBtn from '../components/buttons/goBackBtn'
 const Mode = () => {
   return (
     <div className="flex justify-center items-center flex-col gap-24 h-screen">
-      <GoBackBtn />
       <div>
         <AnimationTitle text="モードを選択してください" />
       </div>

@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 const GameText = () => {
-  const [game, setGame] = useRecoilState(gameAtom)
+  const [game] = useRecoilState(gameAtom)
   const [, setSituation] = useRecoilState(situationAtom)
   const { hiragana, text } = game
   const { textIndex, totalInput, splitSentence, hiraganaIndex, requiredRomaji } = useTypingLogic(hiragana)
