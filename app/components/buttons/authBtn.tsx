@@ -9,6 +9,8 @@ import { FaHome } from 'react-icons/fa'
 const AuthBtn = async () => {
   const { data: session } = useSession()
   const router = useRouter()
+  router.prefetch('/mypage')
+  router.prefetch('/auth')
   return (
     <button
       className="border-black border-4 p-4 text-2xl font-bold absolute right-2 top-2 rounded-xl hover:bg-black hover:text-white transition-all duration-200"
