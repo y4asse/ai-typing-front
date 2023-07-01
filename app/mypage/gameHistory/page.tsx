@@ -6,7 +6,6 @@ import React, { Suspense } from 'react'
 const GameHistory = () => {
   return (
     <div className="h-screen flex justify-center items-center">
-      <GoBackBtn />
       <div className="border-black border-4 rounded-xl p-5 w-2/3 h-2/3 text-2xl">
         <Suspense fallback={<RankingLoader />}>
           <GameHistoryList />

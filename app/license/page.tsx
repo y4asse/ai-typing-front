@@ -4,9 +4,8 @@ import GoBackBtn from '../components/buttons/goBackBtn'
 const License = () => {
   return (
     <div className="h-screen mx-auto w-1/2 text-xl p-5 font-semibold ">
-      <GoBackBtn />
       <h1 className="text-5xl my-5 ">ライセンス</h1>
-      <p className='mt-10'>・当サイトは以下のAPIを使用して作成されています．</p>
+      <p className="mt-10">・当サイトは以下のAPIを使用して作成されています．</p>
       <span style={{ margin: '15px 15px 15px 15px', color: 'blue' }}>
         <a href="https://developer.yahoo.co.jp/sitemap/">Webサービス by Yahoo! JAPAN</a>
       </span>

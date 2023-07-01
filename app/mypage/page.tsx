@@ -11,7 +11,6 @@ const Mypage = async () => {
   const session = await getServerSession(authOptions)
   return (
     <>
-      <GoBackBtn />
       <LogOutBtn />
       <div className="h-screen flex  items-center justify-center gap-10 flex-col">
         <AnimationTitle text="マイページ(ゲーム履歴)" />

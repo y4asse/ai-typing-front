@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil'
 import GoHomeBtn from '../buttons/goHomeBtn'
 import PlayAgainBtn from '../buttons/playAgainBtn'
 import GoRankingBtn from '../buttons/goRankingBtn'
+import AuthBtn from '../buttons/authBtn'
 
 const ScoreView = () => {
   const [game] = useRecoilState(gameAtom)
@@ -17,6 +18,7 @@ const ScoreView = () => {
       <div className="w-2/5 flex flex-col gap-5">
         <PlayAgainBtn />
         <GoRankingBtn />
+        <AuthBtn />
       </div>
     </div>
   )
