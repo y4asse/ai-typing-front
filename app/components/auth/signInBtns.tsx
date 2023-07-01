@@ -27,7 +27,7 @@ const SignInBtns = () => {
           case 'auth/network-request-failed':
             throw new Error('ネットワークエラーです')
           default:
-            throw new Error('internal server error')
+            throw new Error('internal server error' + errorCode)
         }
       })
       const idToken = await userCredential.user.getIdToken()
@@ -57,7 +57,7 @@ const SignInBtns = () => {
           case 'auth/network-request-failed':
             throw new Error('ネットワークエラーです')
           default:
-            throw new Error('internal server error')
+            throw new Error(' server error' + errorCode)
         }
       })
       const idToken = await userCredential.user.getIdToken()
