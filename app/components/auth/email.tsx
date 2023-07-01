@@ -94,7 +94,7 @@ const Email = () => {
           required
           placeholder="example@example.com"
           value={email}
-          className="border border-black bg-transparent p-3 rounded placeholder:opacity-40"
+          className="border-4 border-black bg-transparent p-3 rounded-xl placeholder:text-black placeholder:opacity-10 "
           type="text"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -105,7 +105,7 @@ const Email = () => {
           required
           placeholder="6文字以上で入力してください"
           value={password}
-          className="border border-black bg-transparent p-3 rounded placeholder:opacity-40"
+          className="border-4 border-black bg-transparent p-3 rounded-xl placeholder:text-black placeholder:opacity-10 "
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />

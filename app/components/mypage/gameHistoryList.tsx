@@ -40,7 +40,11 @@ const getGameHistory = async () => {
 const GameHistoryList = async () => {
   const gameHistory = await getGameHistory()
   if (gameHistory == null) {
-    return <div className="flex text-3xl font-bold justify-center items-center h-full">エラーが発生しました.ネットワーク環境を確認してください</div>
+    return (
+      <div className="flex text-3xl font-bold justify-center items-center h-full">
+        エラーが発生しました.ネットワーク環境を確認してください
+      </div>
+    )
   }
 
   return (
