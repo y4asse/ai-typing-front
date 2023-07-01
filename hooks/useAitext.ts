@@ -14,8 +14,7 @@ type AiResponse = {
 const useAitext = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [situation, setSituation] = useRecoilState(situationAtom)
-  // const API_URL = process.env.NEXT_PUBLIC_API_SERVER_URL
-  const API_URL = 'http://localhost:3000/api'
+  const API_URL = process.env.NEXT_PUBLIC_API_SERVER_URL
 
   const handleClick = async () => {
     try {
