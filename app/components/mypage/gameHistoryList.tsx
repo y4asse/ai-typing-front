@@ -16,7 +16,7 @@ const getGameHistory = async () => {
     user_id: userId
   })
   const request = new NextRequest(`${API_URL}/gameHistory`, {
-    cache: 'force-cache',
+    cache: 'no-cache',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

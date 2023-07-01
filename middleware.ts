@@ -9,5 +9,10 @@ export const middleware = (req: NextRequest) => {
     redirectUrl.pathname = '/auth'
     return NextResponse.redirect(redirectUrl)
   }
+  if (session && req.nextUrl.pathname.startsWith('/auth')) {
+    const redirectUrl = req.nextUrl.clone()
+    redirectUrl.pathname = '/mypage'
+    return NextResponse.redirect(redirectUrl)
+  }
   return res
 }

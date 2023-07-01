@@ -16,7 +16,6 @@ const Mypage = async () => {
       <LogOutBtn />
       <div className="h-screen flex  items-center flex-col pt-10">
         <AnimationTitle text="マイページ" />
-        {session?.user.uid}
         <Tab />
       </div>
     </>
