@@ -38,7 +38,7 @@ const Email = () => {
             case 'auth/wrong-password':
               throw new Error('パスワードが間違っています')
             default:
-              throw new Error('internal server error')
+              throw new Error('internal server error' + errorCode)
           }
         })
         const idToken = await userCredential.user.getIdToken()
@@ -68,7 +68,7 @@ const Email = () => {
             case 'auth/weak-password':
               throw new Error('パスワードは6文字以上で入力してください')
             default:
-              throw new Error('internal server error')
+              throw new Error('internal server error' + errorCode)
           }
         })
         const idToken = await userCredential.user.getIdToken()
