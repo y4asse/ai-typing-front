@@ -18,15 +18,23 @@ const getScoreRanking = async () => {
     return data
   } catch (e) {
     console.log(e)
+    return null
   }
 }
 
 const ScoreRankingList = async () => {
   const games = await getScoreRanking()
+  if (games == null) {
+    return (
+      <div className="flex text-3xl font-bold justify-center items-center h-full">
+        エラーが発生しました.ネットワーク環境を確認してください
+      </div>
+    )
+  }
   return (
     <table className="w-full h-full ">
       <tbody>
-        {games?.map((game, index) => {
+        {games.map((game, index) => {
           return (
             <tr key={index}>
               <th>{index + 1}位</th>

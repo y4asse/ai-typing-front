@@ -32,22 +32,33 @@ const getGameHistory = async () => {
     })
     return data
   } catch (e) {
-    console.log(e)
+    console.error(e)
+    return null
   }
 }
 
 const GameHistoryList = async () => {
   const gameHistory = await getGameHistory()
+  if (gameHistory == null) {
+    return <div className="flex text-3xl font-bold justify-center items-center h-full">エラーが発生しました.ネットワーク環境を確認してください</div>
+  }
+
   return (
     <table className="w-full h-full">
       <tbody>
-        {gameHistory?.map((game, index) => {
-          return (
-            <tr key={index}>
-              <GameHistoryItem game={game} />
-            </tr>
-          )
-        })}
+        {gameHistory.length === 0 ? (
+          <div className="flex text-3xl font-bold justify-center items-center h-full">
+            まだデータがありません．プレイしてみましょう！
+          </div>
+        ) : (
+          gameHistory.map((game, index) => {
+            return (
+              <tr key={index}>
+                <GameHistoryItem game={game} />
+              </tr>
+            )
+          })
+        )}
       </tbody>
     </table>
   )
