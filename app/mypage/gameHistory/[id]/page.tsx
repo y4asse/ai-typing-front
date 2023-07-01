@@ -17,7 +17,7 @@ const fetchGameText = async (gameId: string) => {
     game_id: gameId
   })
   const request = new Request(`${API_URL}/createdText`, {
-    cache: 'no-store',
+    cache: 'force-cache',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

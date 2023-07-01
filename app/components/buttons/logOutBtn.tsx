@@ -11,7 +11,9 @@ const LogOutBtn = () => {
     <button
       className="border-black border-4 p-4 text-2xl font-bold absolute right-2 top-2 rounded-xl hover:bg-black hover:text-white transition-all duration-200"
       onClick={async () => {
-        await signOut()
+        await signOut({
+          callbackUrl: '/'
+        })
       }}
     >
       <TbLogout className="inline-block mr-3 text-4xl" />
