@@ -13,7 +13,23 @@ const SignInBtns = () => {
   const handleSignInWithGoogle = async () => {
     try {
       const provider = new GoogleAuthProvider()
-      const userCredential = await signInWithPopup(auth, provider)
+      const userCredential = await signInWithPopup(auth, provider).catch((err) => {
+        const errorCode = err.code
+        switch (errorCode) {
+          case 'auth/account-exists-with-different-credential':
+            throw new Error('このメールアドレスはすでに登録されています')
+          case 'auth/credential-already-in-use':
+            throw new Error('このメールアドレスはすでに登録されています')
+          case 'auth/email-already-in-use':
+            throw new Error('このメールアドレスはすでに登録されています')
+          case 'auth/invalid-email':
+            throw new Error('メールアドレスの形式が正しくありません')
+          case 'auth/network-request-failed':
+            throw new Error('ネットワークエラーです')
+          default:
+            throw new Error('internal server error')
+        }
+      })
       const idToken = await userCredential.user.getIdToken()
       await signInByNextAuth('credentials', {
         idToken,
@@ -27,7 +43,23 @@ const SignInBtns = () => {
   const handleSignInWithGithub = async () => {
     try {
       const provider = new GithubAuthProvider()
-      const userCredential = await signInWithPopup(auth, provider)
+      const userCredential = await signInWithPopup(auth, provider).catch((err) => {
+        const errorCode = err.code
+        switch (errorCode) {
+          case 'auth/account-exists-with-different-credential':
+            throw new Error('このメールアドレスはすでに登録されています')
+          case 'auth/credential-already-in-use':
+            throw new Error('このメールアドレスはすでに登録されています')
+          case 'auth/email-already-in-use':
+            throw new Error('このメールアドレスはすでに登録されています')
+          case 'auth/invalid-email':
+            throw new Error('メールアドレスの形式が正しくありません')
+          case 'auth/network-request-failed':
+            throw new Error('ネットワークエラーです')
+          default:
+            throw new Error('internal server error')
+        }
+      })
       const idToken = await userCredential.user.getIdToken()
       await signInByNextAuth('credentials', {
         idToken,

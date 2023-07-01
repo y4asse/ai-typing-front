@@ -32,7 +32,7 @@ export const useMutateGame = () => {
         }
       })
     } catch (e) {
-      console.log(e)
+      alert('データを登録できませんでした')
     }
   }
 
