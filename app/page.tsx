@@ -1,10 +1,12 @@
 import GoMode from './components/buttons/goModeBtn'
 import GoHubBtn from './components/buttons/goHubBtn'
 import GoRankingBtn from './components/buttons/goRankingBtn'
+import AuthBtn from './components/buttons/authBtn'
 
 export default function Home() {
   return (
     <>
+      <AuthBtn />
       <div className="flex justify-center items-center flex-col gap-24 h-screen">
         <div className="relative">
           <h1 className="text-9xl text-gray-900 font-extrabold [text-shadow:_7px_7px_15px_rgb(0_0_0_/_40%)]">

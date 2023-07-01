@@ -1,5 +1,3 @@
-'use client'
-
 import { Game } from '@/types/game'
 import { format } from 'date-fns'
 import React from 'react'
