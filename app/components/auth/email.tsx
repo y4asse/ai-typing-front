@@ -87,14 +87,14 @@ const Email = () => {
     }
   }
   return (
-    <div className="border-4 border-black rounded-xl p-10 text-2xl font-bold flex flex-col gap-5 w-1/3">
+    <div className="border-4 border-black rounded-xl p-12 text-2xl font-bold flex flex-col gap-5 w-1/2">
       <label className="flex flex-col gap-1">
         email
         <input
           required
           placeholder="example@example.com"
           value={email}
-          className="border-4 border-black bg-transparent p-3 rounded-xl placeholder:text-black placeholder:opacity-10 "
+          className="border-2 border-black bg-transparent p-3 rounded-xl placeholder:text-black placeholder:opacity-10 "
           type="text"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -105,7 +105,7 @@ const Email = () => {
           required
           placeholder="6文字以上で入力してください"
           value={password}
-          className="border-4 border-black bg-transparent p-3 rounded-xl placeholder:text-black placeholder:opacity-10 "
+          className="border-2 border-black bg-transparent p-3 rounded-xl placeholder:text-black placeholder:opacity-10 "
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -117,7 +117,7 @@ const Email = () => {
       >
         {method === 'signIn' ? 'サインイン' : 'アカウントを作成'}
       </button>
-      <p className=" font-medium text-xl">
+      <p className=" font-medium text-xl text-center">
         ※{method === 'signIn' ? 'アカウントを新規作成する' : 'アカウントをすでに持っている方'}は
         <button className="underline" onClick={() => setMethod(method === 'signIn' ? 'signUp' : 'signIn')}>
           こちら
