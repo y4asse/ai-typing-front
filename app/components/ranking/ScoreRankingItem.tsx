@@ -2,7 +2,7 @@
 
 import { Game } from '@/types/game'
 import { format } from 'date-fns'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import React from 'react'
 
 type Props = {
@@ -10,12 +10,13 @@ type Props = {
 }
 
 const ScoreRankingItem = ({ game }: Props) => {
-  const router = useRouter()
   return (
     <>
       <td className="pl-10">{game.score}点</td>
-      <td className="pl-10 cursor-pointer underline" onClick={() => router.push(`/hub/${game.id}`)}>
-        {game.inputed_thema}
+      <td>
+        <Link className="pl-10 cursor-pointer underline" href={`/hub/${game.id}`}>
+          {game.inputed_thema}
+        </Link>
       </td>
       <td>{format(Date.parse(game.created_at), 'yyyy/MM/dd hh:mm')}</td>
     </>
