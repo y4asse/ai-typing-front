@@ -7,6 +7,7 @@ import { FaGithub } from 'react-icons/fa'
 import { FaGoogle } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
 import { signIn as signInByNextAuth } from 'next-auth/react'
+import Link from 'next/link'
 
 const SignInBtns = () => {
   const router = useRouter()
@@ -77,24 +78,19 @@ const SignInBtns = () => {
         <p className="text-xl font-bold mb-3">サインインすると過去のテキストデータを見ることができます</p>
         <p>
           ※プライバシーポリシーについては
-          <button
-            onClick={() => {
-              router.push('/privacypolicy')
-            }}
-            className="underline"
-          >
+          <Link href={'privacypolicy'} className="underline">
             こちら
-          </button>
+          </Link>
           をご覧ください
         </p>
       </div>
-      <button
-        onClick={() => router.push('/auth/email')}
-        className="text-2xl font-bold border-black border-2 rounded-xl p-5 hover:bg-black hover:text-white transition-all duration-200"
+      <Link
+        href={'/auth/email'}
+        className="text-2xl font-bold border-black border-2 rounded-xl p-5 hover:bg-black hover:text-white transition-all duration-200 text-center"
       >
         <HiOutlineMail className="inline-block mr-3" />
         メールアドレスでサインイン
-      </button>
+      </Link>
       <button
         onClick={handleSignInWithGithub}
         className="text-2xl font-bold border-black border-2 rounded-xl p-5 hover:bg-black hover:text-white transition-all duration-200"
