@@ -46,7 +46,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
   }
   return (
     <div className="h-screen flex justify-center items-center text-2xl">
-      <GoBackBtn />
       <div className="border-black border-4 p-10 w-2/3 rounded-xl">
         {createdText.map((value) => {
           return (

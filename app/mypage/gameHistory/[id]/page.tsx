@@ -1,5 +1,4 @@
 import GoBackBtn from '@/app/components/buttons/goBackBtn'
-import { Game } from '@/types/game'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
