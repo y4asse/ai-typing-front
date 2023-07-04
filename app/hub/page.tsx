@@ -2,6 +2,7 @@ import React from 'react'
 import AnimationTitle from '../components/animationTitle/animationTitle'
 import HubList from '../components/hub/hubList'
 import Tab from '../components/hub/tab'
+import PageNation from '../components/hub/pageNation'
 
 const Hub = () => {
   return (
@@ -9,6 +10,7 @@ const Hub = () => {
       <AnimationTitle text="テキスト広場" />
       <Tab />
       <HubList />
+      <PageNation />
     </div>
   )
 }

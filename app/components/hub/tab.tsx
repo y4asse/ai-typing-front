@@ -6,9 +6,9 @@ import { useRecoilState } from 'recoil'
 
 const Tab = () => {
   const [tabNumber, setTabNumber] = useRecoilState(hubTabAtom)
-  const tabs = ['新着順', '投稿した投稿']
+  const tabs = ['新着順', 'いいね順']
   return (
-    <div className="flex items-start w-2/3 text-lg font-bold mt-6">
+    <div className="flex items-start w-2/3 text-lg w- font-bold mt-6 whitespace-nowrap">
       {tabs.map((string, index) => {
         if (index === tabNumber) {
           return (

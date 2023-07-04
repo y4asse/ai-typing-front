@@ -1,35 +1,23 @@
-import { Game } from '@/types/game'
-import { NextRequest } from 'next/server'
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import HubListItem from './hubListItem'
+import { useRecoilState } from 'recoil'
+import { hubPageNationOffsetAtom } from '@/recoil/hubPagenationAtom'
+import { getLatestGames } from '@/hooks/getLatestGames'
+import { Game } from '@/types/game'
 
-const getLatestGames = async () => {
-  const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
-  const body = JSON.stringify({ offset: 0 })
-  const request = new NextRequest(`${API_URL}/latestGames`, {
-    method: 'POST',
-    cache: 'no-store',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body
-  })
-  try {
-    const data: Game[] = await fetch(request).then((res) => {
-      if (!res.ok) {
-        throw new Error('データを取得できませんでした')
-      }
-      return res.json()
-    })
-    return data
-  } catch (e) {
-    console.log(e)
-    return null
-  }
-}
+const LatestGamesList = () => {
+  const [offset] = useRecoilState(hubPageNationOffsetAtom)
+  const [games, setGames] = useState<Game[] | null>([])
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getLatestGames(offset)
+      setGames(res)
+    }
+    fetchData()
+  }, [offset])
 
-const LatestGamesList = async () => {
-  const games = await getLatestGames()
   if (games == null) {
     return (
       <div className="flex text-3xl font-bold justify-center items-center h-full">

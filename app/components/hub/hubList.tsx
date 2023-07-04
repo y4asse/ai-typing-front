@@ -9,11 +9,9 @@ import LatestGamesList from './latestGamesList'
 const HubList = () => {
   const [tabNumber] = useRecoilState(hubTabAtom)
   return (
-    <div className="border-black border-4 rounded-b-xl p-5 w-2/3 h-2/3 text-2xl">
+    <div className="border-black border-4 rounded-b-xl p-5 w-2/3 h-3/5 text-2xl">
       {tabNumber === 0 ? (
-        <Suspense fallback={<Loader />}>
-          <LatestGamesList />
-        </Suspense>
+        <LatestGamesList />
       ) : (
         <div className="flex justify-center items-center h-full text-5xl font-bold">準備中</div>
       )}
