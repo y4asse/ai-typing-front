@@ -8,8 +8,6 @@ const PageNation = ({ totalGameCount }: { totalGameCount: number }) => {
   const [offset, setOffset] = useRecoilState(hubPageNationOffsetAtom)
   return (
     <div className="flex text-4xl gap-6 p-3">
-      {offset}
-      {totalGameCount}
       <FaChevronLeft
         className=" cursor-pointer"
         onClick={() =>
