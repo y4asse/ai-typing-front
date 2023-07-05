@@ -24,7 +24,7 @@ const PageNation = ({ totalGameCount }: { totalGameCount: number }) => {
         className=" cursor-pointer"
         onClick={() =>
           setOffset((prev) => {
-            if (prev + 10 > totalGameCount) {
+            if (prev + 9 > totalGameCount) {
               return prev
             }
             return prev + 10
