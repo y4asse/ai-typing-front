@@ -4,13 +4,35 @@ import HubList from '../components/hub/hubList'
 import Tab from '../components/hub/tab'
 import PageNation from '../components/hub/pageNation'
 
-const Hub = () => {
+const getTotalGameCount = async () => {
+  try {
+    const res: number = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/totalGameCount`, {
+      method: 'GET'
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.statusText)
+        }
+        return res.json()
+      })
+      .catch((e) => {
+        throw new Error(e)
+      })
+    return res
+  } catch (e) {
+    console.log(e)
+    return null
+  }
+}
+
+const Hub = async () => {
+  const totalGameCount = await getTotalGameCount()
   return (
     <div className="h-screen flex justify-center items-center text-6xl font-bold flex-col ">
       <AnimationTitle text="テキスト広場" />
       <Tab />
       <HubList />
-      <PageNation />
+      <PageNation totalGameCount={totalGameCount ? totalGameCount : 10} />
     </div>
   )
 }
