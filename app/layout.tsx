@@ -8,9 +8,9 @@ import SessionProvider from './components/sessionProvider/sessionProvider'
 const sora = Sora({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'AI Typing',
+  title: 'AI Typing 🚀 新世代タイピングゲーム ',
   description:
-    '新世代タイピングゲーム!AIが作った文でタイピンゲームができる！タイピング初心者の方や，楽しく練習したいという方におすすめ！'
+    'AIを使った新世代タイピングゲーム!AIが文章を作ってくれます．タイピング初心者の方や，楽しく練習したいという方におすすめです！'
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

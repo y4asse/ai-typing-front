@@ -1,15 +1,12 @@
-'use client'
-
-import { useRouter } from 'next/navigation'
 import React from 'react'
 import { TbLogin } from 'react-icons/tb'
 import { useSession } from 'next-auth/react'
 import { FaHome } from 'react-icons/fa'
 import Link from 'next/link'
+import { getServerSession } from 'next-auth'
 
 const AuthBtn = async () => {
-  const { data: session } = useSession()
-  const router = useRouter()
+  const session = await getServerSession()
   return (
     <>
       {session ? (
