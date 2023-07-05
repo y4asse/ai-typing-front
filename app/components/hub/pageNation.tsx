@@ -8,26 +8,28 @@ const PageNation = ({ totalGameCount }: { totalGameCount: number }) => {
   const [offset, setOffset] = useRecoilState(hubPageNationOffsetAtom)
   return (
     <div className="flex text-4xl gap-6 p-3">
+      {offset}
+      {totalGameCount}
       <FaChevronLeft
         className=" cursor-pointer"
         onClick={() =>
           setOffset((prev) => {
-            if (prev - 10 < 0) {
+            if (prev - 1 < 0) {
               return 0
             }
-            return prev - 10
+            return prev - 1
           })
         }
       />
-      {offset / 10 + 1}
+      {offset + 1}
       <FaChevronRight
         className=" cursor-pointer"
         onClick={() =>
           setOffset((prev) => {
-            if (prev + 10 >= totalGameCount) {
+            if (prev + 1 > totalGameCount / 10) {
               return prev
             }
-            return prev + 10
+            return prev + 1
           })
         }
       />

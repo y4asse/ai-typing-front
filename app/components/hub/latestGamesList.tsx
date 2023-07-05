@@ -15,7 +15,7 @@ const LatestGamesList = () => {
   useEffect(() => {
     setIsLoading(true)
     const fetchData = async () => {
-      const res = await getLatestGames(offset)
+      const res = await getLatestGames(offset * 10)
       setGames(res)
     }
     fetchData().then(() => setIsLoading(false))
