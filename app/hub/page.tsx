@@ -7,7 +7,8 @@ import PageNation from '../components/hub/pageNation'
 const getTotalGameCount = async () => {
   try {
     const res: number = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/totalGameCount`, {
-      method: 'GET'
+      method: 'GET',
+      cache: 'no-cache'
     })
       .then((res) => {
         if (!res.ok) {
