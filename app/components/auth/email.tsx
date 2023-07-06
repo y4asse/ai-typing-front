@@ -88,7 +88,13 @@ const Email = () => {
   }
   return (
     <div className="border-4 border-black rounded-xl p-12 text-2xl font-bold flex flex-col gap-5 w-1/2">
-      <label className="flex flex-col gap-1">
+      <form
+        className="flex flex-col gap-1"
+        onSubmit={(e) => {
+          e.preventDefault()
+          handleClick()
+        }}
+      >
         email
         <input
           required
@@ -98,8 +104,14 @@ const Email = () => {
           type="text"
           onChange={(e) => setEmail(e.target.value)}
         />
-      </label>
-      <label className="flex flex-col gap-1">
+      </form>
+      <form
+        className="flex flex-col gap-1"
+        onSubmit={(e) => {
+          e.preventDefault()
+          handleClick()
+        }}
+      >
         password
         <input
           required
@@ -109,7 +121,7 @@ const Email = () => {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-      </label>
+      </form>
 
       <button
         className=" mt-10 border-4 border-black rounded-xl p-5 hover:bg-black hover:text-white transition-all duration-200"

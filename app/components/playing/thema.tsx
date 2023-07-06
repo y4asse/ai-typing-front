@@ -16,7 +16,14 @@ const Thema = () => {
           <AnimationTitle text="テーマを入力してください" />
         </div>
         <div>
-          <ThemaInput />
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              handleClick()
+            }}
+          >
+            <ThemaInput />
+          </form>
           <p className="mt-3">※テーマの内容によってはうまくAIが処理できなかったり，生成に時間がかかる場合があります</p>
           <p className="">※AIが文を生成するので不完全な文章が生成される場合があります</p>
           <p className="">
