@@ -1,5 +1,6 @@
 'use client'
 
+import { useMutateGame } from '@/hooks/useMutateGame'
 import { situationAtom } from '@/recoil/situationAtom'
 import { useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
@@ -10,12 +11,18 @@ const Created = () => {
   const [timer, setTimer] = useState(3)
   const [typingTimer, setTypingTimer] = useState(0)
   const [isCountNumStart, setIsCountNumStart] = useState(false)
+  const { createGame } = useMutateGame()
 
   useEffect(() => {
     if (timer < 0) {
       setSituation({ value: 'playing' })
     }
   }, [timer])
+
+  useEffect(() => {
+    //サーバにデータを登録.recoilStateにidをセット
+    createGame()
+  }, [])
 
   useEffect(() => {
     let c = 0
