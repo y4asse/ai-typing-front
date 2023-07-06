@@ -4,7 +4,6 @@ import GameDetails from './gameDetails'
 import GameMode from './gameMode'
 import GameScore from './gameScore'
 import GameText from './gameText'
-import GameTimer from './gameTimer'
 
 const Playing = () => {
   return (
@@ -15,8 +14,6 @@ const Playing = () => {
       </div>
       <GameText />
       <GameDetails />
-
-      {/* <GameTimer /> */}
     </div>
   )
 }

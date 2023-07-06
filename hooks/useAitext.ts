@@ -4,6 +4,7 @@ import { gameAtom } from '@/recoil/gameAtom'
 import { situationAtom } from '@/recoil/situationAtom'
 import { NextRequest } from 'next/server'
 import { useRecoilState } from 'recoil'
+import { useMutateGame } from './useMutateGame'
 
 type AiResponse = {
   text: string[]
@@ -15,6 +16,7 @@ const useAitext = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [situation, setSituation] = useRecoilState(situationAtom)
   const API_URL = process.env.NEXT_PUBLIC_API_SERVER_URL
+  const { createGame } = useMutateGame()
 
   const handleClick = async () => {
     try {
@@ -46,6 +48,8 @@ const useAitext = () => {
           setGame((prev) => {
             return { ...prev, text: data.text, hiragana: data.hiragana, mode: 'standard' }
           })
+          //サーバにデータを登録.recoilStateにidをセット
+          await createGame()
           setSituation({ value: 'created' })
         })
         .catch((error: Error) => {
