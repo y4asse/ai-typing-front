@@ -2,8 +2,8 @@ import RecoilPrivider from '@/recoil/recoilRoot/recoilRoot'
 import Footer from './components/layout/footer'
 import './globals.css'
 import { Sora } from 'next/font/google'
-import GoogleAnalytics from './components/google/googleAnalytics'
 import SessionProvider from './components/sessionProvider/sessionProvider'
+import Script from 'next/script'
 
 const sora = Sora({ subsets: ['latin'] })
 
@@ -16,6 +16,23 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+           window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+           gtag('js', new Date());
+ 
+           gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+           `
+        }}
+      />
       <SessionProvider>
         <RecoilPrivider>
           <body className={sora.className}>
