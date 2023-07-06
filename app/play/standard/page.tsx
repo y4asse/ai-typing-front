@@ -10,7 +10,6 @@ import Playing from '@/app/components/playing/playing'
 import ScoreView from '@/app/components/playing/scoreView'
 import { useEffect } from 'react'
 
-
 const Standard = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [situation, setSituation] = useRecoilState(situationAtom)
@@ -28,7 +27,8 @@ const Standard = () => {
         totalTypeNum: 0,
         totalMissTypeNum: 0,
         typeNum: 0,
-        missTypeNum: 0
+        missTypeNum: 0,
+        id: ''
       }))
       setSituation({ value: 'thema' })
     }
