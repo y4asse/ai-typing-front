@@ -48,8 +48,6 @@ const useAitext = () => {
           setGame((prev) => {
             return { ...prev, text: data.text, hiragana: data.hiragana, mode: 'standard' }
           })
-          //サーバにデータを登録.recoilStateにidをセット
-          await createGame()
           setSituation({ value: 'created' })
         })
         .catch((error: Error) => {
