@@ -12,6 +12,7 @@ type State = {
   totalMissTypeNum: number
   typeNum: number
   missTypeNum: number
+  id: string
 }
 
 const defaultState: State = {
@@ -24,7 +25,8 @@ const defaultState: State = {
   totalTypeNum: 0,
   totalMissTypeNum: 0,
   typeNum: 0,
-  missTypeNum: 0
+  missTypeNum: 0,
+  id: ''
 }
 
 export const gameAtom = atom({

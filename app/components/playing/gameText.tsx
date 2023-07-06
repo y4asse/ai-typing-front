@@ -13,7 +13,7 @@ const GameText = () => {
   const { hiragana, text } = game
   const { textIndex, totalInput, splitSentence, hiraganaIndex, requiredRomaji } = useTypingLogic(hiragana)
   const [romajiShow, setRomajiShow] = useState('')
-  const { createGame } = useMutateGame()
+  const {updateGameScore} = useMutateGame()
 
   //表示用のromajiを生成
   useEffect(() => {
@@ -23,8 +23,8 @@ const GameText = () => {
   //終了したときの処理
   useEffect(() => {
     if (textIndex > text.length - 1) {
-      //データベースにゲーム内容を登録
-      createGame()
+      //データベースにスコアを送信
+      updateGameScore()
       setSituation({ value: 'score' })
       return
     }
