@@ -16,7 +16,6 @@ const useAitext = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [situation, setSituation] = useRecoilState(situationAtom)
   const API_URL = process.env.NEXT_PUBLIC_API_SERVER_URL
-  const { createGame } = useMutateGame()
 
   const handleClick = async () => {
     try {
