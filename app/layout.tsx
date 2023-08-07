@@ -36,6 +36,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
            `
             }}
           />
+          <link
+            rel="icon"
+            href="https://firebasestorage.googleapis.com/v0/b/cafeteria-fa0bf.appspot.com/o/_2d4d5b86-1516-4a07-a56e-878a0affdce2%20(1)_0807073926.png?alt=media&token=39146546-7e10-4349-9156-65aef6a7d422"
+          />
         </head>
       )}
       <SessionProvider>
