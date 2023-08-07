@@ -13,16 +13,12 @@ type CreatedText = {
 
 const fetchGameText = async (gameId: string) => {
   const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
-  const body = JSON.stringify({
-    game_id: gameId
-  })
-  const request = new Request(`${API_URL}/createdText`, {
+  const request = new Request(`${API_URL}/createdText/${gameId}`, {
     cache: 'force-cache',
-    method: 'POST',
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json'
-    },
-    body
+    }
   })
   try {
     const data: CreatedText[] = await fetch(request).then((res) => {
