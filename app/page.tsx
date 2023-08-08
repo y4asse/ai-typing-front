@@ -8,7 +8,7 @@ import Spinner from './components/utils/spinner'
 export default function Home() {
   return (
     <>
-      <Suspense fallback={<Spinner />}>
+      <Suspense>
         <AuthBtn />
       </Suspense>
       <div className="flex justify-center items-center flex-col gap-24 h-screen">
@@ -17,7 +17,7 @@ export default function Home() {
             AI Typing
           </h1>
           <h2 className="absolute right-0 top-full translate-x-1/2 translate-y-2 -rotate-6 text-xl text-gray-500">
-            新世代AIタイピングゲーム!
+            新世代AIタイピングゲーム🚀
           </h2>
         </div>
         <div className="flex justify-center items-center flex-col w-2/5 gap-5">
