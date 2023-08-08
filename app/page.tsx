@@ -8,7 +8,7 @@ import Spinner from './components/utils/spinner'
 export default function Home() {
   return (
     <>
-      <Suspense fallback={<Spinner />}>
+      <Suspense>
         <AuthBtn />
       </Suspense>
       <div className="flex justify-center items-center flex-col gap-24 h-screen">
