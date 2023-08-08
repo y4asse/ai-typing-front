@@ -5247,27 +5247,27 @@ const data = {
     },
     {
       Pattern: 'D',
-      TypePattern: ['d',]
+      TypePattern: ['d', 'D']
     },
     {
       Pattern: 'E',
-      TypePattern: ['e',]
+      TypePattern: ['e', 'E']
     },
     {
       Pattern: 'F',
-      TypePattern: ['f',]
+      TypePattern: ['f', 'F']
     },
     {
       Pattern: 'G',
-      TypePattern: ['g',]
+      TypePattern: ['g', 'G']
     },
     {
       Pattern: 'H',
-      TypePattern: ['h',]
+      TypePattern: ['h', 'H']
     },
     {
       Pattern: 'I',
-      TypePattern: ['i',]
+      TypePattern: ['i', 'I']
     },
     {
       Pattern: 'J',
