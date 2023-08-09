@@ -10,10 +10,13 @@ const License = () => {
         <a href="https://developer.yahoo.co.jp/sitemap/">Webサービス by Yahoo! JAPAN</a>
       </span>
       <p className="text-xl mt-10">・サイト内で使用しているアニメーション↓</p>
-      <p>
-        Copyright (c) @TheDutchCoder Released under the MIT list-disc list-insidecense <br />
-        URL：https://codepen.io/TheDutchCoder/pen/VwMJJB
-      </p>
+      <ul>
+        <li className=" list-decimal">
+          Copyright (c) @TheDutchCoder Released under the MIT list-disc list-insidecense <br />
+          URL：https://codepen.io/TheDutchCoder/pen/VwMJJB
+        </li>
+        <li className="list-decimal">https://lottiefiles.com/jp/animations/like-kqQSBa0jqB</li>
+      </ul>
     </div>
   )
 }
