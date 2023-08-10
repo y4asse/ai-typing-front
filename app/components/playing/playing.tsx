@@ -1,9 +1,11 @@
 'use client'
 
+import { useRecoilState } from 'recoil'
 import GameDetails from './gameDetails'
 import GameMode from './gameMode'
 import GameScore from './gameScore'
 import GameText from './gameText'
+import { gameAtom } from '@/recoil/gameAtom'
 
 const Playing = () => {
   return (

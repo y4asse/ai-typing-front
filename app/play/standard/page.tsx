@@ -3,7 +3,7 @@
 import CreatingText from '@/app/components/playing/creating'
 import Thema from '@/app/components/playing/thema'
 import { situationAtom } from '@/recoil/situationAtom'
-import { gameAtom } from '@/recoil/gameAtom'
+import { defaultState, gameAtom } from '@/recoil/gameAtom'
 import { useRecoilState } from 'recoil'
 import Created from '@/app/components/playing/created'
 import Playing from '@/app/components/playing/playing'
@@ -17,19 +17,7 @@ const Standard = () => {
   //不正防止のためページを離れたらリセットする
   useEffect(() => {
     return () => {
-      setGame((prev) => ({
-        ...prev,
-        thema: '',
-        score: 0,
-        timer: 0,
-        text: [],
-        hiragana: [],
-        totalTypeNum: 0,
-        totalMissTypeNum: 0,
-        typeNum: 0,
-        missTypeNum: 0,
-        id: ''
-      }))
+      setGame(defaultState)
       setSituation({ value: 'thema' })
     }
   }, [])
