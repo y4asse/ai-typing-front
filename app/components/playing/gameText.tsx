@@ -10,10 +10,10 @@ import { useRecoilState } from 'recoil'
 const GameText = () => {
   const [game] = useRecoilState(gameAtom)
   const [, setSituation] = useRecoilState(situationAtom)
-  const { hiragana, text, totalMissTypeNum, totalTypeNum, totalTimeMiliSec } = game
+  const { hiragana, text } = game
   const { textIndex, totalInput, splitSentence, hiraganaIndex, requiredRomaji } = useTypingLogic(hiragana)
   const [romajiShow, setRomajiShow] = useState('')
-  const { updateGameScore } = useMutateGame()
+  const {updateGameScore} = useMutateGame()
 
   //表示用のromajiを生成
   useEffect(() => {
@@ -25,7 +25,6 @@ const GameText = () => {
     if (textIndex > text.length - 1) {
       //データベースにスコアを送信
       updateGameScore()
-      //終了画面に遷移
       setSituation({ value: 'score' })
       return
     }
