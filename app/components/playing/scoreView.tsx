@@ -38,7 +38,14 @@ const ScoreView = () => {
     <div className="h-screen flex justify-center items-center flex-col gap-5">
       {isShowAnalyse && (
         <div className="absolute bg-orange-100 z-30 w-1/2 border-black border-4 p-10 pb-6 rounded-xl font-bold text-xl">
-          {analyseData ? <p>{analyseData}</p> : <PleaseWait />}
+          {analyseData ? (
+            <p>{analyseData}</p>
+          ) : (
+            <div className="text-center">
+              <PleaseWait />
+              AI分析中...
+            </div>
+          )}
           <button
             className="mx-auto border-black border-4 rounded-xl px-3 py-2 mt-5 block hover:bg-black hover:text-white duration-200 transition-all"
             onClick={() => setIsShowAnalyse(false)}
