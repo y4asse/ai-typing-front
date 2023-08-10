@@ -95,8 +95,15 @@ const useTypingLogic = (
         setInputBuf('')
         //次のお題に進むとき
         if (hiraganaIndex + 1 > constructTypeSentenceCallback().romajiCandidates.length - 1) {
-          const calcscore = calcScore(typeNum + 1, timer, missTypeNum)
-          setGame((prev) => ({ ...prev, score: prev.score + calcscore, missTypeNum: 0, typeNum: 0, timer: 0 }))
+          const { score: calcscore, WPM } = calcScore(typeNum + 1, timer, missTypeNum)
+          setGame((prev) => ({
+            ...prev,
+            score: prev.score + calcscore,
+            missTypeNum: 0,
+            typeNum: 0,
+            timer: 0,
+            WPM: WPM
+          }))
           goNextText()
         }
       }

@@ -7,19 +7,12 @@ import { gameAtom } from '@/recoil/gameAtom'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import Created from '@/app/components/playing/created'
 import Playing from '@/app/components/playing/playing'
-import { NextRequest } from 'next/server'
 import ScoreView from '@/app/components/playing/scoreView'
 import { useEffect } from 'react'
-
-
 
 const TimeLimit = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [situation, setSituation] = useRecoilState(situationAtom)
-  const API_URL = process.env.NEXT_PUBLIC_API_SERVER_URL
-
-  
-  
 
   //不正防止のためページを離れたらリセットする
   useEffect(() => {

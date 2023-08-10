@@ -1,7 +1,7 @@
 'use client'
 
 import { Player } from '@lottiefiles/react-lottie-player'
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import like from '../../../assets/like.json'
 import { fetchLikeNum } from '@/hooks/useLike'
 
@@ -11,7 +11,6 @@ export const FavoriteIconAnim = ({ gameId, likeNum }: { gameId: string; likeNum:
 
   useEffect(() => {
     fetchLikeNum(gameId).then((res) => {
-      console.log(res)
       setNum(res)
     })
   }, [])
@@ -25,7 +24,6 @@ export const FavoriteIconAnim = ({ gameId, likeNum }: { gameId: string; likeNum:
       body: JSON.stringify({ game_id: gameId })
     }).then(() => {
       fetchLikeNum(gameId).then((res) => {
-        console.log(res)
         setNum(res)
       })
     })

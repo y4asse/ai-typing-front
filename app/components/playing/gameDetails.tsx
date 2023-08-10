@@ -9,10 +9,10 @@ const GameDetails = () => {
     <div className="flex items-center pt-16 flex-col text-3xl">
       <table>
         <tbody>
-          <tr>
+          <tr className="">
             <td>正答数</td>
             <td>:</td>
-            <td className="font-bold w-20 text-end">{typeNum}</td>
+            <td className="font-bold w-20 text-end ">{typeNum}</td>
             <td className="font-bold">words</td>
           </tr>
           <tr>
