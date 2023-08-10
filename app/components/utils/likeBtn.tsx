@@ -1,7 +1,7 @@
 'use client'
 
 import { Player } from '@lottiefiles/react-lottie-player'
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import like from '../../../assets/like.json'
 import { fetchLikeNum } from '@/hooks/useLike'
 

@@ -4,7 +4,6 @@ import { useMutateGame } from '@/hooks/useMutateGame'
 import { situationAtom } from '@/recoil/situationAtom'
 import { useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
-import CreatedAnimation from '../utils/finishedAnimation'
 
 const Created = () => {
   const setSituation = useSetRecoilState(situationAtom)
@@ -15,9 +14,9 @@ const Created = () => {
   const { createGame } = useMutateGame()
 
   useEffect(() => {
-    // if (timer < 0) {
-    //   setSituation({ value: 'playing' })
-    // }
+    if (timer < 0) {
+      setSituation({ value: 'playing' })
+    }
   }, [timer])
 
   useEffect(() => {

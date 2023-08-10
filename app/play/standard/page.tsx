@@ -4,7 +4,7 @@ import CreatingText from '@/app/components/playing/creating'
 import Thema from '@/app/components/playing/thema'
 import { situationAtom } from '@/recoil/situationAtom'
 import { gameAtom } from '@/recoil/gameAtom'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import Created from '@/app/components/playing/created'
 import Playing from '@/app/components/playing/playing'
 import ScoreView from '@/app/components/playing/scoreView'
@@ -36,15 +36,15 @@ const Standard = () => {
   return (
     <>
       {situation.value === 'thema' ? (
-        <ScoreView />
+        <Thema />
       ) : situation.value === 'creating' ? (
         <CreatingText />
       ) : situation.value === 'created' ? (
-        <Thema />
+        <Created />
       ) : situation.value === 'playing' ? (
         <Playing />
       ) : (
-        <Created />
+        <ScoreView />
       )}
     </>
   )
