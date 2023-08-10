@@ -36,16 +36,15 @@ const Standard = () => {
   return (
     <>
       {situation.value === 'thema' ? (
-        <CreatingText />
-      ) : // <Thema />
-      situation.value === 'creating' ? (
+        <ScoreView />
+      ) : situation.value === 'creating' ? (
         <CreatingText />
       ) : situation.value === 'created' ? (
-        <Created />
+        <Thema />
       ) : situation.value === 'playing' ? (
         <Playing />
       ) : (
-        <ScoreView />
+        <Created />
       )}
     </>
   )

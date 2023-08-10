@@ -9,6 +9,7 @@ import AuthBtn from '../buttons/authBtn'
 import TweetBtn from '../buttons/tweetBtn'
 import starAnimation from '../../../assets/start.json'
 import { Player } from '@lottiefiles/react-lottie-player'
+import CreatedAnimation from '../utils/finishedAnimation'
 
 const ScoreView = () => {
   const [game] = useRecoilState(gameAtom)
@@ -16,18 +17,21 @@ const ScoreView = () => {
 
   return (
     <div className="h-screen flex justify-center items-center flex-col gap-10">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2">
+        <CreatedAnimation />
+      </div>
       <div className="text-7xl font-bold animate-bounce">終了!!</div>
       <div className="bg-black bg-opacity-70 text-white py-10 px-24 rounded-2xl text-6xl flex items-center justify-center gap-5">
         <Player speed={1} src={starAnimation} className="h-16" loop={true} autoplay={true} />
         <span>スコア: {score}</span>
       </div>
-      <div className="w-2/5 flex gap-5">
+      <div className="w-2/5 flex gap-5 z-10">
         <PlayAgainBtn />
         <GoRankingBtn />
         {/* RSCではないのでバグる */}
         {/* <AuthBtn /> */}
       </div>
-      <div className="w-2/5 flex">
+      <div className="w-2/5 flex z-10">
         <TweetBtn />
       </div>
     </div>

@@ -4,6 +4,7 @@ import { useMutateGame } from '@/hooks/useMutateGame'
 import { situationAtom } from '@/recoil/situationAtom'
 import { useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
+import CreatedAnimation from '../utils/finishedAnimation'
 
 const Created = () => {
   const setSituation = useSetRecoilState(situationAtom)
@@ -14,9 +15,9 @@ const Created = () => {
   const { createGame } = useMutateGame()
 
   useEffect(() => {
-    if (timer < 0) {
-      setSituation({ value: 'playing' })
-    }
+    // if (timer < 0) {
+    //   setSituation({ value: 'playing' })
+    // }
   }, [timer])
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const Created = () => {
   return (
     <>
       <div className="h-screen flex justify-center items-center flex-col gap-5">
-        <h3 className="text-4xl font-bold">
+        <h3 className="text-4xl font-bold z-10">
           {text.map((word, index) => {
             if (index <= typingTimer) {
               return <span key={index}>{word}</span>
@@ -60,7 +61,9 @@ const Created = () => {
             return ''
           })}
         </h3>
-        {isCountNumStart && <h1 className="text-8xl font-bold rotateAnimation">{timer === 0 ? 'スタート!' : timer}</h1>}
+        {isCountNumStart && (
+          <h1 className="text-8xl font-bold rotateAnimation z-10">{timer === 0 ? 'スタート!' : timer}</h1>
+        )}
       </div>
     </>
   )
