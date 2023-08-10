@@ -4,7 +4,6 @@ import './globals.css'
 import { Sora } from 'next/font/google'
 import SessionProvider from './components/sessionProvider/sessionProvider'
 import Script from 'next/script'
-import { isMobile } from 'react-device-detect'
 
 const sora = Sora({ subsets: ['latin'] })
 
@@ -47,7 +46,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <RecoilPrivider>
           <body className={sora.className}>
             <div className="bg-[url('/img/background.png')] bg-center bg-cover overflow-hidden ">
-              {isMobile && <p className="text-center text-xl font-bold">このアプリはPCでの利用を想定しています．</p>}
               {children}
               <Footer />
             </div>

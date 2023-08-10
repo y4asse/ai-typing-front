@@ -4,13 +4,13 @@ import CreatingText from '@/app/components/playing/creating'
 import Thema from '@/app/components/playing/thema'
 import { situationAtom } from '@/recoil/situationAtom'
 import { gameAtom } from '@/recoil/gameAtom'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import Created from '@/app/components/playing/created'
 import Playing from '@/app/components/playing/playing'
 import ScoreView from '@/app/components/playing/scoreView'
 import { useEffect } from 'react'
 
-const Standard = () => {
+const TimeLimit = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [situation, setSituation] = useRecoilState(situationAtom)
 
@@ -27,8 +27,7 @@ const Standard = () => {
         totalTypeNum: 0,
         totalMissTypeNum: 0,
         typeNum: 0,
-        missTypeNum: 0,
-        id: ''
+        missTypeNum: 0
       }))
       setSituation({ value: 'thema' })
     }
@@ -50,4 +49,4 @@ const Standard = () => {
   )
 }
 
-export default Standard
+export default TimeLimit
