@@ -25,6 +25,11 @@ const ScoreView = () => {
     if (analyseData) return
     setIsAnalysing(true)
     getAnalyse(score, totalTimeMiliSec, totalTypeNum, totalMissTypeNum, missTypeKey).then((res) => {
+      if (res === null) {
+        alert('AI分析に失敗しました。')
+        setIsAnalysing(false)
+        setIsShowAnalyse(false)
+      }
       setAnalyseData(res)
       setIsAnalysing(false)
     })
