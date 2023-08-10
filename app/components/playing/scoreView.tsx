@@ -1,20 +1,31 @@
 'use client'
 
 import { gameAtom } from '@/recoil/gameAtom'
-import React from 'react'
+import React, { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import PlayAgainBtn from '../buttons/playAgainBtn'
 import GoRankingBtn from '../buttons/goRankingBtn'
 import TweetBtn from '../buttons/tweetBtn'
 import CreatedAnimation from '../utils/finishedAnimation'
 import ScoreStar from '../utils/scoreStar'
+import { getAnalyse } from '@/hooks/getAnalyse'
 
 const ScoreView = () => {
   const [game] = useRecoilState(gameAtom)
-  const { score, WPM } = game
+  const { score, totalTimeMiliSec, missTypeKey, totalMissTypeNum, totalTypeNum } = game
+  const [isAnalysing, setIsAnalysing] = useState<boolean>(false)
+  const [analyseData, setAnalyseData] = useState<string | null>(null)
 
+  const analyse = () => {
+    setIsAnalysing(true)
+    getAnalyse(score, totalTimeMiliSec, totalTypeNum, totalMissTypeNum, missTypeKey).then((res) => {
+      setAnalyseData(res)
+      setIsAnalysing(false)
+    })
+  }
   return (
-    <div className="h-screen flex justify-center items-center flex-col gap-10">
+    <div className="h-screen flex justify-center items-center flex-col gap-5">
+      {analyseData && analyseData}
       <div className="absolute top-0 left-1/2 -translate-x-1/2">
         <CreatedAnimation />
       </div>
@@ -23,13 +34,19 @@ const ScoreView = () => {
         <ScoreStar />
         <span>スコア: {score}</span>
       </div>
+      <button
+        className="border-black border-4 z-10 py-8 rounded-xl text-xl font-bold w-2/5 hover:bg-black hover:text-white duration-200 transition-all"
+        onClick={analyse}
+      >
+        AI分析
+      </button>
       <div className="w-2/5 flex gap-5 z-10">
         <PlayAgainBtn />
         <GoRankingBtn />
         {/* RSCではないのでバグる */}
         {/* <AuthBtn /> */}
       </div>
-      <div className="w-2/5 flex z-10">
+      <div className="w-1/5 flex z-10">
         <TweetBtn />
       </div>
     </div>

@@ -13,10 +13,11 @@ type State = {
   typeNum: number
   missTypeNum: number
   id: string
-  WPM: number
+  missTypeKey: string[]
+  totalTimeMiliSec: number
 }
 
-const defaultState: State = {
+export const defaultState: State = {
   thema: '',
   score: 0,
   timer: 0,
@@ -28,7 +29,8 @@ const defaultState: State = {
   typeNum: 0,
   missTypeNum: 0,
   id: '',
-  WPM: 0
+  missTypeKey: [],
+  totalTimeMiliSec: 0
 }
 
 export const gameAtom = atom({
