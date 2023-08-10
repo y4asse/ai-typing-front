@@ -18,45 +18,15 @@ const testData: AiResponse = {
     '自分を信じることが最後まで戦うこと-NARUTO',
     'まぁいいんじゃないですか人生そんな風に一本筋通ってたら-涼宮ハルヒの憂鬱'
   ],
-  hiragana: ['あ', 'い', 'う', 'え', 'お']
-  // hiragana: [
-  //   'にんげんなんててきとうにかみひとえなのさ-はがねのれんきんじゅつし',
-  //   'ゆめがあるからこそげんじつはかがやく-BANKAI',
-  //   'なんでひとはよいことをするとかせいぎとかってかんがえるんだろうそのかわりわるいことをするのはかんたんだからさたいへんなことをしてせかいをうごかすのがせいぎかもしれない-ですのーと',
-  //   'じぶんをしんじることがさいごまでたたかうこと-NARUTO',
-  //   'まぁいいんじゃないですかじんせいそんなふうに1ほんすじとおってたら-すずみやはるひのゆううつ'
-  // ]
+  // hiragana: ['あ', 'い', 'う', 'え', 'お']
+  hiragana: [
+    'にんげんなんててきとうにかみひとえなのさ-はがねのれんきんじゅつし',
+    'ゆめがあるからこそげんじつはかがやく-BANKAI',
+    'なんでひとはよいことをするとかせいぎとかってかんがえるんだろうそのかわりわるいことをするのはかんたんだからさたいへんなことをしてせかいをうごかすのがせいぎかもしれない-ですのーと',
+    'じぶんをしんじることがさいごまでたたかうこと-NARUTO',
+    'まぁいいんじゃないですかじんせいそんなふうに1ほんすじとおってたら-すずみやはるひのゆううつ'
+  ]
 }
-
-const getAiText = async (thema: string): Promise<AiResponse> => {
-  return testData
-  const SERVER_URL = process.env.SERVER_URL
-  if (!SERVER_URL) {
-    throw new Error('環境変数を設定してください')
-  }
-  const request = new NextRequest(`${SERVER_URL}/aiText`, {
-    method: 'POST',
-    body: JSON.stringify({ thema }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  console.log('creating text...')
-  const data = await fetch(request)
-    .then(async (res) => {
-      const resBody: AiResponse = await res.json()
-      if (!res.ok) {
-        throw new Error(`${resBody.error}`)
-      }
-      //成功したときの処理
-      return resBody
-    })
-    .catch((error: Error) => {
-      throw new Error(`${error.message}`)
-    })
-  return data
-}
-
 export async function POST(request: Request) {
   const requestBody: RequestBody = await request.json()
   const thema = requestBody.thema
@@ -64,7 +34,7 @@ export async function POST(request: Request) {
     if (thema === '') {
       throw new Error('テーマを入力してください')
     }
-    const data = await getAiText(thema)
+    const data = testData
     return NextResponse.json(data)
   } catch (error) {
     if (error instanceof Error) {
@@ -73,12 +43,3 @@ export async function POST(request: Request) {
     }
   }
 }
-
-// export async function GET(request: Request) {
-//   const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL
-//   if (!SERVER_URL) {
-//     console.log('環境変数が設定されていません')
-//     return
-//   }
-//   return NextResponse.json(data)
-// }
