@@ -11,7 +11,6 @@ export const FavoriteIconAnim = ({ gameId, likeNum }: { gameId: string; likeNum:
 
   useEffect(() => {
     fetchLikeNum(gameId).then((res) => {
-      console.log(res)
       setNum(res)
     })
   }, [])
@@ -25,7 +24,6 @@ export const FavoriteIconAnim = ({ gameId, likeNum }: { gameId: string; likeNum:
       body: JSON.stringify({ game_id: gameId })
     }).then(() => {
       fetchLikeNum(gameId).then((res) => {
-        console.log(res)
         setNum(res)
       })
     })
