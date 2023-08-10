@@ -102,7 +102,7 @@ const useTypingLogic = (
             missTypeNum: 0,
             typeNum: 0,
             timer: 0,
-            WPM: WPM
+            totalTimeMiliSec: prev.totalTimeMiliSec + timer
           }))
           goNextText()
         }
@@ -112,9 +112,9 @@ const useTypingLogic = (
       setGame((prev) => ({
         ...prev,
         totalMissTypeNum: prev.totalMissTypeNum + 1,
-        missTypeNum: prev.missTypeNum + 1
+        missTypeNum: prev.missTypeNum + 1,
+        missTypeKey: [...prev.missTypeKey, typedKey]
       }))
-      // setGame((prev) => ({ ...prev, score: prev.score - 10 }))
     }
   }
 
