@@ -24,9 +24,8 @@ const Standard = () => {
   return (
     <>
       {situation.value === 'thema' ? (
-        <ScoreView />
-      ) : // <Thema />
-      situation.value === 'creating' ? (
+        <Thema />
+      ) : situation.value === 'creating' ? (
         <CreatingText />
       ) : situation.value === 'created' ? (
         <Created />
