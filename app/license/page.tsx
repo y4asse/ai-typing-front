@@ -16,6 +16,11 @@ const License = () => {
           URL：https://codepen.io/TheDutchCoder/pen/VwMJJB
         </li>
         <li className="list-decimal">https://lottiefiles.com/jp/animations/like-kqQSBa0jqB</li>
+        <li className="list-decimal">
+          Confetti Emas Didik Prasetyo
+          <br />
+          (https://lottiefiles.com/jp/animations/confetti-Ljf8PgS2P4)
+        </li>
       </ul>
     </div>
   )

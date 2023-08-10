@@ -6,7 +6,7 @@ export const getAnalyse = async (
   missTypeKey: string[]
 ) => {
   const accuracy = Math.floor((typeKeyCount / (typeKeyCount + missTypeCount)) * 100)
-  const kpm = typeKeyCount / (timeMiliSec * 1000 * 60)
+  const kpm = Math.floor(typeKeyCount / (timeMiliSec / (1000 * 60)))
   const data = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/analyse`, {
     method: 'POST',
     headers: {
