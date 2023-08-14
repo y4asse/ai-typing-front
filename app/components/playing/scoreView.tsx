@@ -81,8 +81,6 @@ const ScoreView = () => {
       <div className="w-2/5 flex gap-5 z-10">
         <PlayAgainBtn />
         <GoRankingBtn />
-        {/* RSCではないのでバグる */}
-        {/* <AuthBtn /> */}
       </div>
       <div className="w-1/5 flex z-10">
         <TweetBtn />
