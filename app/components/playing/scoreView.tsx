@@ -16,6 +16,8 @@ import { FaRobot } from 'react-icons/fa'
 const ScoreView = () => {
   const [game] = useRecoilState(gameAtom)
   const { score, totalTimeMiliSec, missTypeKey, totalMissTypeNum, totalTypeNum } = game
+  const KPM = Math.floor(totalTypeNum / (totalTimeMiliSec / 1000 / 60))
+  const accuracy = Math.floor((totalTypeNum * 1000) / (totalTypeNum + totalMissTypeNum)) / 10
   const [isAnalysing, setIsAnalysing] = useState<boolean>(false)
   const [analyseData, setAnalyseData] = useState<string | null>(null)
   const [isShowAnalyse, setIsShowAnalyse] = useState<boolean>(false)
@@ -58,9 +60,16 @@ const ScoreView = () => {
         <CreatedAnimation />
       </div>
       <div className="text-7xl font-bold animate-bounce">終了!!</div>
-      <div className="bg-black bg-opacity-70 text-white py-10 px-24 rounded-2xl text-6xl flex items-center justify-center gap-5">
-        <ScoreStar />
-        <span>スコア: {score}</span>
+      <div className="bg-black bg-opacity-70 text-white py-5 px-24 rounded-2xl text-6xl flex items-center justify-center flex-col gap-5">
+        <div className="flex justify-center items-center gap-5">
+          <ScoreStar />
+          <span>スコア: {score}</span>
+        </div>
+        <div className="flex text-xl justify-evenly w-full">
+          <span>入力文字数: {totalTypeNum}</span>
+          <span>KPM: {KPM}</span>
+          <span>正確率: {accuracy}%</span>
+        </div>
       </div>
       <button
         className="border-black border-4 z-10 py-8 rounded-xl text-xl font-bold w-2/5 hover:bg-black hover:text-white duration-200 transition-all"

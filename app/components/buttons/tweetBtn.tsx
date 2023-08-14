@@ -7,8 +7,15 @@ import { useRecoilState } from 'recoil'
 
 const TweetBtn = () => {
   const [game] = useRecoilState(gameAtom)
-  const { score, thema } = game
-  const text = encodeURIComponent(`AI Typingをプレイしました！🚀\nテーマ🔥「${thema}」\nスコア📃「${score}」点\n\n`)
+  const { score, thema, totalMissTypeNum, totalTimeMiliSec, totalTypeNum } = game
+
+  const text = encodeURIComponent(
+    `AI Typingをプレイしました！🚀\nテーマ🔥「${thema}」\nスコア📃「${score}」点\nKPM「${Math.floor(
+      totalTypeNum / (totalTimeMiliSec / 1000 / 60)
+    )}」\n入力時間⌛「${Math.floor(totalTimeMiliSec / 100) / 10}」秒\n正確率「${
+      Math.floor((totalTypeNum * 1000) / (totalTypeNum + totalMissTypeNum)) / 10
+    }」%\n\n`
+  )
   const hashtags = encodeURIComponent('AItyping')
   const url = encodeURIComponent('https://ai-typing.app\n')
   return (
