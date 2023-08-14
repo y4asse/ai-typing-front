@@ -96,9 +96,9 @@ const GlobalMenu = () => {
           isShowMenu ? ' h-96' : ' h-0 '
         }`}
       >
-        {data.map((value) => {
+        {data.map((value, index) => {
           return (
-            <div className="flex items-center">
+            <div className="flex items-center" key={index}>
               <span
                 className={`font-bold mr-1 text-end overflow-hidden whitespace-nowrap transition-all duration-500  border-black  ${
                   isShowMenuDetail ? 'w-20' : 'w-0 '
