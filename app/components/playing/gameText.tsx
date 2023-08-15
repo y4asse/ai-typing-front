@@ -11,7 +11,7 @@ const GameText = () => {
   const [game] = useRecoilState(gameAtom)
   const [, setSituation] = useRecoilState(situationAtom)
   const { hiragana, text, totalMissTypeNum, totalTypeNum, totalTimeMiliSec } = game
-  const { textIndex, totalInput, splitSentence, hiraganaIndex, requiredRomaji } = useTypingLogic(hiragana)
+  const { textIndex, totalInput, splitSentence, hiraganaIndex, requiredRomaji, isMissFlash } = useTypingLogic(hiragana)
   const [romajiShow, setRomajiShow] = useState('')
   const { updateGameScore } = useMutateGame()
 
@@ -32,7 +32,11 @@ const GameText = () => {
   }, [textIndex])
   return (
     <div className=" row-start-2 col-span-4 px-3">
-      <div className=" px-3 overflow-hidden  bg-black bg-opacity-70 text-white h-full w-full rounded-2xl flex flex-col justify-evenly items-center">
+      <div
+        className={`px-3 overflow-hidden duration-100 transition-all  ${
+          isMissFlash ? ' bg-red-900' : 'bg-black'
+        } bg-opacity-70 text-white h-full w-full rounded-2xl flex flex-col justify-evenly items-center`}
+      >
         {/* 日本語の表示 */}
         {text[textIndex] && (
           <div>
