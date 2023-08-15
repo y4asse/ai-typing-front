@@ -42,6 +42,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             rel="icon"
             href="https://firebasestorage.googleapis.com/v0/b/cafeteria-fa0bf.appspot.com/o/aikun_0811015123.png?alt=media&token=e1579c8d-400c-408d-8b33-b7ea3a8fb5f7"
           />
+          <meta property="og:type" content="(1)ページタイプ" />
+          <meta property="og:title" content="AI Typing 🚀 新世代タイピングゲーム " />
+          <meta
+            property="og:description"
+            content="AIが文を作成する新世代タイピングゲーム.あなただけの文でタイピングをしよう！"
+          />
+          <meta property="og:url" content="https://ai-typing.app" />
+          <meta property="og:site_name" content="AI Typing" />
+          <meta
+            property="og:image"
+            content="https://firebasestorage.googleapis.com/v0/b/cafeteria-fa0bf.appspot.com/o/ai-typin.png?alt=media&token=d29bd47b-d5ba-46bb-bb18-5ab20c255010"
+          />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@yAisse" />
         </head>
       )}
       <SessionProvider>
