@@ -61,9 +61,23 @@ const GameText = () => {
           })}
         </div>
         {/* ローマ字の表示 */}
-        <div className=" text-2xl flex whitespace-nowrap w-full">
-          <div className="text-gray-500 w-1/2 flex justify-end">{totalInput}</div>
-          <div className="w-1/4">{requiredRomaji.join('').substring(totalInput.length)}</div>
+        <div className=" whitespace-nowrap text-xl">
+          {romajiShow.split('').map((char, index) => {
+            if (index < totalInput.length) {
+              return (
+                <span key={index} className="text-gray-500">
+                  {char}
+                  {index !== 0 && index % 100 === 0 && <br></br>}
+                </span>
+              )
+            }
+            return (
+              <span key={index}>
+                {char}
+                {index !== 0 && index % 100 === 0 && <br></br>}
+              </span>
+            )
+          })}
         </div>
       </div>
     </div>
