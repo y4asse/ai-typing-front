@@ -31,25 +31,20 @@ const GameText = () => {
     }
   }, [textIndex])
   return (
-    <div className="relative">
-      <div className="absolute gap-3 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-70 text-white h-full  min-w-full max-w-screen-xl p-6 rounded-2xl flex flex-col justify-center items-center">
+    <div className=" row-start-2 col-span-4 px-3">
+      <div className=" px-3 overflow-hidden  bg-black bg-opacity-70 text-white h-full w-full rounded-2xl flex flex-col justify-evenly items-center">
         {/* 日本語の表示 */}
         {text[textIndex] && (
           <div>
-            <div className="text-2xl whitespace-nowrap">
+            <div className="text-xl">
               {text[textIndex].split('').map((char, index) => {
-                return (
-                  <span key={index}>
-                    {char}
-                    {index !== 0 && index % 50 === 0 && <br></br>}
-                  </span>
-                )
+                return <span key={index}>{char}</span>
               })}
             </div>
           </div>
         )}
         {/* ひらがなの表示 */}
-        <div className="text-xl">
+        <div className="text-2xl">
           {splitSentence.map((char, index) => {
             if (index < hiraganaIndex) {
               return (
@@ -62,25 +57,10 @@ const GameText = () => {
           })}
         </div>
         {/* ローマ字の表示 */}
-        <div className=" whitespace-nowrap ">
-          {romajiShow.split('').map((char, index) => {
-            if (index < totalInput.length) {
-              return (
-                <span key={index} className="text-gray-500">
-                  {char}
-                  {index !== 0 && index % 100 === 0 && <br></br>}
-                </span>
-              )
-            }
-            return (
-              <span key={index}>
-                {char}
-                {index !== 0 && index % 100 === 0 && <br></br>}
-              </span>
-            )
-          })}
+        <div className=" text-2xl flex whitespace-nowrap w-full">
+          <div className="text-gray-500 w-1/2 flex justify-end">{totalInput}</div>
+          <div className="w-1/4">{requiredRomaji.join('').substring(totalInput.length)}</div>
         </div>
-        <p></p>
       </div>
     </div>
   )

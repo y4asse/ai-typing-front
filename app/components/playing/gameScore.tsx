@@ -15,7 +15,7 @@ const GameScore = () => {
     playerRef.current && playerRef.current.play()
   }, [score])
   return (
-    <div className="flex justify-center items-center text-6xl relative">
+    <div className=" row-start-1 col-start-3 flex justify-center items-center text-6xl relative">
       スコア:
       <span>
         {score}
