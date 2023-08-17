@@ -10,7 +10,7 @@ const Thema = () => {
   const { handleClick } = useAitext()
   return (
     <>
-      <div className="flex justify-center items-center flex-col gap-24 h-screen">
+      <div className="flex justify-evenly items-center flex-col h-screen">
         <GoBackBtn />
         <div>
           <AnimationTitle text="テーマを入力してください" />
@@ -24,8 +24,9 @@ const Thema = () => {
           >
             <ThemaInput />
           </form>
-          <p className="mt-3">※テーマの内容によってはうまくAIが処理できなかったり，生成に時間がかかる場合があります</p>
-          <p className="">※AIが文を生成するので不完全な文章が生成される場合があります</p>
+          <p className="mt-3">
+            ※テーマの内容によってはうまくAIが処理できなかったり、不完全な文章が生成される場合があります
+          </p>
           <p className="">
             ※ゲームの詳細なルールは
             <Link href={'/about'} className="underline">

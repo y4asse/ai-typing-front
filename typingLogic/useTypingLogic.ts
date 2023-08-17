@@ -16,6 +16,7 @@ const useTypingLogic = (
   romajiCandidates: string[][]
   leftCandidates: string[][]
   requiredRomaji: string[]
+  isMissFlash: boolean
 } => {
   if (text.length < 1) {
     throw new Error('テキストが存在しません')
@@ -34,6 +35,7 @@ const useTypingLogic = (
   const [leftCandidates, setLeftCandidate] = useState<string[][]>([])
   const [totalInput, setTotalInput] = useState<string>('')
   const [requiredRomaji, setRequiredRomaji] = useState<string[]>([])
+  const [isMissFlash, setIsMissFlash] = useState(false)
 
   //constructTypeSentenceCallbackがtextindexに依存してるので，set関数もtextindexに依存させる
   useEffect(() => {
@@ -109,6 +111,10 @@ const useTypingLogic = (
       }
     } else {
       //不正解の時
+      setIsMissFlash(true)
+      setTimeout(() => {
+        setIsMissFlash(false)
+      }, 100)
       setGame((prev) => ({
         ...prev,
         totalMissTypeNum: prev.totalMissTypeNum + 1,
@@ -133,6 +139,15 @@ const useTypingLogic = (
       document.removeEventListener('keydown', handleInput, false)
     }
   }, [handleInput])
-  return { textIndex, totalInput, splitSentence, hiraganaIndex, romajiCandidates, leftCandidates, requiredRomaji }
+  return {
+    textIndex,
+    totalInput,
+    splitSentence,
+    hiraganaIndex,
+    romajiCandidates,
+    leftCandidates,
+    requiredRomaji,
+    isMissFlash
+  }
 }
 export default useTypingLogic

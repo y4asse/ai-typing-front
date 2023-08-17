@@ -9,11 +9,9 @@ import { gameAtom } from '@/recoil/gameAtom'
 
 const Playing = () => {
   return (
-    <div className="w-1/2 mx-auto h-screen grid grid-rows-3">
-      <div className="grid grid-cols-2">
-        <GameMode />
-        <GameScore />
-      </div>
+    <div className="w-screen h-screen grid grid-cols-4 grid-rows-3">
+      <GameMode />
+      <GameScore />
       <GameText />
       <GameDetails />
     </div>

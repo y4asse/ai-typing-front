@@ -7,23 +7,30 @@ import { useSetRecoilState } from 'recoil'
 
 const Created = () => {
   const setSituation = useSetRecoilState(situationAtom)
-  const text = '生成が完了しました．ゲームを開始します.'.split('')
-  const [timer, setTimer] = useState(3)
+  const text = '生成が完了しました．/スペースかエンターを押してゲームを開始します'.split('')
   const [typingTimer, setTypingTimer] = useState(0)
   const [isCountNumStart, setIsCountNumStart] = useState(false)
   const { createGame } = useMutateGame()
 
-  useEffect(() => {
-    if (timer < 0) {
-      setSituation({ value: 'playing' })
-    }
-  }, [timer])
+  const handleInput = (e: KeyboardEvent) => {
+    console.log(e.key)
+    if (e.key !== 'Enter' && e.key !== ' ') return
+    setSituation({ value: 'playing' })
+  }
 
   useEffect(() => {
-    //サーバにデータを登録.recoilStateにidをセット
+    document.addEventListener('keydown', handleInput, false)
+    return () => {
+      document.removeEventListener('keydown', handleInput, false)
+    }
+  }, [handleInput])
+
+  useEffect(() => {
+    //サーバにデータを登録とrecoilStateにidをセット
     createGame()
   }, [])
 
+  //タイピングテキスト用
   useEffect(() => {
     let c = 0
 
@@ -37,14 +44,7 @@ const Created = () => {
       c++
     }, 50)
 
-    const count = setInterval(() => {
-      if (c > text.length) {
-        setTimer((prev) => prev - 1)
-      }
-    }, 1000)
-
     return () => {
-      clearInterval(count)
       clearInterval(typingCount)
     }
   }, [])
@@ -52,17 +52,16 @@ const Created = () => {
   return (
     <>
       <div className="h-screen flex justify-center items-center flex-col gap-5">
-        <h3 className="text-4xl font-bold z-10">
+        <h3 className="text-4xl font-bold z-10 text-center">
           {text.map((word, index) => {
             if (index <= typingTimer) {
+              if (word === '/') return <br />
               return <span key={index}>{word}</span>
             }
             return ''
           })}
         </h3>
-        {isCountNumStart && (
-          <h1 className="text-8xl font-bold rotateAnimation z-10">{timer === 0 ? 'スタート!' : timer}</h1>
-        )}
+        <p className="mt-5 text-gray-600 text-3xl animate-pulse">Press enter or space</p>
       </div>
     </>
   )
