@@ -28,12 +28,8 @@ const useAitext = () => {
       if (!API_URL) {
         throw new Error('サーバーエラー: 環境変数が設定されていません')
       }
-      const request = new NextRequest(`${API_URL}/aiText`, {
-        method: 'POST',
-        body: JSON.stringify({ thema: game.thema }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+      const request = new NextRequest(`${API_URL}/aiText?thema=${game.thema}`, {
+        method: 'GET'
       })
       console.log('creating text...')
       setSituation({ value: 'creating' })

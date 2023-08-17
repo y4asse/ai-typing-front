@@ -6,7 +6,7 @@ const GameDetails = () => {
   const [game] = useRecoilState(gameAtom)
   const { typeNum, missTypeNum, timer } = game
   return (
-    <div className="flex items-center pt-16 flex-col text-3xl">
+    <div className=" row-start-3 col-start-2 col-span-2 flex items-center pt-16 flex-col text-3xl">
       <table>
         <tbody>
           <tr className="">
