@@ -7,7 +7,13 @@ declare module 'next-auth' {
       // Firebaseの認証情報
       uid: string
       emailVerified?: boolean
+      idToken: string
+      refreshToken: string
     } & DefaultSession['user']
+  }
+  interface User {
+    refreshToken: string
+    idToken: string
   }
 }
 
@@ -16,5 +22,7 @@ declare module 'next-auth/jwt' {
     // Firebaseの認証情報
     uid: string
     emailVerified: boolean
+    refreshToken: string
+    idToken: string
   }
 }
