@@ -13,7 +13,6 @@ const Created = () => {
   const { createGame } = useMutateGame()
 
   const handleInput = (e: KeyboardEvent) => {
-    console.log(e.key)
     if (e.key !== 'Enter' && e.key !== ' ') return
     setSituation({ value: 'playing' })
   }

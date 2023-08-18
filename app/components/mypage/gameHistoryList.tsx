@@ -1,9 +1,9 @@
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { GameHistory } from '@/types/game'
 import { getServerSession } from 'next-auth'
-import { NextRequest } from 'next/server'
 import React from 'react'
 import GameHistoryItem from './gameHistroyItem'
+import { getFreshIdToken } from '@/hooks/getFreshIdToken'
 
 const getGameHistory = async () => {
   const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
@@ -11,20 +11,18 @@ const getGameHistory = async () => {
   if (session == null) {
     throw new Error('tokenがありません')
   }
-  const userId = session.user.uid
-  const body = JSON.stringify({
-    user_id: userId
-  })
-  const request = new NextRequest(`${API_URL}/gameHistory`, {
-    cache: 'no-cache',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body
-  })
+  const refreshToken = session.user.refreshToken
+
+  const freshIdToken = await getFreshIdToken(refreshToken)
   try {
-    const data: GameHistory[] = await fetch(request).then((res) => {
+    const data: GameHistory[] = await fetch(`${API_URL}/gameHistory`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${freshIdToken}`,
+        'Content-Type': 'application/json'
+      },
+      cache: 'no-cache'
+    }).then((res) => {
       if (!res.ok) {
         throw new Error('データを取得できませんでした')
       }
@@ -56,6 +54,7 @@ const GameHistoryList = async () => {
           </div>
         ) : (
           gameHistory.map((game, index) => {
+            if (index > 9) return
             return (
               <tr key={index}>
                 <GameHistoryItem game={game} />
