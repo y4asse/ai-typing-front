@@ -46,8 +46,8 @@ export const useMutateGame = () => {
     const body = JSON.stringify({
       score: score
     })
-    const request = new NextRequest(`${API_URL}/gameScore/${id}`, {
-      method: 'PUT',
+    const request = new NextRequest(`${process.env.NEXT_PUBLIC_FRONT_URL}/api/updateGameScore/${id}`, {
+      method: 'POST',
       body: body,
       headers: {
         'Content-Type': 'application/json'
@@ -55,6 +55,7 @@ export const useMutateGame = () => {
     })
     try {
       await fetch(request).then((res) => {
+        console.log(res.status)
         if (!res.ok) {
           alert('データを登録できませんでした')
         }
