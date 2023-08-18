@@ -8,10 +8,11 @@ import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 const GameText = () => {
-  const [game] = useRecoilState(gameAtom)
+  const [game, setGame] = useRecoilState(gameAtom)
   const [, setSituation] = useRecoilState(situationAtom)
   const { hiragana, text, totalMissTypeNum, totalTypeNum, totalTimeMiliSec } = game
-  const { textIndex, totalInput, splitSentence, hiraganaIndex, requiredRomaji, isMissFlash } = useTypingLogic(hiragana)
+  const { textIndex, totalInput, splitSentence, hiraganaIndex, requiredRomaji, isMissFlash, isPlayAgain } =
+    useTypingLogic(hiragana)
   const [romajiShow, setRomajiShow] = useState('')
   const { updateGameScore } = useMutateGame()
 
@@ -19,6 +20,27 @@ const GameText = () => {
   useEffect(() => {
     setRomajiShow(totalInput + requiredRomaji.join('').substring(totalInput.length))
   }, [totalInput, requiredRomaji])
+
+  //escapeでもう一度
+  const playAgain = () => {
+    setGame((prev) => ({
+      ...prev,
+      score: 0,
+      timer: 0,
+      text: [],
+      hiragana: [],
+      totalTypeNum: 0,
+      totalMissTypeNum: 0,
+      typeNum: 0,
+      missTypeNum: 0
+    }))
+    setSituation({ value: 'thema' })
+  }
+  useEffect(() => {
+    if (isPlayAgain) {
+      playAgain()
+    }
+  }, [isPlayAgain])
 
   //終了したときの処理
   useEffect(() => {
