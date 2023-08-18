@@ -3,32 +3,35 @@ import { Game } from '@/types/game'
 import { useSession } from 'next-auth/react'
 import { NextRequest } from 'next/server'
 import { useRecoilState } from 'recoil'
+import { getFreshIdToken } from './getFreshIdToken'
 
 export const useMutateGame = () => {
   const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
   const [game, setGame] = useRecoilState(gameAtom)
   const { score, thema, mode, text, hiragana, id } = game
   const { data: session } = useSession()
-  const userId = session?.user.uid
+  const refreshToken = session?.user.refreshToken
   const createGame = async () => {
     const body = JSON.stringify({
       score: score,
       inputed_thema: thema,
       mode_id: mode === 'standard' ? 0 : 1,
       text: text,
-      hiragana: hiragana,
-      user_id: userId ? userId : ''
+      hiragana: hiragana
     })
+    const freshIdToken = await getFreshIdToken(refreshToken ? refreshToken : '')
     const request = new NextRequest(`${API_URL}/game`, {
       method: 'POST',
       body: body,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${freshIdToken}`
       }
     })
     try {
       await fetch(request).then(async (res) => {
         if (!res.ok) {
+          console.log(res.statusText)
           alert('データを登録できませんでした')
         }
         const data: Game = await res.json()
@@ -43,8 +46,8 @@ export const useMutateGame = () => {
     const body = JSON.stringify({
       score: score
     })
-    const request = new NextRequest(`${API_URL}/gameScore/${id}`, {
-      method: 'PUT',
+    const request = new NextRequest(`${process.env.NEXT_PUBLIC_FRONT_URL}/api/updateGameScore/${id}`, {
+      method: 'POST',
       body: body,
       headers: {
         'Content-Type': 'application/json'
@@ -52,6 +55,7 @@ export const useMutateGame = () => {
     })
     try {
       await fetch(request).then((res) => {
+        console.log(res.status)
         if (!res.ok) {
           alert('データを登録できませんでした')
         }

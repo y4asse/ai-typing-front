@@ -14,9 +14,7 @@ const Mypage = async () => {
       <div className="h-screen flex  items-center justify-center gap-10 flex-col">
         <AnimationTitle text="マイページ(ゲーム履歴)" />
         <div className="border-black border-4 rounded-xl p-5 w-2/3 h-2/3 text-2xl">
-          <Suspense fallback={<Spinner />}>
-            <GameHistoryList />
-          </Suspense>
+          <GameHistoryList />
         </div>
       </div>
     </>
