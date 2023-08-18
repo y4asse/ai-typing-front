@@ -24,7 +24,6 @@ const getGameHistory = async () => {
       cache: 'no-cache'
     }).then((res) => {
       if (!res.ok) {
-        console.log(res.status)
         throw new Error('データを取得できませんでした')
       }
       return res.json()
