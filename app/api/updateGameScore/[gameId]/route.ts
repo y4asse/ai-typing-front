@@ -8,9 +8,7 @@ export async function POST(request: NextRequest, { params }: { params: { gameId:
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      score: body.score
-    })
+    body: JSON.stringify(body)
   }).catch((e) => {
     console.error(e)
     return null

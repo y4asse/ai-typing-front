@@ -4,11 +4,12 @@ import { useSession } from 'next-auth/react'
 import { NextRequest } from 'next/server'
 import { useRecoilState } from 'recoil'
 import { getFreshIdToken } from './getFreshIdToken'
+import { FaMeteor } from 'react-icons/fa'
 
 export const useMutateGame = () => {
   const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
   const [game, setGame] = useRecoilState(gameAtom)
-  const { score, thema, mode, text, hiragana, id } = game
+  const { score, thema, mode, text, hiragana, id, totalTypeNum, totalMissTypeNum, totalTimeMiliSec } = game
   const { data: session } = useSession()
   const refreshToken = session?.user.refreshToken
   const createGame = async () => {
@@ -44,7 +45,10 @@ export const useMutateGame = () => {
 
   const updateGameScore = async () => {
     const body = JSON.stringify({
-      score: score
+      score: score,
+      total_key_count: totalTypeNum,
+      total_miss_type: totalMissTypeNum,
+      total_time: totalTimeMiliSec
     })
     const request = new NextRequest(`${process.env.NEXT_PUBLIC_FRONT_URL}/api/updateGameScore/${id}`, {
       method: 'POST',
