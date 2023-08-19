@@ -4,9 +4,11 @@ import ScoreRankingItem from './ScoreRankingItem'
 
 const getScoreRanking = async () => {
   const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
-  const request = new NextRequest(`${API_URL}/gameRanking`, {
+  //100文字数以上のゲームのみをランキングに反映
+  const border = 100
+  const request = new NextRequest(`${API_URL}/gameRanking?border=${border}`, {
     method: 'GET',
-    cache: 'no-store'
+    cache: 'no-cache'
   })
   try {
     const data: Game[] = await fetch(request).then((res) => {
