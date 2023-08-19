@@ -4,9 +4,8 @@ import Tab from '../components/ranking/tab'
 
 const Ranking = () => {
   return (
-    <div className="h-screen flex flex-col justify-center items-center ">
+    <div className="h-screen flex flex-col justify-evenly items-center ">
       <AnimationTitle text="ランキング Top10" />
-      <Tab />
       <RankingList />
     </div>
   )
