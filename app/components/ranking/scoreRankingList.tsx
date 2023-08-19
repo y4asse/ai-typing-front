@@ -4,7 +4,6 @@ import ScoreRankingItem from './ScoreRankingItem'
 
 const getScoreRanking = async () => {
   const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
-  debugger
   const request = new NextRequest(`${API_URL}/gameRanking`, {
     method: 'GET',
     cache: 'no-store'

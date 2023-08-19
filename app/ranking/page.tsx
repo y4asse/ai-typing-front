@@ -1,6 +1,5 @@
 import AnimationTitle from '../components/animationTitle/animationTitle'
 import RankingList from '../components/ranking/rankingList'
-import Tab from '../components/ranking/tab'
 
 const Ranking = () => {
   return (
