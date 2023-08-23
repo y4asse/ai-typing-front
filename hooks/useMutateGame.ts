@@ -9,7 +9,20 @@ import { FaMeteor } from 'react-icons/fa'
 export const useMutateGame = () => {
   const API_URL = process.env.NEXT_PUBLIC_SERVER_URL
   const [game, setGame] = useRecoilState(gameAtom)
-  const { score, thema, mode, text, hiragana, id, totalTypeNum, totalMissTypeNum, totalTimeMiliSec } = game
+  const {
+    score,
+    thema,
+    mode,
+    text,
+    hiragana,
+    id,
+    totalTypeNum,
+    totalMissTypeNum,
+    totalTimeMiliSec,
+    aiModel,
+    detail,
+    disableRanking
+  } = game
   const { data: session } = useSession()
   const refreshToken = session?.user.refreshToken
   const createGame = async () => {
@@ -18,7 +31,10 @@ export const useMutateGame = () => {
       inputed_thema: thema,
       mode_id: mode === 'standard' ? 0 : 1,
       text: text,
-      hiragana: hiragana
+      hiragana: hiragana,
+      ai_model: aiModel,
+      detail: detail,
+      disable_ranking: disableRanking
     })
     const freshIdToken = await getFreshIdToken(refreshToken ? refreshToken : '')
     const request = new NextRequest(`${API_URL}/game`, {
@@ -59,7 +75,6 @@ export const useMutateGame = () => {
     })
     try {
       await fetch(request).then((res) => {
-        console.log(res.status)
         if (!res.ok) {
           alert('データを登録できませんでした')
         }
