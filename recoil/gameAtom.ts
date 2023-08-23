@@ -15,6 +15,9 @@ type State = {
   id: string
   missTypeKey: string[]
   totalTimeMiliSec: number
+  aiModel: string
+  detail: string
+  disableRanking: boolean
 }
 
 export const defaultState: State = {
@@ -30,7 +33,10 @@ export const defaultState: State = {
   missTypeNum: 0,
   id: '',
   missTypeKey: [],
-  totalTimeMiliSec: 0
+  totalTimeMiliSec: 0,
+  aiModel: 'gpt-3.5-turbo',
+  detail: 'についての文章',
+  disableRanking: false
 }
 
 export const gameAtom = atom({

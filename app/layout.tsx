@@ -10,9 +10,9 @@ import GlobalMenu from './components/buttons/globalMenu'
 const sora = Sora({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'AI Typing 🚀 新世代タイピングゲーム ',
+  title: 'AI Typing 🚀 新世代AIタイピングゲーム!!',
   description:
-    'AIを使った新世代タイピングゲーム!AIが文章を作ってくれます．タイピング初心者の方や，楽しく練習したいという方におすすめです！'
+    '新世代AIタイピングゲーム!自分好みの文章をAIが作ってくれます！あなただけの文でタイピングの練習！タイピング初心者の方や，楽しく練習したいという方におすすめです！'
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -5340,6 +5340,110 @@ const data = {
     {
       Pattern: 'Z',
       TypePattern: ['z', 'Z']
+    },
+    {
+      Pattern: 'ａ',
+      TypePattern: ['a', 'A']
+    },
+    {
+      Pattern: 'ｂ',
+      TypePattern: ['b', 'B']
+    },
+    {
+      Pattern: 'ｃ',
+      TypePattern: ['c', 'C']
+    },
+    {
+      Pattern: 'ｄ',
+      TypePattern: ['d', 'D']
+    },
+    {
+      Pattern: 'ｅ',
+      TypePattern: ['e', 'E']
+    },
+    {
+      Pattern: 'ｆ',
+      TypePattern: ['f', 'F']
+    },
+    {
+      Pattern: 'ｇ',
+      TypePattern: ['g', 'G']
+    },
+    {
+      Pattern: 'ｈ',
+      TypePattern: ['h', 'H']
+    },
+    {
+      Pattern: 'ｉ',
+      TypePattern: ['i', 'I']
+    },
+    {
+      Pattern: 'ｊ',
+      TypePattern: ['j', 'J']
+    },
+    {
+      Pattern: 'ｋ',
+      TypePattern: ['k', 'K']
+    },
+    {
+      Pattern: 'ｌ',
+      TypePattern: ['l', 'L']
+    },
+    {
+      Pattern: 'ｍ',
+      TypePattern: ['m', 'M']
+    },
+    {
+      Pattern: 'ｎ',
+      TypePattern: ['n', 'N']
+    },
+    {
+      Pattern: 'ｏ',
+      TypePattern: ['o', 'O']
+    },
+    {
+      Pattern: 'ｐ',
+      TypePattern: ['p', 'P']
+    },
+    {
+      Pattern: 'ｑ',
+      TypePattern: ['q', 'Q']
+    },
+    {
+      Pattern: 'ｒ',
+      TypePattern: ['r', 'R']
+    },
+    {
+      Pattern: 'ｓ',
+      TypePattern: ['s', 'S']
+    },
+    {
+      Pattern: 'ｔ',
+      TypePattern: ['t', 'T']
+    },
+    {
+      Pattern: 'ｕ',
+      TypePattern: ['u', 'U']
+    },
+    {
+      Pattern: 'ｖ',
+      TypePattern: ['v', 'V']
+    },
+    {
+      Pattern: 'ｗ',
+      TypePattern: ['w', 'W']
+    },
+    {
+      Pattern: 'ｘ',
+      TypePattern: ['x', 'X']
+    },
+    {
+      Pattern: 'ｙ',
+      TypePattern: ['y', 'Y']
+    },
+    {
+      Pattern: 'ｚ',
+      TypePattern: ['z', 'Z']
     }
   ]
 }

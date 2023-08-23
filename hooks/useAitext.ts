@@ -16,19 +16,20 @@ const useAitext = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [situation, setSituation] = useRecoilState(situationAtom)
   const API_URL = process.env.NEXT_PUBLIC_API_SERVER_URL
+  const { thema, aiModel, detail } = game
 
   const handleClick = async () => {
     try {
-      if (game.thema.trim() === '') {
+      if (thema.trim() === '') {
         throw new Error('テーマを入力してください')
       }
-      if (game.thema.trim().length > 10) {
+      if (thema.trim().length > 10) {
         throw new Error('テーマは10文字以内で入力してください')
       }
       if (!API_URL) {
         throw new Error('サーバーエラー: 環境変数が設定されていません')
       }
-      const request = new NextRequest(`${API_URL}/aiText?thema=${game.thema}`, {
+      const request = new NextRequest(`${API_URL}/aiText?thema=${thema}&aiModel=${aiModel}&detail=${detail}`, {
         method: 'GET'
       })
       console.log('creating text...')
