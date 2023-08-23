@@ -11,9 +11,10 @@ const AiModel = () => {
   return (
     <div className="flex justify-evenly items-center">
       <span className="text-xl font-bold">AIのモデル：</span>
-      {list.map((value) => {
+      {list.map((value, i) => {
         return (
           <span
+            key={i}
             className={`text-xl font-bold  p-1 px-10  rounded-full cursor-pointer  ${
               value == aiModel && 'bg-black text-white shadow-xl'
             }`}

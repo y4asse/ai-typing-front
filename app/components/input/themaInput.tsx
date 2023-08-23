@@ -46,8 +46,9 @@ const ThemaInput = () => {
         </span>
         {showToggle && (
           <div className="flex flex-col absolute top-1/2 left-full text-start border-2 border-black p-3 rounded-xl -translate-y-1/2">
-            {dropDownList.map((value) => (
+            {dropDownList.map((value, i) => (
               <span
+                key={i}
                 onClick={() => {
                   setShowToggle(false)
                   if (value !== 'についての文章') {
