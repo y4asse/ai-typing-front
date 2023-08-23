@@ -835,35 +835,35 @@ const data = {
       TypePattern: ['who', 'ulo', 'uxo', 'wulo', 'wuxo', 'whulo', 'whuxo']
     },
     {
-      Pattern: 'ゔぁ',
+      Pattern: 'ヴぁ',
       TypePattern: ['va', 'vula', 'vuxa']
     },
     {
-      Pattern: 'ゔぃ',
+      Pattern: 'ヴぃ',
       TypePattern: ['vi', 'vyi', 'vuli', 'vuxi', 'vulyi', 'vuxyi']
     },
     {
-      Pattern: 'ゔ',
+      Pattern: 'ヴ',
       TypePattern: ['vu']
     },
     {
-      Pattern: 'ゔぇ',
+      Pattern: 'ヴぇ',
       TypePattern: ['ve', 'vye', 'vule', 'vuxe', 'vulye', 'vuxye']
     },
     {
-      Pattern: 'ゔぉ',
+      Pattern: 'ヴぉ',
       TypePattern: ['vo', 'vulo', 'vuxo']
     },
     {
-      Pattern: 'ゔゃ',
+      Pattern: 'ヴゃ',
       TypePattern: ['vya', 'vulya', 'vuxya']
     },
     {
-      Pattern: 'ゔゅ',
+      Pattern: 'ヴゅ',
       TypePattern: ['vyu', 'vulyu', 'vuxyu']
     },
     {
-      Pattern: 'ゔょ',
+      Pattern: 'ヴょ',
       TypePattern: ['vyo', 'vulyo', 'vuxyo']
     },
     {
@@ -2602,11 +2602,11 @@ const data = {
       ]
     },
     {
-      Pattern: 'んゔぁ',
+      Pattern: 'んヴぁ',
       TypePattern: ['nva', 'nvula', 'nvuxa', 'nnva', 'nnvula', 'nnvuxa', 'xnva', 'xnvula', 'xnvuxa']
     },
     {
-      Pattern: 'んゔぃ',
+      Pattern: 'んヴぃ',
       TypePattern: [
         'nvi',
         'nvyi',
@@ -2629,11 +2629,11 @@ const data = {
       ]
     },
     {
-      Pattern: 'んゔ',
+      Pattern: 'んヴ',
       TypePattern: ['nvu', 'nnvu', 'xnvu']
     },
     {
-      Pattern: 'んゔぇ',
+      Pattern: 'んヴぇ',
       TypePattern: [
         'nve',
         'nvye',
@@ -2656,19 +2656,19 @@ const data = {
       ]
     },
     {
-      Pattern: 'んゔぉ',
+      Pattern: 'んヴぉ',
       TypePattern: ['nvo', 'nvulo', 'nvuxo', 'nnvo', 'nnvulo', 'nnvuxo', 'xnvo', 'xnvulo', 'xnvuxo']
     },
     {
-      Pattern: 'んゔゃ',
+      Pattern: 'んヴゃ',
       TypePattern: ['nvya', 'nvulya', 'nvuxya', 'nnvya', 'nnvulya', 'nnvuxya', 'xnvya', 'xnvulya', 'xnvuxya']
     },
     {
-      Pattern: 'んゔゅ',
+      Pattern: 'んヴゅ',
       TypePattern: ['nvyu', 'nvulyu', 'nvuxyu', 'nnvyu', 'nnvulyu', 'nnvuxyu', 'xnvyu', 'xnvulyu', 'xnvuxyu']
     },
     {
-      Pattern: 'んゔょ',
+      Pattern: 'んヴょ',
       TypePattern: ['nvyo', 'nvulyo', 'nvuxyo', 'nnvyo', 'nnvulyo', 'nnvuxyo', 'xnvyo', 'xnvulyo', 'xnvuxyo']
     },
     {
