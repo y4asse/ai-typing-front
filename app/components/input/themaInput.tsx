@@ -25,7 +25,13 @@ const ThemaInput = () => {
         ref={inputRef}
         required
         className="bg-transparent border-4 border-black rounded-xl text-4xl font-medium p-3 placeholder:opacity-30 w-full"
-        placeholder="例:アニメの名言"
+        placeholder={`${
+          detail === 'についての文章'
+            ? '例:アニメの名言'
+            : detail === 'を連打する文章'
+            ? '例:無駄無駄'
+            : '例:意味が分かると怖い'
+        }`}
         value={thema}
         type="text"
         onChange={(e) =>
