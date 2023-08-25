@@ -14,5 +14,6 @@ export async function POST(request: NextRequest, { params }: { params: { gameId:
     return null
   })
   if (!data) return new Response(null, { status: 500 })
-  return new Response(JSON.stringify({ status: data.status }))
+  const json = await data.json()
+  return new Response(JSON.stringify(json))
 }
