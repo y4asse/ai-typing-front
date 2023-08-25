@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     // JWTトークンからユーザ情報を取得
-    jwt({ token, user }) {
+    async jwt({ token, user }) {
       if (user) {
         token.idToken = user.idToken
         token.refreshToken = user.refreshToken
@@ -37,7 +37,7 @@ export const authOptions: NextAuthOptions = {
       return token
     },
     // sessionにJWTトークンからのユーザ情報を格納
-    session({ session, token, user }) {
+    async session({ session, token, user }) {
       //sessionにユーザ情報を格納
       session.user.uid = token.sub!
       session.user.idToken = token.idToken

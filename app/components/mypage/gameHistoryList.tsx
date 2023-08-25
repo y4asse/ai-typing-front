@@ -12,7 +12,6 @@ const getGameHistory = async () => {
     throw new Error('tokenがありません')
   }
   const refreshToken = session.user.refreshToken
-
   const freshIdToken = await getFreshIdToken(refreshToken)
   try {
     const data: GameHistory[] = await fetch(`${API_URL}/gameHistory`, {
