@@ -74,8 +74,10 @@ const Email = () => {
           }
         })
         const idToken = await userCredential.user.getIdToken()
+        const refreshToken = userCredential.user.refreshToken
         await signInByNextAuth('credentials', {
           idToken,
+          refreshToken,
           callbackUrl: '/'
         })
       } catch (error) {
