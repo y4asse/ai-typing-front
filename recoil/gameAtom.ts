@@ -18,6 +18,8 @@ type State = {
   aiModel: string
   detail: string
   disableRanking: boolean
+  rankingCount: number
+  rank: number
 }
 
 export const defaultState: State = {
@@ -36,7 +38,9 @@ export const defaultState: State = {
   totalTimeMiliSec: 0,
   aiModel: 'gpt-3.5-turbo',
   detail: 'についての文章',
-  disableRanking: false
+  disableRanking: false,
+  rankingCount: 0,
+  rank: 0
 }
 
 export const gameAtom = atom({
