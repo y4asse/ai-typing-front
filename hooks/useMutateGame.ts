@@ -66,21 +66,26 @@ export const useMutateGame = () => {
       total_miss_type: totalMissTypeNum,
       total_time: totalTimeMiliSec
     })
-    const request = new NextRequest(`${process.env.NEXT_PUBLIC_FRONT_URL}/api/updateGameScore/${id}`, {
-      method: 'POST',
-      body: body,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
     try {
-      await fetch(request).then((res) => {
+      const data = await fetch(`${process.env.NEXT_PUBLIC_FRONT_URL}/api/updateGameScore/${id}`, {
+        method: 'POST',
+        body: body,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(async (res) => {
         if (!res.ok) {
+          console.log(res.statusText)
           alert('データを登録できませんでした')
         }
+        const body: { count: number; rank: number } = await res.json()
+        return body
       })
+      return data
     } catch (e) {
+      console.log(e)
       alert('データを登録できませんでした')
+      return null
     }
   }
 

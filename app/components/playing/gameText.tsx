@@ -46,7 +46,13 @@ const GameText = () => {
   useEffect(() => {
     if (textIndex > text.length - 1) {
       //データベースにスコアを送信
-      updateGameScore()
+      updateGameScore().then((res) => {
+        const count = res ? res.count : 0
+        const rank = res ? res.rank : 0
+        setGame((prev) => {
+          return { ...prev, rank, rankingCount: count }
+        })
+      })
       //終了画面に遷移
       setSituation({ value: 'score' })
       return
