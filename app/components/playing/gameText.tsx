@@ -1,10 +1,10 @@
 'use client'
 
 import { useMutateGame } from '@/hooks/useMutateGame'
-import { gameAtom } from '@/recoil/gameAtom'
+import { defaultState, gameAtom } from '@/recoil/gameAtom'
 import { situationAtom } from '@/recoil/situationAtom'
 import useTypingLogic from '@/typingLogic/useTypingLogic'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 const GameText = () => {
@@ -15,25 +15,15 @@ const GameText = () => {
     useTypingLogic(hiragana)
   const [romajiShow, setRomajiShow] = useState('')
   const { updateGameScore } = useMutateGame()
-
-  //表示用のromajiを生成
+  // 表示用のromajiを生成
   useEffect(() => {
     setRomajiShow(totalInput + requiredRomaji.join('').substring(totalInput.length))
   }, [totalInput, requiredRomaji])
 
   //escapeでもう一度
   const playAgain = () => {
-    setGame((prev) => ({
-      ...prev,
-      score: 0,
-      timer: 0,
-      text: [],
-      hiragana: [],
-      totalTypeNum: 0,
-      totalMissTypeNum: 0,
-      typeNum: 0,
-      missTypeNum: 0
-    }))
+    //テーマ以外をリセット
+    setGame((prev) => ({ ...defaultState, thema: prev.thema }))
     setSituation({ value: 'thema' })
   }
   useEffect(() => {
