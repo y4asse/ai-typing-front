@@ -1,6 +1,6 @@
 'use client'
 
-import { gameAtom } from '@/recoil/gameAtom'
+import { defaultState, gameAtom } from '@/recoil/gameAtom'
 import { situationAtom } from '@/recoil/situationAtom'
 import { useRecoilState } from 'recoil'
 import { FaRedoAlt } from 'react-icons/fa'
@@ -11,15 +11,8 @@ const PlayAgainBtn = () => {
   const [, setSituation] = useRecoilState(situationAtom)
   const playAgain = () => {
     setGame((prev) => ({
-      ...prev,
-      score: 0,
-      timer: 0,
-      text: [],
-      hiragana: [],
-      totalTypeNum: 0,
-      totalMissTypeNum: 0,
-      typeNum: 0,
-      missTypeNum: 0
+      ...defaultState,
+      thema: prev.thema
     }))
     setSituation({ value: 'thema' })
   }
