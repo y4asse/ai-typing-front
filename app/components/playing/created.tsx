@@ -54,10 +54,9 @@ const Created = () => {
         <h3 className="text-4xl font-bold z-10 text-center">
           {text.map((word, index) => {
             if (index <= typingTimer) {
-              if (word === '/') return <br />
+              if (word === '/') return <br key={index} />
               return <span key={index}>{word}</span>
             }
-            return ''
           })}
         </h3>
         <p className="mt-5 text-gray-600 text-3xl animate-pulse">Press enter or space</p>
