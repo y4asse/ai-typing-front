@@ -131,6 +131,7 @@ const useTypingLogic = (
   }
 
   useEffect(() => {
+    //時間の計測
     const count = setInterval(() => {
       setGame((prev) => ({ ...prev, timer: prev.timer + 100 }))
     }, 100)
