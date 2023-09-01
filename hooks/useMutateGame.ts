@@ -37,16 +37,15 @@ export const useMutateGame = () => {
       disable_ranking: disableRanking
     })
     const freshIdToken = await getFreshIdToken(refreshToken ? refreshToken : '')
-    const request = new NextRequest(`${API_URL}/game`, {
-      method: 'POST',
-      body: body,
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${freshIdToken}`
-      }
-    })
     try {
-      await fetch(request).then(async (res) => {
+      await fetch(`${API_URL}/game`, {
+        method: 'POST',
+        body: body,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${freshIdToken}`
+        }
+      }).then(async (res) => {
         if (!res.ok) {
           console.log(res.statusText)
           alert('データを登録できませんでした')

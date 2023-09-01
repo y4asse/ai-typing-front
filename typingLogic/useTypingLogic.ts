@@ -65,6 +65,7 @@ const useTypingLogic = (
     })
   }, [romajiCandidates])
 
+  //メモ化できるかも??
   const goNextText = () => {
     setTextIndex((prev) => (prev += 1))
     setHiraganaIndex(0)
@@ -88,6 +89,11 @@ const useTypingLogic = (
       return
     }
     const inputBufNext = inputBuf + typedKey
+    const inputBufCount = inputBuf.length
+
+    //入力されるべき文字
+    const wantedRomaji = romajiCandidates[hiraganaIndex][0].substring(inputBufCount)[0]
+
     //タイプした文字を入れてみて候補があるかを確認
     const candidates = romajiCandidates[hiraganaIndex].filter((romaji) => romaji.startsWith(inputBufNext))
     setLeftCandidate((prev) => [...prev, candidates])
@@ -121,16 +127,22 @@ const useTypingLogic = (
       setTimeout(() => {
         setIsMissFlash(false)
       }, 100)
+
+      //ミスした文字を保存する配列
+      const missTypeKey = [...game.missTypeKey, wantedRomaji]
+      //重複を削除
+      const missTypeKeySet = Array.from(new Set(missTypeKey))
       setGame((prev) => ({
         ...prev,
         totalMissTypeNum: prev.totalMissTypeNum + 1,
         missTypeNum: prev.missTypeNum + 1,
-        missTypeKey: [...prev.missTypeKey, typedKey]
+        missTypeKey: missTypeKeySet
       }))
     }
   }
 
   useEffect(() => {
+    //時間の計測
     const count = setInterval(() => {
       setGame((prev) => ({ ...prev, timer: prev.timer + 100 }))
     }, 100)

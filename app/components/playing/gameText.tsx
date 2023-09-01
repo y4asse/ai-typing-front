@@ -4,21 +4,22 @@ import { useMutateGame } from '@/hooks/useMutateGame'
 import { defaultState, gameAtom } from '@/recoil/gameAtom'
 import { situationAtom } from '@/recoil/situationAtom'
 import useTypingLogic from '@/typingLogic/useTypingLogic'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 const GameText = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [, setSituation] = useRecoilState(situationAtom)
-  const { hiragana, text, totalMissTypeNum, totalTypeNum, totalTimeMiliSec } = game
+  const { hiragana, text, missTypeKey } = game
   const { textIndex, totalInput, splitSentence, hiraganaIndex, requiredRomaji, isMissFlash, isPlayAgain } =
     useTypingLogic(hiragana)
-  const [romajiShow, setRomajiShow] = useState('')
+  // const [romajiShow, setRomajiShow] = useState('')
   const { updateGameScore } = useMutateGame()
+  const romajiShow = totalInput + requiredRomaji.join('').substring(totalInput.length)
   // 表示用のromajiを生成
-  useEffect(() => {
-    setRomajiShow(totalInput + requiredRomaji.join('').substring(totalInput.length))
-  }, [totalInput, requiredRomaji])
+  // useEffect(() => {
+  //   setRomajiShow(totalInput + requiredRomaji.join('').substring(totalInput.length))
+  // }, [totalInput, requiredRomaji])
 
   //escapeでもう一度
   const playAgain = () => {
@@ -53,20 +54,18 @@ const GameText = () => {
       <div
         className={`px-3 overflow-hidden duration-100 transition-all  ${
           isMissFlash ? ' bg-red-900' : 'bg-black'
-        } bg-opacity-70 text-white h-full w-full rounded-2xl flex flex-col justify-evenly items-center`}
+        } bg-opacity-70 text-white h-full w-full rounded-2xl grid grid-rows-3`}
       >
         {/* 日本語の表示 */}
         {text[textIndex] && (
-          <div>
-            <div className="text-xl">
-              {text[textIndex].split('').map((char, index) => {
-                return <span key={index}>{char}</span>
-              })}
-            </div>
+          <div className="text-xl text-center mt-10">
+            {text[textIndex].split('').map((char, index) => {
+              return <span key={index}>{char}</span>
+            })}
           </div>
         )}
         {/* ひらがなの表示 */}
-        <div className="text-2xl">
+        <div className="text-2xl text-center my-auto">
           {splitSentence.map((char, index) => {
             if (index < hiraganaIndex) {
               return (
@@ -79,18 +78,10 @@ const GameText = () => {
           })}
         </div>
         {/* ローマ字の表示 */}
-        <div className=" whitespace-nowrap text-xl">
+        <div className=" whitespace-nowrap text-xl text-center mt-3">
           {romajiShow.split('').map((char, index) => {
-            if (index < totalInput.length) {
-              return (
-                <span key={index} className="text-gray-500">
-                  {char}
-                  {index !== 0 && index % 100 === 0 && <br></br>}
-                </span>
-              )
-            }
             return (
-              <span key={index}>
+              <span key={index} className={`${index < totalInput.length && 'text-gray-500'}`}>
                 {char}
                 {index !== 0 && index % 100 === 0 && <br></br>}
               </span>
