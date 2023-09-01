@@ -38,6 +38,7 @@ const useTypingLogic = (
   const [requiredRomaji, setRequiredRomaji] = useState<string[]>([])
   const [isMissFlash, setIsMissFlash] = useState(false)
   const [isPlayAgain, setIsPlayAgain] = useState(false)
+  const [isTypeStart, setIsTypeStart] = useState(false)
 
   //constructTypeSentenceCallbackがtextindexに依存してるので，set関数もtextindexに依存させる
   useEffect(() => {
@@ -81,6 +82,12 @@ const useTypingLogic = (
       return
     }
     const typedKey = e.key
+
+    //最初の入力
+    if (!isTypeStart) {
+      setIsTypeStart(true)
+    }
+
     if (typedKey == 'Shift') {
       return
     }
@@ -118,6 +125,8 @@ const useTypingLogic = (
             timer: 0,
             totalTimeMiliSec: prev.totalTimeMiliSec + timer
           }))
+          //打ち始めているかどうかをfalseにする.falseの間はタイマーを止める
+          setIsTypeStart(false)
           goNextText()
         }
       }
@@ -143,13 +152,15 @@ const useTypingLogic = (
 
   useEffect(() => {
     //時間の計測
-    const count = setInterval(() => {
-      setGame((prev) => ({ ...prev, timer: prev.timer + 100 }))
-    }, 100)
-    return () => {
-      clearInterval(count)
+    if (isTypeStart) {
+      const count = setInterval(() => {
+        setGame((prev) => ({ ...prev, timer: prev.timer + 100 }))
+      }, 100)
+      return () => {
+        clearInterval(count)
+      }
     }
-  }, [textIndex])
+  }, [textIndex, isTypeStart])
 
   useEffect(() => {
     document.addEventListener('keydown', handleInput, false)
