@@ -105,6 +105,9 @@ const ScoreView = () => {
           <span>KPM: {KPM}</span>
           <span>正確率: {accuracy}%</span>
         </div>
+        <div className="text-xl">
+          <p>間違えた文字: {game.missTypeKey.join(' ').toUpperCase()}</p>
+        </div>
       </div>
       <button
         className="border-black border-4 z-10 py-8 rounded-xl text-xl font-bold w-2/5 hover:bg-black hover:text-white duration-200 transition-all"

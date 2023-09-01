@@ -10,7 +10,7 @@ import { useRecoilState } from 'recoil'
 const GameText = () => {
   const [game, setGame] = useRecoilState(gameAtom)
   const [, setSituation] = useRecoilState(situationAtom)
-  const { hiragana, text, totalMissTypeNum, totalTypeNum, totalTimeMiliSec } = game
+  const { hiragana, text, missTypeKey } = game
   const { textIndex, totalInput, splitSentence, hiraganaIndex, requiredRomaji, isMissFlash, isPlayAgain } =
     useTypingLogic(hiragana)
   // const [romajiShow, setRomajiShow] = useState('')
