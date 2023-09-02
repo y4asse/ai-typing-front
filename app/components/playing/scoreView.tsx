@@ -48,7 +48,7 @@ const ScoreView = () => {
             <div className="text-2xl">
               ランキングに反映されませんでした
               <button
-                className="mx-auto border-gray-800 border rounded-xl px-3 py-2 mt-5 block hover:bg-black hover:text-white duration-200 transition-all"
+                className="z-10 mx-auto border-gray-800 border rounded-xl px-3 py-2 mt-5 block hover:bg-black hover:text-white duration-200 transition-all"
                 onClick={() => setIsShowRank(false)}
               >
                 閉じる
@@ -65,7 +65,7 @@ const ScoreView = () => {
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 "
               />
               <button
-                className="mx-auto border-gray-800 border rounded-xl px-3 py-2 mt-5 block hover:bg-black hover:text-white duration-200 transition-all"
+                className="z-10 mx-auto border-gray-800 border rounded-xl px-3 py-2 mt-5 block hover:bg-black hover:text-white duration-200 transition-all"
                 onClick={() => setIsShowRank(false)}
               >
                 閉じる
