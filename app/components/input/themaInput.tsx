@@ -51,7 +51,7 @@ const ThemaInput = () => {
           {showToggle ? <FaAngleUp className="inline-block" /> : <FaAngleDown className="inline-block" />}
         </span>
         {showToggle && (
-          <div className="flex flex-col absolute top-1/2 left-full text-start border-2 border-black p-3 rounded-xl -translate-y-1/2">
+          <div className="flex flex-col gap-2 absolute top-1/2 left-full text-start border-2 border-black p-3 rounded-xl -translate-y-1/2">
             {dropDownList.map((value, i) => (
               <span
                 key={i}
@@ -63,7 +63,7 @@ const ThemaInput = () => {
                     setGame((prev) => ({ ...prev, detail: value, disableRanking: false }))
                   }
                 }}
-                className=" whitespace-nowrap cursor-pointer"
+                className=" whitespace-nowrap cursor-pointer border border-gray-800 p-1 rounded-xl bg-btn hover:bg-btnHover hover:shadow-btnHover"
               >
                 {value}
               </span>

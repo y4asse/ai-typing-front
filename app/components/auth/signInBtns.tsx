@@ -90,21 +90,21 @@ const SignInBtns = () => {
       </div>
       <Link
         href={'/auth/email'}
-        className="text-2xl font-bold border-black border-2 rounded-xl p-5 hover:bg-black hover:text-white transition-all duration-200 text-center"
+        className="text-2xl font-bold border-gray-800 border rounded-xl p-5 hover:bg-btnHover bg-btn hover:shadow-btnHover shadow-btn transition-all duration-200 text-center"
       >
         <HiOutlineMail className="inline-block mr-3" />
         メールアドレスでサインイン
       </Link>
       <button
         onClick={handleSignInWithGithub}
-        className="text-2xl font-bold border-black border-2 rounded-xl p-5 hover:bg-black hover:text-white transition-all duration-200"
+        className="text-2xl font-bold border-gray-800 border rounded-xl p-5 hover:bg-btnHover bg-btn hover:shadow-btnHover shadow-btn transition-all duration-200 text-center"
       >
         <FaGithub className="inline-block mr-3" />
         GitHubでサインイン
       </button>
       <button
         onClick={handleSignInWithGoogle}
-        className="text-2xl font-bold border-black border-2 rounded-xl p-5 hover:bg-black hover:text-white transition-all duration-200"
+        className="text-2xl font-bold border-gray-800 border rounded-xl p-5 hover:bg-btnHover bg-btn hover:shadow-btnHover shadow-btn transition-all duration-200 text-center"
       >
         <FaGoogle className="inline-block mr-3" />
         googleでサインイン

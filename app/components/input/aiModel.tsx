@@ -15,8 +15,8 @@ const AiModel = () => {
         return (
           <span
             key={i}
-            className={`text-xl font-bold  p-1 px-10  rounded-full cursor-pointer  ${
-              value == aiModel && 'bg-black text-white shadow-xl'
+            className={`text-xl font-bold  p-1 px-10  rounded-full cursor-pointer shadow-btn bg-btn  ${
+              value == aiModel && 'bg-black text-white '
             }`}
             onClick={() => setGame({ ...game, aiModel: value })}
           >
