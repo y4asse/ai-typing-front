@@ -85,7 +85,8 @@ const GlobalMenu = () => {
     <div className="z-10 absolute  top-0 right-0 m-5  flex flex-col ">
       <button
         id="globalMenu"
-        className="text-end   ml-auto border-4 border-black p-2 rounded-full hover:bg-black hover:text-white duration-200 transition-all"
+        className="border border-gray-500 bg-btn hover:bg-btnHover hover:shadow-btnHover hover:text-gray-800 text-2xl font-semibold   tracking-widest hover:scale-95
+        text-end   ml-auto  p-2 rounded-full   duration-200 transition-all  shadow-btn"
         onClick={handleClick}
       >
         {isShowMenu ? <RiCloseFill className="text-4xl " /> : <GiHamburgerMenu className="text-4xl" />}
@@ -99,7 +100,7 @@ const GlobalMenu = () => {
           return (
             <div className="flex items-center" key={index}>
               <span
-                className={`font-bold mr-1 text-end overflow-hidden whitespace-nowrap transition-all duration-500  border-black  ${
+                className={`font-bold mr-1 text-end overflow-hidden whitespace-nowrap transition-all duration-500  border-black   ${
                   isShowMenuDetail ? 'w-20' : 'w-0 '
                 }`}
               >
@@ -108,7 +109,9 @@ const GlobalMenu = () => {
               <Link
                 onClick={closeGlobalMenu}
                 href={value.link}
-                className="text-4xl border-4 p-2  border-black rounded-full hover:bg-black hover:text-white duration-200 transition-all"
+                className="
+                border border-gray-500 bg-btn hover:bg-btnHover hover:shadow-btnHover hover:text-gray-800 text-center font-semibold   tracking-widest hover:scale-95
+                text-4xl  p-2   rounded-full   duration-200 transition-all "
               >
                 {value.icon}
               </Link>
