@@ -128,7 +128,7 @@ const Email = () => {
       </form>
 
       <button
-        className=" mt-10 border-4 border-black rounded-xl p-5 hover:bg-black hover:text-white transition-all duration-200"
+        className=" mt-10 border border-gray-800 rounded-xl p-5 shadow-btn hover:bg-btnHover hover:shadow-btnHover transition-all duration-200"
         onClick={handleClick}
       >
         {method === 'signIn' ? 'サインイン' : 'アカウントを作成'}
