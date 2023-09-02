@@ -2,8 +2,7 @@
 
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { FiMenu } from 'react-icons/fi'
-import { GiStairs } from 'react-icons/gi'
+import { GiHamburgerMenu, GiStairs } from 'react-icons/gi'
 import { MdMenuBook } from 'react-icons/md'
 import { MdForest } from 'react-icons/md'
 import { RiCloseFill } from 'react-icons/ri'
@@ -86,10 +85,10 @@ const GlobalMenu = () => {
     <div className="z-10 absolute  top-0 right-0 m-5  flex flex-col ">
       <button
         id="globalMenu"
-        className="text-end  ml-auto border-2 border-black p-2 rounded-full hover:bg-black hover:text-white duration-200 transition-all"
+        className="text-end   ml-auto border-4 border-black p-2 rounded-full hover:bg-black hover:text-white duration-200 transition-all"
         onClick={handleClick}
       >
-        {isShowMenu ? <RiCloseFill className="text-4xl" /> : <FiMenu className="text-4xl" />}
+        {isShowMenu ? <RiCloseFill className="text-4xl " /> : <GiHamburgerMenu className="text-4xl" />}
       </button>
       <div
         className={` flex items-center flex-col overflow-hidden justify-evenly  duration-300 transition-all   border-black ${
@@ -109,7 +108,7 @@ const GlobalMenu = () => {
               <Link
                 onClick={closeGlobalMenu}
                 href={value.link}
-                className="text-4xl border-2 p-2  border-black rounded-full hover:bg-black hover:text-white duration-200 transition-all"
+                className="text-4xl border-4 p-2  border-black rounded-full hover:bg-black hover:text-white duration-200 transition-all"
               >
                 {value.icon}
               </Link>
