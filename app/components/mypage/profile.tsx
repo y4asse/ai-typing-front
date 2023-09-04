@@ -1,22 +1,26 @@
 'use client'
-
 import { postImage } from '@/app/api/upload/route'
+import { getFreshIdToken } from '@/hooks/getFreshIdToken'
 import { User } from '@/types/profile'
-import { set } from 'date-fns'
+import { useSession } from 'next-auth/react'
 import React, { useRef, useState } from 'react'
-import { FaPencilAlt } from 'react-icons/fa'
 
 const Profile = ({ user }: { user: User }) => {
+  //session
+  const { data: session } = useSession()
+
   //画像
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [image, setImage] = useState<File | undefined>(undefined)
   const [createObjectURL, setCreateObjectURL] = useState<string | undefined>(user.image)
+  const [isChandedImage, setIsChandedImage] = useState(false) //画像が変更されたかどうか
   const uploadToClient = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0]
 
       setImage(file)
       setCreateObjectURL(URL.createObjectURL(file))
+      setIsChandedImage(true)
     }
   }
   const uploadToServer = async () => {
@@ -34,11 +38,22 @@ const Profile = ({ user }: { user: User }) => {
   const handleClick = async () => {
     if (isEditing) {
       //保存
-      const url = await uploadToServer()
+      //変更がなかったら画像をサーバに送らない
+      let url = user.image
+      if (isChandedImage == true) {
+        debugger
+        url = (await uploadToServer()) ?? user.image
+      }
+      if (session == null) {
+        throw new Error('tokenがありません')
+      }
+      const refreshToken = session.user.refreshToken
+      const freshIdToken = await getFreshIdToken(refreshToken)
       fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/user`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${freshIdToken}`
         },
         body: JSON.stringify({
           name: name,
@@ -46,6 +61,7 @@ const Profile = ({ user }: { user: User }) => {
         })
       })
       setIsEditing(false)
+      setIsChandedImage(false)
       return
     }
     setIsEditing(true)
@@ -61,7 +77,7 @@ const Profile = ({ user }: { user: User }) => {
           />
         </div>
       ) : (
-        <p className="mb-3 text-xl font-bold">{name ? name : 'ゲスト'}</p>
+        <p className="mb-3 text-xl font-bold">{name}</p>
       )}
       <img
         src={

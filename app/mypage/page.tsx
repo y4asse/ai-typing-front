@@ -6,6 +6,9 @@ import Batch from '../components/mypage/batch'
 import PlayData from '../components/mypage/playData'
 import { Game } from '@/types/game'
 import { User } from '@/types/profile'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '../api/auth/[...nextauth]/route'
+import { getFreshIdToken } from '@/hooks/getFreshIdToken'
 
 const getPlayData = async () => {
   const data = await fetch('https://12b0ec6f-a2e8-4081-afaf-b7b1de217aae.mock.pstmn.io/game', {
@@ -25,12 +28,19 @@ const getPlayData = async () => {
 }
 
 const getProfile = async () => {
-  const data = await fetch('https://6eceb7b0-ca73-4a13-9a2c-1c2e6020512f.mock.pstmn.io/user', {
+  const session = await getServerSession(authOptions)
+  if (session == null) {
+    return null
+  }
+  const refreshToken = session.user.refreshToken
+  const freshIdToken = await getFreshIdToken(refreshToken)
+  const data = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/user`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${freshIdToken}`
     },
-    cache: 'force-cache'
+    cache: 'no-cache'
   }).then((res) => {
     return res.json()
   })
@@ -40,12 +50,18 @@ const getProfile = async () => {
 const Mypage = async () => {
   const user = await getProfile()
   const games = await getPlayData()
+  console.log(user?.image)
+  const defaultUser: User = {
+    name: '',
+    image: '',
+    user_id: ''
+  }
   return (
     <div className="pt-[90px]">
       <div className="grid grid-cols-4 pb-36">
         {/* 左側 */}
         <div className="flex flex-col items-center gap-5 border-r border-gray-400">
-          <Profile user={user} />
+          <Profile user={user == null ? defaultUser : user} />
           <LogOutBtn />
         </div>
 
