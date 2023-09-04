@@ -34,7 +34,10 @@ export const useMutateGame = () => {
       hiragana: hiragana,
       ai_model: aiModel,
       detail: detail,
-      disable_ranking: disableRanking
+      disable_ranking: disableRanking,
+      total_key_count: totalTypeNum,
+      total_miss_type: totalMissTypeNum,
+      total_time: totalTimeMiliSec
     })
     const freshIdToken = await getFreshIdToken(refreshToken ? refreshToken : '')
     try {
