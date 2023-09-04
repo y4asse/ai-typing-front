@@ -82,7 +82,7 @@ const GlobalMenu = () => {
   }
 
   return (
-    <div className="z-10 absolute  top-0 right-0 m-5  flex flex-col ">
+    <div className={`z-50 flex flex-col fixed top-2 right-2`}>
       <button
         id="globalMenu"
         className="border border-gray-500 bg-btn hover:bg-btnHover hover:shadow-btnHover hover:text-gray-800 text-2xl font-semibold   tracking-widest hover:scale-95
