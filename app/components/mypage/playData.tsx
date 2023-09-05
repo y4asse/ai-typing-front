@@ -34,10 +34,30 @@ const calcScore = (games: Game[]) => {
   }
 }
 
-const PlayData = async ({ games }: { games: Game[] }) => {
+const PlayData = ({ games }: { games: Game[] | null }) => {
+  if (games == null) {
+    return (
+      <div className="bg-black opacity-70 text-white mx-auto rounded-xl p-5 grid grid-cols-3 mb-10">
+        <div className="rounded-full border border-white w-[200px] h-[200px] mx-auto my-5 flex flex-col justify-center items-center text-3xl shadow-md shadow-white ">
+          <p>スコア</p>
+          <p>最高: 0</p>
+          <p>平均: 0</p>
+        </div>
+        <div className="rounded-full border border-white w-[200px] h-[200px] mx-auto my-5 flex flex-col justify-center items-center text-3xl shadow-md shadow-white ">
+          <p>プレイ回数</p>
+          <p>0 回</p>
+        </div>
+        <div className="rounded-full border border-white w-[200px] h-[200px] mx-auto my-5 flex flex-col justify-center items-center text-3xl shadow-md shadow-white ">
+          <p>KPM</p>
+          <p>最高: 0</p>
+          <p>平均: 0</p>
+        </div>
+      </div>
+    )
+  }
   const { totalScore, maxScore, avgScore, maxKpm, avgKpm, gameCount } = calcScore(games)
   return (
-    <div className="bg-black opacity-70 text-white mx-auto rounded-xl p-5 grid grid-cols-3 mb-10">
+    <div className="bg-black opacity-70 text-white mx-auto rounded-xl p-5 grid grid-cols-3">
       <div className="rounded-full border border-white w-[200px] h-[200px] mx-auto my-5 flex flex-col justify-center items-center text-3xl shadow-md shadow-white ">
         <p>スコア</p>
         <p>最高: {maxScore}</p>

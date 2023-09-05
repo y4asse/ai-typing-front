@@ -11,12 +11,19 @@ import { authOptions } from '../api/auth/[...nextauth]/route'
 import { getFreshIdToken } from '@/hooks/getFreshIdToken'
 
 const getPlayData = async () => {
-  const data = await fetch('https://12b0ec6f-a2e8-4081-afaf-b7b1de217aae.mock.pstmn.io/game', {
+  const session = await getServerSession(authOptions)
+  if (session == null) {
+    return null
+  }
+  const refreshToken = session.user.refreshToken
+  const freshIdToken = await getFreshIdToken(refreshToken)
+  const data = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/games`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${freshIdToken}`
     },
-    cache: 'force-cache'
+    cache: 'no-cache'
   }).then((res) => {
     if (!res.ok) {
       console.log(res.statusText)
@@ -50,7 +57,6 @@ const getProfile = async () => {
 const Mypage = async () => {
   const user = await getProfile()
   const games = await getPlayData()
-  console.log(user?.image)
   const defaultUser: User = {
     name: '',
     image: '',
@@ -73,6 +79,7 @@ const Mypage = async () => {
             <Batch />
             <h1 className="text-3xl font-bold mb-7">これまでの成績</h1>
             <PlayData games={games} />
+            <p className="mt-2 mb-10 text-end">※スコアが0の場合は成績に反映されません</p>
             <h1 className="text-3xl font-bold mb-7">直近のゲーム履歴</h1>
             <GameHistoryList />
           </div>
