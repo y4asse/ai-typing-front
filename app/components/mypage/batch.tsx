@@ -47,8 +47,8 @@ const Batch = () => {
       alt: 'earth_batch'
     },
     {
-      id: 'saturn',
-      name: '土星',
+      id: 'jupiter',
+      name: '木星',
       description: '出発',
       border: 2000,
       image:
@@ -56,10 +56,19 @@ const Batch = () => {
       alt: 'earth_batch'
     },
     {
-      id: 'jupiter',
-      name: '木星',
+      id: 'venus',
+      name: '金星',
       description: '出発',
       border: 2500,
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/ai-typing-c06b9.appspot.com/o/earth.png?alt=media&token=ab5e4d51-ce6f-400e-8004-9f639e098c6f',
+      alt: 'earth_batch'
+    },
+    {
+      id: 'saturn',
+      name: '土星',
+      description: '出発',
+      border: 3000,
       image:
         'https://firebasestorage.googleapis.com/v0/b/ai-typing-c06b9.appspot.com/o/earth.png?alt=media&token=ab5e4d51-ce6f-400e-8004-9f639e098c6f',
       alt: 'earth_batch'
@@ -68,7 +77,7 @@ const Batch = () => {
       id: 'sun',
       name: '太陽',
       description: '出発',
-      border: 3000,
+      border: 3500,
       image:
         'https://firebasestorage.googleapis.com/v0/b/ai-typing-c06b9.appspot.com/o/earth.png?alt=media&token=ab5e4d51-ce6f-400e-8004-9f639e098c6f',
       alt: 'earth_batch'
@@ -77,17 +86,17 @@ const Batch = () => {
       id: 'universe',
       name: '宇宙',
       description: '出発',
-      border: 4000,
+      border: 4500,
       image:
         'https://firebasestorage.googleapis.com/v0/b/ai-typing-c06b9.appspot.com/o/earth.png?alt=media&token=ab5e4d51-ce6f-400e-8004-9f639e098c6f',
       alt: 'earth_batch'
     }
   ]
   return (
-    <div className="w-full h-[600px] shadow-btn bg-btn mb-10 border-gray-600 border rounded-xl grid grid-cols-4 grid-rows-2 px-2">
+    <div className="w-full shadow-btn bg-btn mb-10 border-gray-600 border rounded-xl grid grid-cols-4 grid-rows-2 px-2">
       {batchList.map((batch, index) => {
         return (
-          <div className="px-4 my-auto" key={index}>
+          <div className="px-4 my-auto mt-5" key={index}>
             <div className="flex flex-col items-center justify-evenly shadow-xl rounded-3xl p-1">
               <h2 className="text-xl font-bold">{batch.name}</h2>
               {userBatch.find((userBatch) => userBatch.id == batch.id) ? (
