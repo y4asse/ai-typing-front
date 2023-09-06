@@ -36,7 +36,7 @@ const SignInBtns = () => {
       await signInByNextAuth('credentials', {
         idToken,
         refreshToken,
-        callbackUrl: '/'
+        callbackUrl: '/mypage'
       })
     } catch (err) {
       alert(err)
@@ -68,7 +68,7 @@ const SignInBtns = () => {
       await signInByNextAuth('credentials', {
         idToken,
         refreshToken,
-        callbackUrl: '/'
+        callbackUrl: '/mypage'
       })
     } catch (err) {
       alert(err)

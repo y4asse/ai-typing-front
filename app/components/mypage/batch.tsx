@@ -11,6 +11,7 @@ const getUserBatch = async () => {
   const refreshToken = session.user.refreshToken
   const freshIdToken = await getFreshIdToken(refreshToken)
   const data = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/batches`, {
+    cache: 'no-cache',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -29,13 +30,12 @@ const getUserBatch = async () => {
 
 const Batch = async () => {
   const userBatch = await getUserBatch()
-  console.log(userBatch)
   const batchList = [
     {
       id: 'earth',
       name: '地球',
       description: '出発',
-      border: 0,
+      border: 1,
       image:
         'https://firebasestorage.googleapis.com/v0/b/ai-typing-c06b9.appspot.com/o/earth.png?alt=media&token=ab5e4d51-ce6f-400e-8004-9f639e098c6f',
       alt: 'earth_batch'
@@ -114,7 +114,7 @@ const Batch = async () => {
     }
   ]
   return (
-    <div className="w-full shadow-btn bg-btn mb-10 border-gray-600 border rounded-xl grid grid-cols-4 grid-rows-2 px-2">
+    <div className="w-full shadow-btn bg-btn mb-10 border-gray-600 border rounded-xl grid grid-cols-4 grid-rows-2 px-2 py-4">
       {batchList.map((batch, index) => {
         return (
           <div className="px-4 my-auto mt-5" key={index}>
