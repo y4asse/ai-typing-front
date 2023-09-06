@@ -80,7 +80,7 @@ export const useMutateGame = () => {
           console.log(res.statusText)
           alert('データを登録できませんでした')
         }
-        const body: { count: number; rank: number } = await res.json()
+        const body: { count: number; rank: number; batches: Batch[] } = await res.json()
         return body
       })
       return data

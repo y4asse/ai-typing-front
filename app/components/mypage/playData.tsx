@@ -58,7 +58,7 @@ const PlayData = ({ games }: { games: Game[] | null }) => {
   const { totalScore, maxScore, avgScore, maxKpm, avgKpm, gameCount } = calcScore(games)
   return (
     <div className="bg-black opacity-70 text-white mx-auto rounded-xl p-5 grid grid-cols-3">
-      <div className="rounded-full border border-white w-[200px] h-[200px] mx-auto my-5 flex flex-col justify-center items-center text-3xl shadow-md shadow-white ">
+      <div className="rounded-full border border-white w-[200px] h-[200px] mx-auto my-5 flex flex-col justify-center items-center text-3xl shadow-md shadow-white whitespace-nowrap">
         <p>スコア</p>
         <p>最高: {maxScore}</p>
         <p>平均: {avgScore}</p>
