@@ -1,14 +1,35 @@
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { getFreshIdToken } from '@/hooks/getFreshIdToken'
+import { getServerSession } from 'next-auth'
 import React from 'react'
 
-const Batch = () => {
-  const userBatch = [
-    {
-      id: 'earth'
-    },
-    {
-      id: 'moon'
+const getUserBatch = async () => {
+  const session = await getServerSession(authOptions)
+  if (!session) {
+    return null
+  }
+  const refreshToken = session.user.refreshToken
+  const freshIdToken = await getFreshIdToken(refreshToken)
+  const data = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/batches`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${freshIdToken}`
     }
-  ]
+  }).then((res) => {
+    if (!res.ok) {
+      console.log(res.statusText)
+      return null
+    }
+    return res.json()
+  })
+  const userBatch: Batch[] | null = data
+  return userBatch
+}
+
+const Batch = async () => {
+  const userBatch = await getUserBatch()
+  console.log(userBatch)
   const batchList = [
     {
       id: 'earth',
@@ -99,7 +120,7 @@ const Batch = () => {
           <div className="px-4 my-auto mt-5" key={index}>
             <div className="flex flex-col items-center justify-evenly shadow-xl rounded-3xl p-1">
               <h2 className="text-xl font-bold">{batch.name}</h2>
-              {userBatch.find((userBatch) => userBatch.id == batch.id) ? (
+              {userBatch && userBatch.find((userBatch) => userBatch.name == batch.id) ? (
                 <img alt={batch.alt} src={batch.image} className="px-5" />
               ) : (
                 <img
