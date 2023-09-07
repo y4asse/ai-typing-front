@@ -2,6 +2,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { batchList } from '@/data/batches'
 import { getFreshIdToken } from '@/hooks/getFreshIdToken'
 import { getServerSession } from 'next-auth'
+import Image from 'next/image'
 import React from 'react'
 
 const getUserBatch = async () => {
@@ -40,7 +41,7 @@ const Batch = async () => {
               <div className="px-4 my-auto mt-5" key={index}>
                 <div className="flex flex-col items-center justify-evenly shadow-xl rounded-3xl p-1">
                   <h2 className="text-xl font-bold">{batch.name}</h2>
-                  <img alt={batch.alt} src={batch.image} className="px-5" />
+                  <Image alt={batch.alt} src={'/img/earth.png'} className="px-5" width={1500} height={150} />
                   <p className=" text-gray-500">{batch.description}</p>
                   <span className="rounded-lg px-1 bg-black bg-opacity-50 text-white">{batch.border}～</span>
                 </div>
@@ -51,11 +52,13 @@ const Batch = async () => {
               <div className="px-4 my-auto mt-5" key={index}>
                 <div className="flex flex-col items-center justify-evenly shadow-xl rounded-3xl p-1">
                   <h2 className="text-xl font-bold">{batch.name}</h2>
-                  <img
+                  <Image
                     alt={batch.alt}
-                    src={batch.image}
+                    src={'/img/earth.png'}
                     className="px-5"
                     style={{ filter: 'grayscale(100%)', opacity: '40%' }}
+                    width={1500}
+                    height={150}
                   />
                   <p className=" text-gray-500">{batch.description}</p>
                   <span className="rounded-lg px-1 bg-black bg-opacity-50 text-white">{batch.border}～</span>
