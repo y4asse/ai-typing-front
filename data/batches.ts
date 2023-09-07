@@ -4,7 +4,7 @@ export const batchList: FrontBatch[] = [
     name: '技育展',
     description: '技育展記念バッジ',
     border: 0,
-    image: 'https://d20r2glx6euv0l.cloudfront.net/thumbnail/05401911e592ac5c.png',
+    image: '/img/giikuten.png',
     alt: 'giikuten_batch',
     isHidden: true
   },
