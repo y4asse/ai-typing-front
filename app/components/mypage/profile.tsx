@@ -1,9 +1,28 @@
 'use client'
-import { postImage } from '@/app/api/upload/route'
 import { getFreshIdToken } from '@/hooks/getFreshIdToken'
 import { User } from '@/types/profile'
 import { useSession } from 'next-auth/react'
 import React, { useRef, useState } from 'react'
+
+import { storage } from '@/firebase/client'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+
+export const postImage = async (image: File) => {
+  let uploadResult = ''
+  if (image.name) {
+    const storageRef = ref(storage)
+    const ext = image.name.split('.').pop()
+    const hashName = Math.random().toString(36).slice(-8)
+    const fullPath = '/images/' + hashName + '.' + ext
+    const uploadRef = ref(storageRef, fullPath)
+    await uploadBytes(uploadRef, image).then(async function (result) {
+      await getDownloadURL(uploadRef).then(function (url) {
+        uploadResult = url
+      })
+    })
+  }
+  return uploadResult
+}
 
 const Profile = ({ user }: { user: User }) => {
   //session
