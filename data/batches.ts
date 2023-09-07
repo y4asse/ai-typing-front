@@ -1,11 +1,11 @@
 export const batchList: FrontBatch[] = [
   {
-    id: 'giikuten',
+    id: 'geekten',
     name: '技育展',
     description: '技育展記念バッジ',
     border: 0,
-    image: '/img/giikuten.png',
-    alt: 'giikuten_batch',
+    image: '/img/geekten.png',
+    alt: 'geekten_batch',
     isHidden: true
   },
   {
