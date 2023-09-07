@@ -27,12 +27,10 @@ const GlobalMenu = () => {
       if (prev) return false
       return prev
     })
-    setTimeout(() => {
-      setIsShowMenu((prev) => {
-        if (prev) return false
-        return prev
-      })
-    }, 300)
+    setIsShowMenu((prev) => {
+      if (prev) return false
+      return prev
+    })
   }
   useEffect(() => {
     window.addEventListener('click', handleClickSome, true)
@@ -70,14 +68,10 @@ const GlobalMenu = () => {
   const handleClick = () => {
     if (isShowMenu == true) {
       setIsShowMenuDetail(false)
-      setTimeout(() => {
-        setIsShowMenu(false)
-      }, 300)
+      setIsShowMenu(false)
     } else {
       setIsShowMenu(true)
-      setTimeout(() => {
-        setIsShowMenuDetail(true)
-      }, 300)
+      setIsShowMenuDetail(true)
     }
   }
 
@@ -85,14 +79,14 @@ const GlobalMenu = () => {
     <div className={`z-50 flex flex-col fixed top-2 right-2`}>
       <button
         id="globalMenu"
-        className="border border-gray-500 bg-btn hover:bg-btnHover hover:shadow-btnHover hover:text-gray-800 text-2xl font-semibold   tracking-widest hover:scale-95
+        className="border border-gray-500 bg-btn hover:bg-btnHover hover:shadow-btnHover hover:text-gray-800 text-2xl font-semibold   tracking-widest
         text-end   ml-auto  p-2 rounded-full   duration-200 transition-all  shadow-btn"
         onClick={handleClick}
       >
         {isShowMenu ? <RiCloseFill className="text-4xl " /> : <GiHamburgerMenu className="text-4xl" />}
       </button>
       <div
-        className={` flex items-center flex-col overflow-hidden justify-evenly  duration-300 transition-all   border-black ${
+        className={` flex items-center flex-col overflow-hidden justify-evenly   border-black ${
           isShowMenu ? ' h-96' : ' h-0 '
         }`}
       >
@@ -100,7 +94,7 @@ const GlobalMenu = () => {
           return (
             <div className="flex items-center" key={index}>
               <span
-                className={`font-bold mr-1 text-end overflow-hidden whitespace-nowrap transition-all duration-500  border-black   ${
+                className={`font-bold mr-1 text-end overflow-hidden whitespace-nowrap   border-black   ${
                   isShowMenuDetail ? 'w-20' : 'w-0 '
                 }`}
               >
@@ -110,8 +104,8 @@ const GlobalMenu = () => {
                 onClick={closeGlobalMenu}
                 href={value.link}
                 className="
-                border border-gray-500 bg-btn hover:bg-btnHover hover:shadow-btnHover hover:text-gray-800 text-center font-semibold   tracking-widest hover:scale-95
-                text-4xl  p-2   rounded-full   duration-200 transition-all "
+                border border-gray-500 bg-btn hover:bg-btnHover hover:shadow-btnHover hover:text-gray-800 text-center font-semibold   tracking-widest
+                text-4xl  p-2   rounded-full"
               >
                 {value.icon}
               </Link>
