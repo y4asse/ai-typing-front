@@ -21,8 +21,12 @@ export const useMutateGame = () => {
     totalTimeMiliSec,
     aiModel,
     detail,
-    disableRanking
+    disableRanking,
+    missTypeKey
   } = game
+  const missTypeKeySet = missTypeKey.map((obj) => {
+    return obj.wanted_key + obj.inputed_key
+  })
   const { data: session } = useSession()
   const refreshToken = session?.user.refreshToken
   const createGame = async () => {
@@ -66,7 +70,8 @@ export const useMutateGame = () => {
       score: score,
       total_key_count: totalTypeNum,
       total_miss_type: totalMissTypeNum,
-      total_time: totalTimeMiliSec
+      total_time: totalTimeMiliSec,
+      miss_type_key_set: missTypeKeySet.join(',')
     })
     try {
       const data = await fetch(`${process.env.NEXT_PUBLIC_FRONT_URL}/api/updateGameScore/${id}`, {

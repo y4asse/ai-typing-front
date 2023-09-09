@@ -137,15 +137,15 @@ const useTypingLogic = (
         setIsMissFlash(false)
       }, 100)
 
-      //ミスした文字を保存する配列
-      const missTypeKey = [...game.missTypeKey, wantedRomaji]
-      //重複を削除
-      const missTypeKeySet = Array.from(new Set(missTypeKey))
+      const missTypeKeyObj: MissType = {
+        wanted_key: wantedRomaji,
+        inputed_key: typedKey
+      }
       setGame((prev) => ({
         ...prev,
         totalMissTypeNum: prev.totalMissTypeNum + 1,
         missTypeNum: prev.missTypeNum + 1,
-        missTypeKey: missTypeKeySet
+        missTypeKey: [...prev.missTypeKey, missTypeKeyObj]
       }))
     }
   }

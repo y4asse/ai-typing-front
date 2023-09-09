@@ -13,7 +13,7 @@ type State = {
   typeNum: number
   missTypeNum: number
   id: string
-  missTypeKey: string[]
+  missTypeKey: MissType[]
   totalTimeMiliSec: number
   aiModel: string
   detail: string

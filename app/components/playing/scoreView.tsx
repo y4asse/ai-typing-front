@@ -24,6 +24,8 @@ const ScoreView = () => {
   const [isShowAnalyse, setIsShowAnalyse] = useState<boolean>(false)
   const [isShowRank, setIsShowRank] = useState<boolean>(false)
   const [isShowBatch, setIsShowBatch] = useState<boolean>(true)
+  const missTypeKeySet = new Set(missTypeKey.map((value) => value.wanted_key))
+  const joinMissTypeKey = Array.from(missTypeKeySet).join(' ').toUpperCase()
   return (
     <div className="h-screen flex justify-center items-center flex-col gap-2">
       {isShowAnalyse && (
@@ -120,7 +122,7 @@ const ScoreView = () => {
           <span>正確率: {accuracy}%</span>
         </div>
         <div className="text-xl">
-          <p>間違えた文字: {game.missTypeKey.join(' ').toUpperCase()}</p>
+          <p>間違えた文字: {joinMissTypeKey}</p>
         </div>
       </div>
       <AiAnalyseBtn
