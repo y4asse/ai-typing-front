@@ -29,7 +29,7 @@ export const batchList: FrontBatch[] = [
   {
     id: 'mars',
     name: '火星',
-    description: '出発',
+    description: 'どこか遠くへ',
     border: 1000,
     image: '/img/earth.png',
     alt: 'earth_batch',
@@ -38,7 +38,7 @@ export const batchList: FrontBatch[] = [
   {
     id: 'mercury',
     name: '水星',
-    description: '出発',
+    description: '新たな土地',
     border: 1500,
     image: '/img/earth.png',
     alt: 'earth_batch',
@@ -47,7 +47,7 @@ export const batchList: FrontBatch[] = [
   {
     id: 'jupiter',
     name: '木星',
-    description: '出発',
+    description: 'さらに向こうへ',
     border: 2000,
     image: '/img/earth.png',
     alt: 'earth_batch',
@@ -56,7 +56,7 @@ export const batchList: FrontBatch[] = [
   {
     id: 'venus',
     name: '金星',
-    description: '出発',
+    description: '未知との遭遇',
     border: 2500,
     image: '/img/earth.png',
     alt: 'earth_batch',
@@ -65,7 +65,7 @@ export const batchList: FrontBatch[] = [
   {
     id: 'saturn',
     name: '土星',
-    description: '出発',
+    description: '新しい発見',
     border: 3000,
     image: '/img/earth.png',
     alt: 'earth_batch',
@@ -74,7 +74,7 @@ export const batchList: FrontBatch[] = [
   {
     id: 'sun',
     name: '太陽',
-    description: '出発',
+    description: '熱い想い',
     border: 3500,
     image: '/img/earth.png',
     alt: 'earth_batch',
@@ -83,7 +83,7 @@ export const batchList: FrontBatch[] = [
   {
     id: 'universe',
     name: '宇宙',
-    description: '出発',
+    description: '未知なる場所へ',
     border: 4500,
     image: '/img/earth.png',
     alt: 'earth_batch',
