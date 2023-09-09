@@ -18,12 +18,14 @@ const AiAnalyseBtn = ({ isShowAnalyse, setIsShowAnalyse, analyseData, setAnalyse
   const [isAnalysing, setIsAnalysing] = useState<boolean>(false)
   const [game] = useRecoilState(gameAtom)
   const { score, totalTimeMiliSec, missTypeKey, totalMissTypeNum, totalTypeNum, rank, rankingCount } = game
+  const missTypeKeySet = new Set(missTypeKey.map((value) => value.wanted_key))
+  const arrayMissTypeKey = Array.from(missTypeKeySet)
   const analyse = () => {
     setIsShowAnalyse(true)
     if (isAnalysing) return
     if (analyseData) return
     setIsAnalysing(true)
-    getAnalyse(score, totalTimeMiliSec, totalTypeNum, totalMissTypeNum, missTypeKey).then((res) => {
+    getAnalyse(score, totalTimeMiliSec, totalTypeNum, totalMissTypeNum, arrayMissTypeKey).then((res) => {
       if (res === null) {
         alert('AI分析に失敗しました。')
         setIsAnalysing(false)

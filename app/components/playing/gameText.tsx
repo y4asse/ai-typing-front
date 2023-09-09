@@ -40,8 +40,9 @@ const GameText = () => {
       updateGameScore().then((res) => {
         const count = res ? res.count : 0
         const rank = res ? res.rank : 0
+        const batches = res ? res.batches : []
         setGame((prev) => {
-          return { ...prev, rank, rankingCount: count }
+          return { ...prev, rank, rankingCount: count, batches: batches }
         })
       })
       //終了画面に遷移

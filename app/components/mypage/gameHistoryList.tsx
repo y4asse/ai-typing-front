@@ -13,14 +13,16 @@ const getGameHistory = async () => {
   }
   const refreshToken = session.user.refreshToken
   const freshIdToken = await getFreshIdToken(refreshToken)
+
   try {
-    const data: GameHistory[] = await fetch(`${API_URL}/gameHistory`, {
+    const limit = 5
+    const data: GameHistory[] = await fetch(`${API_URL}/gameHistory?limit=${limit}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${freshIdToken}`,
         'Content-Type': 'application/json'
       },
-      cache: 'no-cache'
+      cache: 'force-cache'
     }).then((res) => {
       if (!res.ok) {
         throw new Error('データを取得できませんでした')
@@ -45,24 +47,28 @@ const GameHistoryList = async () => {
   }
 
   return (
-    <table className="w-full h-full">
-      <tbody>
+    <div>
+      <div className="border-black border-4 rounded-xl p-5 w-full  text-2xl">
         {gameHistory.length === 0 ? (
           <div className="flex text-3xl font-bold justify-center items-center h-full">
             まだデータがありません．プレイしてみましょう！
           </div>
         ) : (
-          gameHistory.map((game, index) => {
-            if (index > 9) return
-            return (
-              <tr key={index}>
-                <GameHistoryItem game={game} />
-              </tr>
-            )
-          })
+          <table className="w-full h-full">
+            <tbody>
+              {gameHistory.map((game, index) => {
+                if (index > 9) return
+                return (
+                  <tr key={index}>
+                    <GameHistoryItem game={game} />
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
         )}
-      </tbody>
-    </table>
+      </div>
+    </div>
   )
 }
 
