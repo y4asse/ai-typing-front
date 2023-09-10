@@ -31,7 +31,7 @@ const TweetBtn = () => {
   const url = encodeURIComponent('https://ai-typing.app\n')
   return (
     <a
-      className=" text-center w-full  border-gray-500 border rounded-full py-5 hover:bg-blue-400 hover:text-white duration-200 transition-all text-2xl font-bold shadow-xl hover:scale-95  tracking-widest"
+      className=" text-center w-[400px] border-gray-500 border rounded-full py-5 hover:bg-blue-400 hover:text-white duration-200 transition-all text-2xl font-bold shadow-xl hover:scale-95  tracking-widest"
       href={`https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}`}
       target="_blank"
       rel="noopener noreferrer"

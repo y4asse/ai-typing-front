@@ -37,7 +37,7 @@ const AiAnalyseBtn = ({ isShowAnalyse, setIsShowAnalyse, analyseData, setAnalyse
   }
   return (
     <button
-      className="z-10  w-2/5  
+      className="z-10  w-[300px]
       border border-gray-500 bg-btn hover:bg-btnHover hover:shadow-btnHover hover:text-gray-800 text-center  rounded-xl py-8   duration-200 transition-all text-2xl font-semibold   tracking-widest hover:scale-95"
       onClick={analyse}
     >
