@@ -27,9 +27,9 @@ const ScoreView = () => {
   const missTypeKeySet = new Set(missTypeKey.map((value) => value.wanted_key))
   const joinMissTypeKey = Array.from(missTypeKeySet).join(' ').toUpperCase()
   return (
-    <div className="h-screen flex justify-center items-center flex-col gap-2">
+    <div className="h-screen grid grid-cols-4 grid-rows-2 py-20">
       {isShowAnalyse && (
-        <div className="absolute bg-orange-100 z-30 w-1/2 border-black border-4 p-10 pb-6 rounded-xl font-bold text-xl">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-orange-100 z-30 w-800 border-black border-4 p-10 pb-6 rounded-xl font-bold text-xl">
           {analyseData ? (
             <p>{analyseData}</p>
           ) : (
@@ -47,7 +47,7 @@ const ScoreView = () => {
         </div>
       )}
       {isShowBatch && batches && batches.length > 0 && (
-        <div className=" absolute flex flex-col items-center bg-primary border-4 border-black rounded-xl z-50 p-10 gap-10">
+        <div className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center bg-primary border-4 border-black rounded-xl z-50 p-10 gap-10">
           <h1 className="text-2xl font-bold">新しいバッジを獲得しました🎉</h1>
           <div className="flex justify-evenly w-full">
             {batchList.map((batch, index) => {
@@ -76,7 +76,7 @@ const ScoreView = () => {
         </div>
       )}
       {isShowRank && (
-        <div className=" flex flex-col absolute bg-orange-100 z-30 w-1/2 border-black border-4 p-10 pb-6 rounded-xl font-bold text-xl justify-evenly items-center">
+        <div className=" flex flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-orange-100 z-30 w-1/2 border-black border-4 p-10 pb-6 rounded-xl font-bold text-xl justify-evenly items-center">
           {rank == 0 ? (
             <div className="text-2xl">
               ランキングに反映されませんでした
@@ -110,32 +110,35 @@ const ScoreView = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2">
         <CreatedAnimation />
       </div>
-      <div className="text-7xl font-bold animate-bounce">終了!!</div>
-      <div className="bg-black bg-opacity-70 text-white py-5 px-24 rounded-2xl text-6xl flex items-center justify-center flex-col gap-5">
-        <div className="flex justify-center items-center gap-5">
-          <ScoreStar />
-          <span>スコア: {score}</span>
-        </div>
-        <div className="flex text-xl justify-evenly w-full">
-          <span>入力文字数: {totalTypeNum}</span>
-          <span>KPM: {KPM}</span>
-          <span>正確率: {accuracy}%</span>
-        </div>
-        <div className="text-xl">
-          <p>間違えた文字: {joinMissTypeKey}</p>
+
+      <div className=" col-span-2 col-start-2 text-center">
+        <h1 className="text-7xl font-bold animate-bounce">終了!!</h1>
+        <div className="bg-black bg-opacity-70 text-white py-5 px-24 rounded-2xl text-6xl flex items-center justify-center flex-col gap-5">
+          <div className="flex justify-center items-center gap-5">
+            <ScoreStar />
+            <span>スコア: {score}</span>
+          </div>
+          <div className="flex text-xl justify-evenly w-full">
+            <span>入力文字数: {totalTypeNum}</span>
+            <span>KPM: {KPM}</span>
+            <span>正確率: {accuracy}%</span>
+          </div>
+          <div className="text-xl">
+            <p>間違えた文字: {joinMissTypeKey}</p>
+          </div>
         </div>
       </div>
-      <AiAnalyseBtn
-        isShowAnalyse={isShowAnalyse}
-        setIsShowAnalyse={setIsShowAnalyse}
-        analyseData={analyseData}
-        setAnalyseData={setAnalyseData}
-      />
-      <div className="w-2/5 flex gap-5 z-10">
-        <PlayAgainBtn />
-        <ShowRank setIsShowRank={setIsShowRank} />
-      </div>
-      <div className="w-1/5 flex z-10">
+      <div className=" col-span-4 row-start-2 z-10 flex flex-col justify-evenly items-center">
+        <div className="flex justify-evenly items-center gap-3">
+          <AiAnalyseBtn
+            isShowAnalyse={isShowAnalyse}
+            setIsShowAnalyse={setIsShowAnalyse}
+            analyseData={analyseData}
+            setAnalyseData={setAnalyseData}
+          />
+          <PlayAgainBtn />
+          <ShowRank setIsShowRank={setIsShowRank} />
+        </div>
         <TweetBtn />
       </div>
     </div>

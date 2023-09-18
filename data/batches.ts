@@ -79,14 +79,14 @@ export const batchList: FrontBatch[] = [
     image: '/img/earth.png',
     alt: 'earth_batch',
     isHidden: false
-  },
-  {
-    id: 'universe',
-    name: '宇宙',
-    description: '未知なる場所へ',
-    border: 4500,
-    image: '/img/earth.png',
-    alt: 'earth_batch',
-    isHidden: false
   }
+  // {
+  //   id: 'universe',
+  //   name: '宇宙',
+  //   description: '未知なる場所へ',
+  //   border: 4500,
+  //   image: '/img/earth.png',
+  //   alt: 'earth_batch',
+  //   isHidden: false
+  // }
 ]
