@@ -29,7 +29,7 @@ const ScoreView = () => {
   return (
     <div className="h-screen grid grid-cols-4 grid-rows-2 py-20">
       {isShowAnalyse && (
-        <div className="absolute bg-orange-100 z-30 w-1/2 border-black border-4 p-10 pb-6 rounded-xl font-bold text-xl">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-orange-100 z-30 w-800 border-black border-4 p-10 pb-6 rounded-xl font-bold text-xl">
           {analyseData ? (
             <p>{analyseData}</p>
           ) : (
@@ -47,7 +47,7 @@ const ScoreView = () => {
         </div>
       )}
       {isShowBatch && batches && batches.length > 0 && (
-        <div className=" absolute flex flex-col items-center bg-primary border-4 border-black rounded-xl z-50 p-10 gap-10">
+        <div className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center bg-primary border-4 border-black rounded-xl z-50 p-10 gap-10">
           <h1 className="text-2xl font-bold">新しいバッジを獲得しました🎉</h1>
           <div className="flex justify-evenly w-full">
             {batchList.map((batch, index) => {
@@ -76,7 +76,7 @@ const ScoreView = () => {
         </div>
       )}
       {isShowRank && (
-        <div className=" flex flex-col absolute bg-orange-100 z-30 w-1/2 border-black border-4 p-10 pb-6 rounded-xl font-bold text-xl justify-evenly items-center">
+        <div className=" flex flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-orange-100 z-30 w-1/2 border-black border-4 p-10 pb-6 rounded-xl font-bold text-xl justify-evenly items-center">
           {rank == 0 ? (
             <div className="text-2xl">
               ランキングに反映されませんでした

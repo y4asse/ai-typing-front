@@ -21,6 +21,7 @@ type State = {
   rankingCount: number
   rank: number
   batches: Batch[]
+  sound: boolean
 }
 
 export const defaultState: State = {
@@ -42,7 +43,8 @@ export const defaultState: State = {
   disableRanking: false,
   rankingCount: 0,
   rank: 0,
-  batches: []
+  batches: [],
+  sound: true
 }
 
 export const gameAtom = atom({
