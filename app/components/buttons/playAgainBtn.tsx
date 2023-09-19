@@ -30,7 +30,7 @@ const PlayAgainBtn = () => {
   return (
     <button
       onClick={playAgain}
-      className="border border-gray-500 bg-btn hover:bg-btnHover hover:shadow-btnHover hover:text-gray-800 text-center  rounded-xl py-8   duration-200 transition-all text-2xl font-semibold   tracking-widest hover:scale-95 w-full"
+      className="border border-gray-500 bg-btn hover:bg-btnHover hover:shadow-btnHover hover:text-gray-800 text-center  rounded-xl py-8   duration-200 transition-all text-2xl font-semibold   tracking-widest hover:scale-95 w-[300px]"
     >
       <FaRedoAlt className=" inline-block mr-5" />
       もう一度(esc)

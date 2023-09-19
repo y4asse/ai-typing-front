@@ -61,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <SessionProvider>
         <RecoilPrivider>
           <body className={sora.className}>
-            <div className="bg-[url('/img/background.png')] bg-center bg-cover overflow-hidden ">
+            <div className="bg-[url('/images/background.png')] bg-center bg-cover overflow-hidden ">
               {isMobile && <p className="text-center text-xl font-bold">このアプリはPCでの利用を想定しています．</p>}
               <GlobalMenu />
               {children}

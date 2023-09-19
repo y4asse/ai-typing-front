@@ -1,7 +1,8 @@
 export const getFreshIdToken = async (refreshToken: string) => {
   const data = await fetch(`${process.env.NEXT_PUBLIC_FRONT_URL}/api/refreshToken`, {
+    //firebase authのidトークンが1時間
+    next: { revalidate: 3000 },
     method: 'POST',
-    cache: 'no-store',
     headers: {
       'Content-Type': 'application/json'
     },

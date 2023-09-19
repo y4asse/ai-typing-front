@@ -13,13 +13,15 @@ type State = {
   typeNum: number
   missTypeNum: number
   id: string
-  missTypeKey: string[]
+  missTypeKey: MissType[]
   totalTimeMiliSec: number
   aiModel: string
   detail: string
   disableRanking: boolean
   rankingCount: number
   rank: number
+  batches: Batch[]
+  sound: boolean
 }
 
 export const defaultState: State = {
@@ -40,7 +42,9 @@ export const defaultState: State = {
   detail: 'についての文章',
   disableRanking: false,
   rankingCount: 0,
-  rank: 0
+  rank: 0,
+  batches: [],
+  sound: true
 }
 
 export const gameAtom = atom({

@@ -9,14 +9,14 @@ const LogOutBtn = () => {
   const router = useRouter()
   return (
     <button
-      className="border-gray-800 border p-4 text-2xl font-bold absolute right-20 shadow-btn bg-btn hover:shadow-btnHover hover:bg-btnHover top-2 rounded-xl  transition-all duration-200"
+      className="px-4 py-2 text-lg font-bold right-20 shadow-btn  bg-btn hover:shadow-btnHover hover:bg-btnHover rounded-xl  transition-all duration-200"
       onClick={async () => {
         await signOut({
           callbackUrl: '/'
         })
       }}
     >
-      <TbLogout className="inline-block mr-3 text-4xl" />
+      <TbLogout className="inline-block mr-3 text-2xl" />
       ログアウト
     </button>
   )

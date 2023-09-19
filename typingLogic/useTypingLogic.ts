@@ -5,6 +5,7 @@ import { constructTypeSentence } from './constructTypeSentence'
 import { useRecoilState } from 'recoil'
 import { gameAtom } from '@/recoil/gameAtom'
 import { calcScore } from './calcScore'
+import useAudio from '@/hooks/useAudio'
 
 const useTypingLogic = (
   text: string[]
@@ -39,6 +40,14 @@ const useTypingLogic = (
   const [isMissFlash, setIsMissFlash] = useState(false)
   const [isPlayAgain, setIsPlayAgain] = useState(false)
   const [isTypeStart, setIsTypeStart] = useState(false)
+
+  // sound
+  const audio = useAudio()
+  const playSound = (path: string) => {
+    if (game.sound) {
+      audio(path)
+    }
+  }
 
   //constructTypeSentenceCallbackがtextindexに依存してるので，set関数もtextindexに依存させる
   useEffect(() => {
@@ -117,6 +126,7 @@ const useTypingLogic = (
         //次のお題に進むとき
         if (hiraganaIndex + 1 > constructTypeSentenceCallback().romajiCandidates.length - 1) {
           const { score: calcscore, WPM } = calcScore(typeNum + 1, timer, missTypeNum)
+          playSound('correct')
           setGame((prev) => ({
             ...prev,
             score: prev.score + calcscore,
@@ -130,22 +140,24 @@ const useTypingLogic = (
           goNextText()
         }
       }
+      playSound('type')
     } else {
       //不正解の時
+      playSound('miss')
       setIsMissFlash(true)
       setTimeout(() => {
         setIsMissFlash(false)
       }, 100)
 
-      //ミスした文字を保存する配列
-      const missTypeKey = [...game.missTypeKey, wantedRomaji]
-      //重複を削除
-      const missTypeKeySet = Array.from(new Set(missTypeKey))
+      const missTypeKeyObj: MissType = {
+        wanted_key: wantedRomaji,
+        inputed_key: typedKey
+      }
       setGame((prev) => ({
         ...prev,
         totalMissTypeNum: prev.totalMissTypeNum + 1,
         missTypeNum: prev.missTypeNum + 1,
-        missTypeKey: missTypeKeySet
+        missTypeKey: [...prev.missTypeKey, missTypeKeyObj]
       }))
     }
   }

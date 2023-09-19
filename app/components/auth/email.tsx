@@ -46,7 +46,7 @@ const Email = () => {
         await signInByNextAuth('credentials', {
           refreshToken,
           idToken,
-          callbackUrl: '/'
+          callbackUrl: '/mypage'
         })
       } catch (error) {
         if (error instanceof Error) {
@@ -78,7 +78,7 @@ const Email = () => {
         await signInByNextAuth('credentials', {
           idToken,
           refreshToken,
-          callbackUrl: '/'
+          callbackUrl: '/mypage'
         })
       } catch (error) {
         if (error instanceof Error) {

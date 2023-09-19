@@ -21,8 +21,12 @@ export const useMutateGame = () => {
     totalTimeMiliSec,
     aiModel,
     detail,
-    disableRanking
+    disableRanking,
+    missTypeKey
   } = game
+  const missTypeKeySet = missTypeKey.map((obj) => {
+    return obj.wanted_key + obj.inputed_key
+  })
   const { data: session } = useSession()
   const refreshToken = session?.user.refreshToken
   const createGame = async () => {
@@ -34,7 +38,10 @@ export const useMutateGame = () => {
       hiragana: hiragana,
       ai_model: aiModel,
       detail: detail,
-      disable_ranking: disableRanking
+      disable_ranking: disableRanking,
+      total_key_count: totalTypeNum,
+      total_miss_type: totalMissTypeNum,
+      total_time: totalTimeMiliSec
     })
     const freshIdToken = await getFreshIdToken(refreshToken ? refreshToken : '')
     try {
@@ -63,7 +70,8 @@ export const useMutateGame = () => {
       score: score,
       total_key_count: totalTypeNum,
       total_miss_type: totalMissTypeNum,
-      total_time: totalTimeMiliSec
+      total_time: totalTimeMiliSec,
+      miss_type_key_set: missTypeKeySet.join(',')
     })
     try {
       const data = await fetch(`${process.env.NEXT_PUBLIC_FRONT_URL}/api/updateGameScore/${id}`, {
@@ -77,7 +85,7 @@ export const useMutateGame = () => {
           console.log(res.statusText)
           alert('データを登録できませんでした')
         }
-        const body: { count: number; rank: number } = await res.json()
+        const body: { count: number; rank: number; batches: Batch[] } = await res.json()
         return body
       })
       return data

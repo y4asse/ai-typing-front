@@ -18,12 +18,14 @@ const AiAnalyseBtn = ({ isShowAnalyse, setIsShowAnalyse, analyseData, setAnalyse
   const [isAnalysing, setIsAnalysing] = useState<boolean>(false)
   const [game] = useRecoilState(gameAtom)
   const { score, totalTimeMiliSec, missTypeKey, totalMissTypeNum, totalTypeNum, rank, rankingCount } = game
+  const missTypeKeySet = new Set(missTypeKey.map((value) => value.wanted_key))
+  const arrayMissTypeKey = Array.from(missTypeKeySet)
   const analyse = () => {
     setIsShowAnalyse(true)
     if (isAnalysing) return
     if (analyseData) return
     setIsAnalysing(true)
-    getAnalyse(score, totalTimeMiliSec, totalTypeNum, totalMissTypeNum, missTypeKey).then((res) => {
+    getAnalyse(score, totalTimeMiliSec, totalTypeNum, totalMissTypeNum, arrayMissTypeKey).then((res) => {
       if (res === null) {
         alert('AI分析に失敗しました。')
         setIsAnalysing(false)
@@ -35,7 +37,7 @@ const AiAnalyseBtn = ({ isShowAnalyse, setIsShowAnalyse, analyseData, setAnalyse
   }
   return (
     <button
-      className="z-10  w-2/5  
+      className="z-10  w-[300px]
       border border-gray-500 bg-btn hover:bg-btnHover hover:shadow-btnHover hover:text-gray-800 text-center  rounded-xl py-8   duration-200 transition-all text-2xl font-semibold   tracking-widest hover:scale-95"
       onClick={analyse}
     >
