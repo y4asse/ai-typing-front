@@ -61,7 +61,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
   const kpm = calcKpm(game.total_key_count, game.total_time)
   const accuracy = calcAccuracy(game.total_key_count, game.total_miss_type)
   return (
-    <div className="py-[100px] overflow-y-scroll w-screen">
+    <div className="py-[100px] overflow-y-scroll w-screen min-h-screen">
       <GoBackBtn className="absolute top-[80px] left-3" />
       <div className="w-[1000px] h-full mx-auto flex flex-col">
         <h1 className="text-3xl font-bold mb-[30px]">あいさつ</h1>
