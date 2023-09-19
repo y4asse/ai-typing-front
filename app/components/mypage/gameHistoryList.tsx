@@ -22,7 +22,7 @@ const getGameHistory = async () => {
         Authorization: `Bearer ${freshIdToken}`,
         'Content-Type': 'application/json'
       },
-      cache: 'force-cache'
+      cache: 'no-cache'
     }).then((res) => {
       if (!res.ok) {
         throw new Error('データを取得できませんでした')
