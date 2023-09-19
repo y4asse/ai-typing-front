@@ -31,7 +31,7 @@ export const batchList: FrontBatch[] = [
     name: '火星',
     description: 'どこか遠くへ',
     border: 1000,
-    image: '/img/earth.png',
+    image: '/img/mars.png',
     alt: 'earth_batch',
     isHidden: false
   },
@@ -40,7 +40,7 @@ export const batchList: FrontBatch[] = [
     name: '水星',
     description: '新たな土地',
     border: 1500,
-    image: '/img/earth.png',
+    image: '/img/mercury.png',
     alt: 'earth_batch',
     isHidden: false
   },
@@ -49,7 +49,7 @@ export const batchList: FrontBatch[] = [
     name: '木星',
     description: 'さらに向こうへ',
     border: 2000,
-    image: '/img/earth.png',
+    image: '/img/jupiter.png',
     alt: 'earth_batch',
     isHidden: false
   },
@@ -58,7 +58,7 @@ export const batchList: FrontBatch[] = [
     name: '金星',
     description: '未知との遭遇',
     border: 2500,
-    image: '/img/earth.png',
+    image: '/img/venus.png',
     alt: 'earth_batch',
     isHidden: false
   },
@@ -67,7 +67,7 @@ export const batchList: FrontBatch[] = [
     name: '土星',
     description: '新しい発見',
     border: 3000,
-    image: '/img/earth.png',
+    image: '/img/saturn.png',
     alt: 'earth_batch',
     isHidden: false
   },
@@ -76,7 +76,7 @@ export const batchList: FrontBatch[] = [
     name: '太陽',
     description: '熱い想い',
     border: 3500,
-    image: '/img/earth.png',
+    image: '/img/sun.png',
     alt: 'earth_batch',
     isHidden: false
   }

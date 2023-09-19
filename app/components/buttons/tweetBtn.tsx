@@ -19,7 +19,6 @@ const TweetBtn = () => {
       }
     })
   })
-  console.log(batchNames)
   const text = encodeURIComponent(
     `AI Typingをプレイしました！🚀\nテーマ🔥「${thema}」\nスコア📃「${score}」点\nKPM「${KPM}」\n入力時間⌛「${
       Math.floor(totalTimeMiliSec / 100) / 10
