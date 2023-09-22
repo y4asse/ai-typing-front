@@ -47,27 +47,26 @@ const GameHistoryList = async () => {
   }
 
   return (
-    <div>
-      <div className="border-black border-4 rounded-xl p-5 w-full  text-2xl">
-        {gameHistory.length === 0 ? (
-          <div className="flex text-3xl font-bold justify-center items-center h-full">
-            まだデータがありません．プレイしてみましょう！
-          </div>
-        ) : (
-          <table className="w-full h-full">
-            <tbody>
-              {gameHistory.map((game, index) => {
-                if (index > 9) return
+    <div className="border-black border-4 rounded-xl p-5 w-full  text-2xl">
+      {gameHistory.length === 0 ? (
+        <div className="flex text-3xl font-bold justify-center items-center h-full">
+          まだデータがありません．プレイしてみましょう！
+        </div>
+      ) : (
+        <table className="w-full h-full">
+          <tbody>
+            {gameHistory.map((game, index) => {
+              if (index <= 9) {
                 return (
                   <tr key={index}>
                     <GameHistoryItem game={game} />
                   </tr>
                 )
-              })}
-            </tbody>
-          </table>
-        )}
-      </div>
+              }
+            })}
+          </tbody>
+        </table>
+      )}
     </div>
   )
 }
