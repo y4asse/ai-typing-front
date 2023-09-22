@@ -19,7 +19,7 @@
     "date-fns": "^2.30.0",
     "encoding": "^0.1.13",
     "eslint": "8.41.0",
-    "eslint-config-next": "13.4.6",
+    "eslint-config-next": "^13.5.2",
     "event-stream": "^4.0.1",
     "firebase": "^9.23.0",
     "firebase-admin": "^11.9.0",
