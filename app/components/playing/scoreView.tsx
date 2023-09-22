@@ -111,7 +111,7 @@ const ScoreView = () => {
         <CreatedAnimation />
       </div>
 
-      <div className=" col-span-2 col-start-2 text-center">
+      <div className=" col-span-2 col-start-2 text-center flex flex-col justify-center">
         <h1 className="text-7xl font-bold animate-bounce">終了!!</h1>
         <div className="bg-black bg-opacity-70 text-white py-5 px-24 rounded-2xl text-6xl flex items-center justify-center flex-col gap-5">
           <div className="flex justify-center items-center gap-5">
