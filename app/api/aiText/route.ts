@@ -35,9 +35,7 @@ export async function GET(request: Request) {
     const data = testData
     return NextResponse.json(data)
   } catch (error) {
-    if (error instanceof Error) {
-      console.log(error.message)
-      return NextResponse.json({ error: `${error.message}` }, { status: 500 })
-    }
+    console.log(error)
+    return NextResponse.json({ error: `${error}` }, { status: 500 })
   }
 }
